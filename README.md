@@ -29,6 +29,18 @@ Bun is unavailable).
 npx skills add ahmedhosnypro/skills --skill mermaid-diagrams
 ```
 
+### pooled-missions
+
+Agent skill for running any decomposable mission with a fixed-size pool of
+parallel background subagents — code or non-code — tracked in a per-run
+sqlite DB with crash-safe resume, one uniform worker protocol, and a final
+gated verification. Bundles a tracking-DB helper (`scripts/pool-db.sh`);
+falls back to a plain-file mode when sqlite3 is unavailable.
+
+```sh
+npx skills add ahmedhosnypro/skills --skill pooled-missions
+```
+
 ## Install
 
 Install one skill by name with the
@@ -55,6 +67,8 @@ skills/
                            scripts/issues_db.py, utils/
   mermaid-diagrams/        SKILL.md, scripts/ (validator + tests),
                            assets/, references/
+  pooled-missions/         SKILL.md, scripts/pool-db.sh,
+                           assets/verify_skill.sh
 ```
 
 Maintained by [@ahmedhosnypro](https://github.com/ahmedhosnypro).

@@ -12,7 +12,8 @@ skill keeps its own version line; the repo history is the shared record.
   applied helpers and gates), `scripts/` (executable helpers), `utils/`
   or `references/` (on-demand documentation), `templates/` for config
   schemas.
-- Current skills: `photocraft-automation`, `mermaid-diagrams`.
+- Current skills: `photocraft-automation`, `mermaid-diagrams`,
+  `pooled-missions`.
 
 ## Skill authoring rules
 
@@ -67,6 +68,7 @@ Each skill's own gate:
 ```sh
 bash skills/photocraft-automation/assets/verify_skill.sh
 bash skills/mermaid-diagrams/assets/verify_skill.sh
+bash skills/pooled-missions/assets/verify_skill.sh
 ```
 
 And the mermaid-diagrams validator test suite (requires Bun):
