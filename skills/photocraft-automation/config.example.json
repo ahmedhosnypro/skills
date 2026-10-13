@@ -1,0 +1,13 @@
+{
+  "_comment": "Copy to ~/.photocraft-automation/config.json and fill in. Paths use ~/ (expanded at read time). A missing file or key means the default. Precedence: user request > config.json > SKILL.md. Never store secrets - token paths only.",
+  "artwork_base_dir": "~/Projects/artwork",
+  "token_file_path": "~/.config/photocraft/photocraft-control.token",
+  "photocraft_repo_checkout": "~/Projects/photocraft",
+  "scratch_dir": "~/.photocraft-automation/scratch",
+  "default_lane": "live-app-bridge",
+  "control_port": 7878,
+  "launch_headless_serve": false,
+  "keep_vision_transcripts": true,
+  "sha_inherit_verdict": true,
+  "bank_adjudication": true
+}

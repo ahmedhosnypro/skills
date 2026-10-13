@@ -1,0 +1,3 @@
+interface:
+  display_name: "PhotoCraft Automation"
+  short_description: "Drive PhotoCraft end-to-end (artwork + development) via MCP, control channel, or CLI"
