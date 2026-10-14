@@ -19,7 +19,7 @@ description: >-
   scoring (image-analysis owns that). This skill decides what the art
   should be, proves it against pixels, and names the commands; it does
   not drive the app or judge renders with models.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # photocraft-art-director
@@ -301,7 +301,9 @@ Iterate in place, never rebuild:
 ## Resolve an intent to PhotoCraft tools
 
 The skill ships a search index over the PhotoCraft command surface
-(~1000 commands across 16 families; `indexer/index.sqlite`, driven by
+(~1000 commands across 16 families; the sqlite DB lives in the
+machine-local home `~/.photocraft-art-director/index.sqlite` — override
+with `$PHOTOCRAFT_ART_DIRECTOR_HOME` — driven by
 `indexer/mind_index.py`). Resolve every "how do I make X" through it —
 do not guess command names.
 
@@ -345,7 +347,7 @@ traps with a follow-up exact-id search before writing it into a plan.
 | Situation | Meaning | Action |
 |---|---|---|
 | DB absent or empty | index not shipped or corrupt | Read or grep `references/mindmaps/<family>.md`; do NOT attempt `rebuild` — slice files are build-fleet artifacts, not shipped |
-| No `indexer/config.json`, or it is unreadable | keyword-only mode, by design | Proceed — tiers 1–2 answer most art queries; query with concrete terms; never retry the endpoint mid-task |
+| No config at `~/.photocraft-art-director/config.json`, or it is unreadable | keyword-only mode, by design | Proceed — tiers 1–2 answer most art queries; query with concrete terms; never retry the endpoint mid-task |
 | Embed endpoint down or flaky | command + FTS already ran; they are local and unaffected | Rephrase the query as a command id or concrete keyword (forces tiers 1–2), or read the family md |
 | Search returns no rows | phrasing miss, or the tool is genuinely absent | Widen → grep the mind maps → rephrase the intent as the visual goal; only then conclude the tool is absent |
 | Host has no Python | CLI unusable | The 16 md files are the full browse floor; they cover every family |
@@ -361,12 +363,13 @@ objects → `smart-objects`; text → `text-type`; documents/files →
 `system-config`. Every entry carries a "choose it when…" one-liner;
 the index card adds params and traps.
 
-**Secrets discipline.** `indexer/config.json` (when present) carries
-the embedding endpoint credentials; it is gitignored and its contents
-are never printed or copied into any file. Only the fact of its
-presence and the observable `mode` behavior matter. Configure it
-locally from `indexer/config.example.json` when semantic search is
-wanted.
+**Secrets discipline.** The runtime config at
+`~/.photocraft-art-director/config.json` (when present) carries the
+embedding endpoint credentials; it lives outside any skill tree and
+repo, and its contents are never printed or copied into any file. Only
+the fact of its presence and the observable `mode` behavior matter.
+Configure it locally from `indexer/config.example.json` when semantic
+search is wanted.
 
 `rebuild` and `export` are maintainer operations that regenerate the
 index and the mind maps — never run them mid-task (`export` overwrites

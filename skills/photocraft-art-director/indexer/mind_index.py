@@ -6,8 +6,10 @@ the Markdown family files are generated exports.
 
 Subcommands: add-file, remove-file, search, export, rebuild, stats, files.
 No third-party runtime deps; `sqlite-vec` support via try-import.
-Config (indexer/config.json, gitignored) is read at runtime and never
-printed or logged; no config file => keyword-only mode, no crash.
+Runtime data (index.sqlite, config.json) lives in the machine-local home
+`~/.photocraft-art-director/` (override: $PHOTOCRAFT_ART_DIRECTOR_HOME),
+never beside the script and never inside a published skill tree; no
+config file => keyword-only mode, no crash.
 """
 
 import argparse
@@ -24,8 +26,11 @@ import urllib.error
 import urllib.request
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_DB = os.path.join(SCRIPT_DIR, "index.sqlite")
-CONFIG_PATH = os.path.join(SCRIPT_DIR, "config.json")
+DATA_HOME = (os.environ.get("PHOTOCRAFT_ART_DIRECTOR_HOME")
+             or os.path.join(os.path.expanduser("~"),
+                             ".photocraft-art-director"))
+DEFAULT_DB = os.path.join(DATA_HOME, "index.sqlite")
+CONFIG_PATH = os.path.join(DATA_HOME, "config.json")
 DEFAULT_EXPORT_DIR = os.path.normpath(
     os.path.join(SCRIPT_DIR, "..", "references", "mindmaps"))
 
@@ -847,7 +852,7 @@ def main(argv=None):
         prog="mind_index",
         description="PhotoCraft mind-map RAG indexer (sqlite primary store).")
     parser.add_argument("--db", default=DEFAULT_DB,
-                        help="sqlite index path (default: <script-dir>/index.sqlite)")
+                        help="sqlite index path (default: <data-home>/index.sqlite)")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p = sub.add_parser("add-file", help="upsert a JSONL slice file")
@@ -876,7 +881,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     cfg = load_config()
 
-    conn = open_db(os.path.abspath(args.db))
+    db_path = os.path.abspath(args.db)
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    conn = open_db(db_path)
     ensure_meta(conn)
     conn.commit()
 

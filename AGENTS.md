@@ -13,7 +13,7 @@ skill keeps its own version line; the repo history is the shared record.
   or `references/` (on-demand documentation), `templates/` for config
   schemas.
 - Current skills: `photocraft-automation`, `mermaid-diagrams`,
-  `pooled-missions`.
+  `pooled-missions`, `photocraft-art-director`.
 
 ## Skill authoring rules
 
@@ -52,6 +52,12 @@ skill keeps its own version line; the repo history is the shared record.
   install) — never part of the repo and never committed. Committed
   skill files reference the memory store only as a whole, never an
   individual entry.
+- photocraft-art-director runtime data (the sqlite tool index and the
+  embed endpoint config) lives in `~/.photocraft-art-director/`
+  (override: `$PHOTOCRAFT_ART_DIRECTOR_HOME`) — never part of the repo
+  and never committed; the index DB derives from the private
+  photocraft corpus, so committing it would publish private project
+  content.
 - Every diagram example committed under `skills/mermaid-diagrams/` must
   pass its own validator before it is considered correct.
 
@@ -75,6 +81,13 @@ And the mermaid-diagrams validator test suite (requires Bun):
 
 ```sh
 cd skills/mermaid-diagrams && bun test ./scripts/validate-mermaid.test.ts
+```
+
+And the photocraft-art-director indexer test suite (stdlib only; uses
+tmpdirs and a stub embed server, never the real config or index):
+
+```sh
+cd skills/photocraft-art-director && python3 -m unittest discover -s indexer/tests
 ```
 
 ## skills.sh indexing

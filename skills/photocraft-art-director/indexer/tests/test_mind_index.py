@@ -425,8 +425,9 @@ class TestExport(IndexerCase):
 
 class TestEmbedGatewayFlake(unittest.TestCase):
     """Real subprocess runs: authentic exit codes/stderr. The indexer script
-    is copied into a tmpdir so the sibling config.json points at the stub;
-    the real indexer/config.json is never read or modified."""
+    runs with PHOTOCRAFT_ART_DIRECTOR_HOME pointed at the tmpdir so the
+    stub config.json is read; the real machine-local config is never read
+    or modified."""
 
     def _run(self, behavior):
         tmp = tempfile.mkdtemp(prefix="mi-flake-")
@@ -440,9 +441,12 @@ class TestEmbedGatewayFlake(unittest.TestCase):
             json.dump({"base_url": stub.url, "model": "stub-embed",
                        "api_key": "k", "timeout_s": 10}, fh)
         sl = write_slice(tmp, "paint.jsonl", [APPLE])
+        env = dict(os.environ,
+                   PHOTOCRAFT_ART_DIRECTOR_HOME=tmp)
         proc = subprocess.run(
             [sys.executable, script, "--db", os.path.join(tmp, "i.sqlite"),
-             "add-file", sl], capture_output=True, text=True, timeout=60)
+             "add-file", sl], capture_output=True, text=True, timeout=60,
+            env=env)
         return proc, stub, tmp
 
     def test_403_twice_then_200_still_succeeds(self):
