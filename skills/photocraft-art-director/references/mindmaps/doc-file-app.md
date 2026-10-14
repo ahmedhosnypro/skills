@@ -1,0 +1,91 @@
+# doc-file-app
+
+- `file.automate.batch` — Runs a recorded action over a folder of images and saves each result to a destination folder; the workhorse for applying one artistic treatment (grade, resize, mode change) to a whole shoot of source images.
+- `filter.video.deInterlace` — Removes one interlaced field (odd or even scanlines) and rebuilds it from neighbours - choose when imported footage shows combing/tearing on motion.
+- `file.automate.conditionalModeChange` — Converts the document to a target colour mode only when its current mode matches a condition list - the guard step that keeps batch pipelines from trying RGB-only work on CMYK or grayscale sources.
+- `file.close` — Closes one document tab (Cmd+W); the desktop UI asks Save/Don't Save/Cancel first when it has unsaved changes — use it to end work on one open artwork or drop stale duplicates.
+- `file.export.artboardsToFiles` — Writes each artboard as its own image file (png/jpg/psd/tiff) — choose when delivering multi-board artwork as separate assets.
+- `filter.video.ntscColors` — Clamps over-saturated colours into NTSC broadcast-safe limits (composite signal Y+C within -20..120 IRE), keeping hue and luma - choose when artwork must survive TV/broadcast colour or you want a period-correct retro-palette pass.
+- `file.automate.contactSheetII` — Builds a new document laying out a folder of images as a thumbnail grid with captions - the artist's proof sheet for reviewing a shoot or a set of variants on one page.
+- `file.closeAll` — Closes every open document (Cmd+Alt+W), prompting per dirty document in the UI — use it to reset the workspace between artworks or after a batch build.
+- `file.export.artboardsToPdf` — Writes one raster PDF page per artboard — choose when a client needs a single review deck of all boards.
+- `layer.videoLayers.deleteFrame` — Deletes the frame at the playhead from the active video layer - choose to tighten a stop-motion loop or drop a bad frame from an animatic.
+- `file.automate.createDroplet` — Saves a batch action as a .pcdroplet file (plus a double-clickable .command shim on Unix) so a whole pipeline can be re-run on any folder of images later - your signature look packaged as a reusable artifact.
+- `file.closeOthers` — Keeps one document and closes every other tab (Cmd+Alt+P), UI prompting for the discarded dirty ones — use it to isolate the artwork you are polishing.
+- `file.export.colorLookupTables` — Bakes the visible adjustment-layer stack into a .cube 3D LUT — choose when a grade (curves, colour balance, hue/sat) must be reused in video/NLE or shared as a look.
+- `layer.videoLayers.duplicateFrame` — Copies the frame at the playhead (including any paint/fill/filter edits on it) to the next position - choose to hold a pose, extend a beat, or branch a frame before editing the copy.
+- `file.automate.cropAndStraightenPhotos` — Finds each photo lying on a uniform background in a scan (transparent counts as background), perspective-corrects it, straightens it and opens each as its own document - the scanner's dividing table.
+- `file.export.dataSetsAsFiles` — Applies each variable data set (text/visibility/pixel swaps) and writes one flattened file per set — choose when generating many named variants (name badges, language versions, personalised cards) from one artwork.
+- `file.exrParts` — Lists what a multi-part or channel-grouped EXR render holds — parts, channel groups, cryptomattes, stereo views with size and channels — so you can choose layers before opening; use it to inspect AOV renders from Maya/Arnold-style pipelines.
+- `layer.videoLayers.insertBlankFrame` — Adds a fully transparent frame right after the playhead in the active video layer - choose to extend an animatic before painting a new in-between or a new scene beat.
+- `file.automate.fitImage` — Scales the whole image so it fits inside a width x height box, keeping aspect ratio - the safe resize before posting artwork at a fixed size without distortion.
+- `file.export.exportPreferences` — Sets the remembered Quick Export defaults (format, location, quality, metadata, sRGB) — choose to pin a house export format so every later Quick Export obeys it.
+- `file.fileInfo` — Reads or writes the document's XMP metadata (title, author, description, keywords, copyright) and exposes read-only camera EXIF data — use it to embed provenance, credit and licensing into a finished artwork.
+- `layer.videoLayers.interpretFootage` — Sets the frame rate recorded on the active video layer's footage metadata - choose to re-time how a clip's own fps is interpreted without touching the document timeline's fps.
+- `file.automate.lensCorrection` — Runs Filter - Lens Correction over a folder of photos (profile auto from EXIF by default) and saves corrected copies - batch-fix distortion, vignetting and chromatic aberration across a whole shoot.
+- `file.export.layerCompsToFiles` — Exports each layer comp (a saved visibility/position/appearance state) as its own flattened file — choose when delivering the variants of one composition (sketch, colour, final) in one call.
+- `file.generate.imageAssets` — Toggles Generate > Image Assets: layers named like files ('hero.png', '200% hero@2x.png', '48x48 icons/a.png8', 'photo.jpg80%') are exported to an assets folder now and re-exported after every save — use it for design-to-dev delivery of retina and icon sets straight from layer names.
+- `layer.videoLayers.newBlankVideoLayer` — Adds a fresh empty video layer (one blank frame per timeline frame) above the active layer - choose to start frame-by-frame painted animation, a title sequence, or an animated overlay on top of the artwork.
+- `file.automate.mergeToHdrPro` — Combines two or more exposures of the same scene into one high-dynamic-range image - new 32-bit linear document, or tone-mapped to 16/8-bit - for luminous skies without blown highlights.
+- `file.export.layersToFiles` — Writes each visible top-level layer as its own image file — choose when splitting a scene into element layers (background, character, foreground) for compositing or engines.
+- `file.new` — Creates a blank canvas with exact size, colour mode, bit depth, background and DPI (Cmd+N) — the first command of every build; tinted or transparent backgrounds set the mood base for the whole piece.
+- `layer.videoLayers.newVideoLayerFromFile` — Loads footage - a still image, an animated GIF (every frame), or a directory of images sorted as a sequence - as a new video layer - choose to bring a cinemagraph, render output frames, or flipbook sequence into the timeline.
+- `file.automate.photomerge` — Stitches two or more overlapping photos into one panorama - new wide document, one masked layer per image, seams blended invisibly - for sweeping landscape and cityscape canvases.
+- `file.export.pathsToIllustrator` — Writes the document's paths as an Adobe Illustrator .ai text file (or returns the text) — choose when handing vector line-work (silhouettes, logotypes, die lines) to Illustrator.
+- `file.newFromClipboard` — Opens a new document the exact size of the clipboard image, holding it as one layer and inheriting its resolution — the fastest way to start a comp from a screenshot or a copied region of another artwork.
+- `layer.videoLayers.rasterize` — Drops the active video layer's frame stack, keeping only the frame at the playhead as a normal pixel layer - choose to freeze one frame as artwork, or to flatten an animation you no longer need to animate.
+- `file.automate.runDroplet` — Executes a saved .pcdroplet on files or folders - replay the packaged pipeline exactly as it was created, on new artwork.
+- `file.export.quickExport` — One-call export of the whole document to the format/quality/metadata/location pinned in Export Preferences — choose for fast PNG previews and repeated same-flavour saves.
+- `file.openAs` — Opens a file but decodes its bytes as the format you name, ignoring the extension (Cmd+Alt+Shift+O) — use it to recover mislabeled exports or to force a specific decoder on an ambiguous file.
+- `layer.videoLayers.reloadFrame` — Reloads the footage stack from the layer's file source (the whole sequence, since a sequence frame reload needs it) - choose to pull in re-rendered or re-exported frames without rebuilding the layer.
+- `file.export.renderVideo` — Renders the timeline to a PNG frame sequence or one animated GIF — choose when turning frame animation (pulsing glow, parallax, flipbook) into deliverable files.
+- `file.openExrParts` — Opens chosen parts/channel groups of a multi-part EXR as the layers of one document (Maya/Arnold renders write one part per AOV) — use it to comp 3D render passes: beauty, Z depth, cryptomattes, stereo eyes.
+- `file.scripts.browse` — Runs a script file on the current session - a JSON action or a plain-text list of `command.id {json}` lines - so a whole artistic procedure can live in one versioned text file.
+- `layer.videoLayers.replaceFootage` — Swaps the active video layer's entire frame stack for footage from a new file/sequence while keeping the layer (position, blending, effects) - choose to swap a placeholder clip for final render output, or relight/repaint an existing track with new frames.
+- `file.export.saveForWebLegacy` — Web-optimised export (GIF/PNG-8/PNG-24/JPEG/WBMP) with palette, dither, matte and slicing — choose when tuning small files, posterised palettes, or sliced HTML image maps.
+- `file.package` — Copies the document and every linked file into one folder (<dir>/<name>/ with Links/) and relinks the copy — use it to hand off an artwork with its linked assets intact.
+- `file.scripts.deleteAllEmptyLayers` — Removes every empty layer from the document - the tidy-up after a heavy build so the layer panel and exports stay clean.
+- `layer.videoLayers.restoreAllFrames` — Reverts every frame of the active video layer to its original footage pixels in one step - choose to throw away all paint/filter experiments on a clip at once and start the overpaint fresh.
+- `file.print` — Renders the flattened document into a print-ready PDF page (paper, orientation, scale, colour management, crop/registration marks) and hands it to the system spooler, or writes it as a PDF file — use it for gallery proofs, giclée-style prints with marks, and transfer media.
+- `file.scripts.flattenAllLayerEffects` — Bakes every layer's live styles (drop shadow, outer glow, bevel, overlays...) into its pixels as one undoable step - freeze the glow before exports that must not re-render effects.
+- `layer.videoLayers.restoreFrame` — Reverts only the frame at the playhead to its original footage pixels - choose to discard a bad paint/fill/filter on one frame while keeping every other frame's treatment.
+- `slice.delete` — Deletes one or more stored slices by id/number — choose when pruning a web-slice layout before export.
+- `file.printOneCopy` — Re-spools the active document instantly with the last file.print settings, forced to one copy (Cmd+Alt+Shift+P) — the fast reproof after a small fix.
+- `file.scripts.flattenAllMasks` — Folds each pixel layer's mask and vector mask into its pixels and deletes the masks - harden soft-masked edges before printing or handing off flattened art.
+- `layer.videoLayers.showAlteredVideo` — Toggles the active video layer between showing your painted/edited frames and the untouched original footage - choose to A/B your treatment against the raw clip frame by frame as you scrub.
+- `slice.divide` — Splits one slice into an even horizontal x vertical grid — choose when cutting a slice into uniform tiles (sprite cells, mosaic panels).
+- `file.printers` — Lists the system spooler's printers and which is default — query it to pick a valid `printer` name for file.print or to check the print path is live.
+- `file.scripts.imageProcessor` — Converts a folder of images to one output format with optional fit-resize and sRGB conversion - the standard 'produce deliverables from masters' script (JPG/PNG/PSD/TIFF sets).
+- `slice.fromGuides` — Builds a slice in every cell of the guide grid, REPLACING all existing slices — choose when a modular grid layout (poster grid, contact sheet) defines the cut lines.
+- `timeline.create` — Creates the document timeline (playhead over N frames at an fps) - choose first for any animation: it is the clock every video layer and Render Video reads.
+- `file.revealInFinder` — Shows the document's saved file selected in the platform file manager (Finder/Explorer/file manager) — use it to jump straight to a deliverable on disk.
+- `file.scripts.loadFilesIntoStack` — Opens a set of images as stacked layers in one new document - the setup for focus stacks, exposure blends, median noise reduction and any layer-statistic art effect.
+- `slice.list` — Returns every resolved slice (auto, user, layer-based) with numbers, rects and options — choose to discover slice ids/numbers before slice.set/delete or a sliced export.
+- `timeline.delete` — Removes the document timeline entirely - choose when converting an animated document back to a purely static artwork.
+- `file.revert` — Reloads the document from its saved file as ONE undoable history step (F12), leaving it clean — the escape hatch when an experimental pass ruins the piece: one step back to the last save.
+- `file.scripts.scriptEventsManager` — Binds scripts/actions to app events (new/open/save/close document, print, export, start, everything) in preferences, so house rules like 'log every export' or 'watermark on save' run themselves.
+- `slice.new` — Creates a user slice at a rectangle with optional web options (name, kind, url, alt...) — choose when marking regions for sliced export or image-map links.
+- `timeline.info` — Reports the document timeline state as JSON - choose to read the clock (fps, duration, playhead, work area, seconds) before scripting frame-accurate animation or render loops.
+- `file.saveACopy` — Writes a copy of the document to a chosen path and format WITHOUT changing the working file's own path or dirty state (Cmd+Alt+S) — use it to snapshot deliverables (flat JPG/TIFF, layered PSD backup) mid-build.
+- `file.scripts.statistics` — Loads a folder of images into a stack and reduces them per-pixel with a stack mode (median, mean, maximum...) in one new document - one-call median noise reduction, star-trail maximums or motion averages.
+- `slice.promote` — Turns an auto or layer-based slice into an independent user slice — choose before manually moving or reshaping a derived slice.
+- `timeline.nextFrame` — Steps the playhead one frame forward, saturating at the last frame - choose to advance an animatic one beat at a time while painting frame by frame.
+- `slice.set` — Edits a slice's options and/or geometry (name, kind, url, background, rect, outsets) — choose to rename exports, set link fields, or move/resize a slice.
+- `timeline.previousFrame` — Steps the playhead one frame back, saturating at frame 0 - choose to step back and re-edit the previous beat without skipping.
+- `ui:file.exit` — Quits the app (Cmd+Q / window close), first asking Save/Don't Save/Cancel per dirty document — use it to end the session safely; the engine itself has no such command.
+- `timeline.setFrame` — Jumps the playhead to an absolute frame index - choose for scripted scrubbing: paint frame N, jump, paint frame M, then Render Video the result.
+- `ui:file.export.exportAs` — Opens the Export As dialog (Cmd+Alt+Shift+W): pick png|jpg|webp|tif|tga|ico, quality, transparency, scale % and metadata, then save the flattened/rescaled result — the main sized-deliverable export for web and UI artwork.
+- `timeline.setProps` — Edits timeline fps, duration and the work area in one call - choose to retime a loop, extend its length, or mark a render region.
+- `ui:file.export.quickExportAsPng` — One-click export using File > Export > Export Preferences (format, quality, metadata, colour space, location) — defaults to a same-folder PNG for the fastest preview turnaround.
+- `ui:file.open` — Opens image/document files into tabs (Cmd+O): with a `path` param opens it directly, without one shows the file-open dialog — the entry point for starting from a reference photo or a previous artwork.
+- `ui:file.save` — Writes the active document back to its own layered file (Cmd+S) — but only when that file can hold everything; otherwise it routes through Save As so an editable original is never overwritten with less.
+- `ui:file.saveAs` — Saves the document under a new path/format (Cmd+Shift+S), rebinding the working file — the version-branching and format-conversion command (v2.pcraft, deliverable.psd).
+- `file.placeEmbedded` — Drop a file into the active document as a centred smart-object layer (SVG stays vector-sharp); choose when compositing a logo, texture or stock asset non-destructively.
+- `file.placeLinked` — Place a file as a linked smart object that follows the file on disk and auto-updates while the document is open; choose when an asset keeps evolving in another tool (VectorCraft, Illustrator, LightCraft).
+- `file.import.wiaSupport` — Report Windows scanner/camera (WIA) acquisition availability; a parity shell item — off Windows it always answers unavailable.
+- `file.import.videoFramesToLayers` — Stack an animated GIF's frames — or a sorted folder of images — as one "Frame N" pixel layer each; choose for frame-by-frame animation plates, rotoscoping or stop-motion onion-skin work.
+- `file.import.variableDataSets` — Import a CSV whose header row names defined variables and whose rows become data sets, ready to apply one-by-one or batch-export as files; choose when one template must render many text, visibility or image variants.
+- `file.import.notes` — Append the annotation notes of another .psd/.psb/.pcraft file into the active document; choose when pulling review feedback from a reference file into the working canvas.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

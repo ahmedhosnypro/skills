@@ -1,0 +1,71 @@
+# text-type
+
+- `type.antiAlias.crisp` — Sets the Type layer's AA style to Photoshop 'Crisp'; choose to record a crisp-intent for UI-like or small type when round-tripping PSD.
+- `type.increaseSize` — Grows type on the active type layer by 2 pt (Cmd+Shift+.) as the layer appears; choose for quick emphasis or poster-scale bumps without retyping sizes.
+- `type.paragraphStyle.delete` — Removes a named paragraph style from the document while the text keeps its look as local overrides — use to clean up unused styles without changing pixels.
+- `type.antiAlias.none` — Renders Type layer edges hard-thresholded (pixelated, no gray edge); choose for retro/8-bit text or tiny type that must stay razor sharp on flat backgrounds.
+- `type.characterStyle.clearOverride` — Drops local character overrides in the targeted range so runs snap back to their style definition; choose when hand tweaks should no longer survive later style edits.
+- `type.convertToShape` — Turns a type layer's glyph outlines into an editable vector shape layer — choose when lettering must become curves (outlined logotype, gradient/pattern-filled letterforms) and never needs re-typing.
+- `type.increaseSizeMore` — Same stepper as type.increaseSize but in 10 pt jumps (Cmd+Alt+Shift+.); choose to jump display type toward poster scale fast.
+- `type.openType.ordinals` — Toggles the OpenType `ordn` feature so 1st/2nd/3rd render as raised ordinal glyphs — choose it for editorial polish on dates, ranks and menu numbering.
+- `type.paragraphStyle.duplicate` — Clones a paragraph style as "<name> copy" inserted right below the original — use to derive a variant to tweak while keeping the untouched original.
+- `type.replaceAllMissingFonts` — Swaps every text run that uses an uninstalled font family to the default family (Inter) across the whole document in one history step; choose it for a one-shot typography cleanup before export when per-family control is not needed.
+- `type.antiAlias.sharp` — Marks the Type layer's edge rendering as Photoshop 'Sharp' for PSD fidelity; choose when matching a Photoshop document or documenting intended AA style.
+- `type.characterStyle.delete` — Deletes a character style; the text keeps its exact look (the style's attributes become local overrides); choose to retire a look without changing any pixels.
+- `type.create` — Creates an editable type layer from text at a baseline point or inside a paragraph box — choose whenever the artwork needs a headline, caption, label or lettering.
+- `type.info` — Reads everything about a type layer — text, styled runs/paragraphs, laid-out lines, shape, transform, bounds; choose it before styling or editing any text.
+- `type.openType.ornaments` — Toggles the OpenType `ornm` feature so the font's ornament/fleuron glyphs render — choose it for decorative dividers, stationery flourish and dingbat accents set as real type.
+- `type.paragraphStyle.list` — Enumerates every paragraph style (Basic Paragraph first) with resolved attributes plus the target text's current style + override state — call before any styling decision.
+- `type.resolveMissingFonts` — Reports which font families the document uses but the font database cannot supply, or replaces them per a `{missing: installed}` map; choose it to audit font needs or remap each family deliberately.
+- `type.antiAlias.smooth` — Sets the Type layer's AA style to Photoshop 'Smooth' — the default; choose it to restore soft printed-style glyph edges after trying other modes.
+- `type.characterStyle.duplicate` — Clones a character style as "<name> copy" inserted right after the source; choose to derive a variant (bolder caption, tighter kicker) without rebuilding attributes.
+- `type.createSelection` — Turns typed glyphs — or an existing type layer's glyphs — into an anti-aliased selection with no layer left behind — choose for texture-filled lettering, text cut-outs and knock-out holes.
+- `type.insertText` — Inserts a string (glyph, symbol, whole word) into a type layer at a caret or replacing a range; choose it for targeted text edits without rewriting the layer.
+- `type.openType.standardLigatures` — Toggles the OpenType `liga` feature (fi, fl, ff joins) — choose it to keep body copy and serif headlines book-quality without f-letter collisions.
+- `type.paragraphStyle.new` — Creates a named paragraph style (paragraph + character attributes), by default capturing the targeted text's formatting — use to lock in a heading/caption/body look once and reuse it.
+- `type.saveDefaultTypeStyles` — Copies the active type layer's character and paragraph style into the session defaults every new type layer starts from; choose it to lock a campaign's title style before adding more text layers.
+- `type.antiAlias.strong` — Sets the Type layer's AA style to Photoshop 'Strong'; choose to record a heavier-intent AA for chunky display type when round-tripping PSD.
+- `type.characterStyle.list` — Lists all character styles (plus implicit "None") with raw and resolved attributes, and reports which style/override state the targeted text has; choose to pick ids and audit typography before restyling.
+- `type.createWorkPath` — Copies a type layer's glyph outlines into the document work path — choose to stroke, fill, select or hand-edit letterforms as bezier curves while the text layer stays editable.
+- `type.loadDefaultTypeStyles` — Applies the saved default type styles (Type › Save Default Type Styles) to selected type layers; choose it to snap exploratory text back to the piece's type system.
+- `type.openType.stylisticAlternates` — Toggles the OpenType `salt` feature so the font's stylistic alternate letterforms render — choose it to give headlines or wordmark-like text a distinct personality without swapping fonts.
+- `type.paragraphStyle.redefine` — Takes the formatting at the start of the targeted text and folds it into the style definition (overrides absorbed) — use after hand-tweaks to propagate the new look everywhere the style is used.
+- `type.setStyle` — The type workhorse: applies any character or paragraph style (font, size, weight, tracking, color, caps, align, OpenType features, variable axes…) to a char range or whole type layers; choose it whenever text must match an art-direction spec.
+- `type.antiAlias.windowsLcd` — Sets AA style to Photoshop's platform-subpixel 'Windows LCD' mode; choose to match a PSD authored with LCD text rendering.
+- `type.characterStyle.new` — Creates a named character style (font/size/colour/tracking bundle) from the targeted text's formatting or explicit attrs; choose when one type look must repeat across layers.
+- `type.decreaseSize` — Shrinks every character in the range by 2 pt as the layer appears (Photoshop's Cmd+Shift+,) — choose for optical nudging of headline scale without touching the size field.
+- `type.navigate` — Moves a caret index through a type layer by words, lines or edges (query, no history); choose it as the agent's text-navigation primitive before ranged edits.
+- `type.openType.swash` — Toggles the OpenType `swsh` feature so swash capitals and extended finials render — choose it for elegant script headlines, wedding invitations and luxury-brand flourishes.
+- `type.paragraphStyle.rename` — Renames a paragraph style definition — cosmetic only, no re-render; use to keep a semantic naming scheme (H1, Caption-L) agents can search for.
+- `type.updateAllTextLayers` — Re-renders every type layer in the document against the current font database in one history step; choose it after installing fonts or importing files so all text reflects the fonts now available.
+- `type.antiAlias.windows` — Sets AA style to Photoshop's platform-grayscale 'Windows' mode; choose to match a PSD authored on Windows.
+- `type.characterStyle.redefine` — Folds the formatting at the start of the targeted text into its character style (the instance's overrides become part of the definition) and re-renders all followers; choose after hand-tuning one instance.
+- `type.decreaseSizeMore` — The same shrink as type.decreaseSize but 10 pt per press (Cmd+Alt+Shift+,) — choose for quick coarse moves to headline scale.
+- `type.openType.contextualAlternates` — Toggles the OpenType 'calt' feature so glyphs adapt to their neighbours; choose it for script and handwritten fonts whose letters should join naturally.
+- `type.openType.titlingAlternates` — Toggles the OpenType `titl` feature so the font's titling alternates — letterforms drawn for display sizes — render — choose it on posters, covers and mastheads.
+- `type.paragraphStyle.set` — Edits a paragraph style's definition (attrs merge/replace/clear, optional rename); every type layer using the style re-renders with overrides kept — the lever for one-step global typography changes.
+- `type.warpText` — Bends a type layer's glyph outlines with one of Photoshop's 15 warp styles (arc, arch, flag, wave, fisheye…) plus bend and horizontal/vertical distortion; choose it for poster or lockup typography that must stay editable.
+- `type.attachToPath` — Flows a Type layer along a Bézier path (work path or shape layer's outline) — choose for curved headlines, circular seals, badges and ribbon text.
+- `type.characterStyle.rename` — Renames a character style; choose to keep the styles panel legible as the artwork's vocabulary evolves.
+- `type.detachFromPath` — Converts path-bound type back into point text starting where the type began on the path — choose when curved lettering should become free, editable straight text again.
+- `type.openType.discretionaryLigatures` — Toggles the OpenType 'dlig' feature for decorative ligature pairs; choose it to add ornament-grade ligatures to display headlines, not body text.
+- `type.orientation.horizontal` — Sets the type layer's orientation back to horizontal (standard reading flow) — choose it to restore any vertical text layer, e.g. a spine label that should sit upright again.
+- `type.pasteLoremIpsum` — Fills a type layer with the standard lorem-ipsum filler (at a char offset, default end) or, with new:true / no type layer active, creates a canvas-wide paragraph text box — use to judge typography with realistic copy mass.
+- `type.caret` — Returns the caret line segment (two document-pixel points) at a character index — choose to anchor overlays, rules or measurements to exact text geometry.
+- `type.characterStyle.set` — Edits what an existing character style sets (merge/replace attrs, clear fields, rename) and re-renders every type layer using it while keeping local overrides; choose to retheme a repeated look in one step.
+- `type.edit` — The one-stop editor for an existing type layer: rewrite text, style runs, switch point⇄paragraph, move/transform, set antialias or kerning — choose for any change to lettering already on the canvas.
+- `type.openType.fractions` — Toggles the OpenType 'frac' feature so numeric fractions render as precomposed fraction glyphs; choose it for recipes, spec callouts and infographic labels.
+- `type.orientation.vertical` — Sets the type layer's orientation to vertical — choose it for poster spine text, CJK-style columns and tall edge labels.
+- `type.rasterize` — Converts a type layer into a pixel layer from its rendered surface (Layer > Rasterize) — use before pixel filters, or when the text is final and must stop being editable.
+- `type.characterStyle.apply` — Assigns a saved character style to selected type (or a char range) — choose to re-theme every caption, label or headline sharing that style in one step.
+- `type.convertToParagraphText` — Turns a point-text type layer into a paragraph (box) layer, auto-sizing the box around the laid-out text so nothing re-wraps; choose before giving multi-line copy a wrap width.
+- `type.fonts` — Lists installed font families, or one family's faces with weights, styles, PostScript names and variable axes — choose before picking a font so the name actually resolves.
+- `type.openType.oldstyle` — Toggles the OpenType 'onum' feature for oldstyle (text) figures that sit in the lowercase flow; choose it for bookish, editorial captions and poetry blocks.
+- `type.paragraphStyle.apply` — Applies a saved paragraph style to the targeted type layers/ranges (id 0/null = None / Basic Paragraph) — choose it to impose consistent block formatting across text panels in one call.
+- `type.rasterizeTypeLayer` — Type-menu wrapper that executes type.rasterize with the same params — identical destructive type-to-pixels conversion, enabled only with an active type layer.
+- `type.convertToPointText` — Turns a paragraph (box) type layer into point text, inserting a hard return at every soft line break; choose for single-line labels and wordmarks that must never re-wrap.
+- `type.hitTest` — Maps a document point to the nearest caret on a type layer — or finds the topmost visible type layer under the point — choose to aim edits and avoid placing new text over existing lettering.
+- `type.paragraphStyle.clearOverride` — Strips manual formatting overrides from the targeted text so the referenced paragraph style shows through — choose it to reset hand-tweaked blocks before restyling.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

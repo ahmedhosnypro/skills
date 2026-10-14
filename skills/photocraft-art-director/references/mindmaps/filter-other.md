@@ -1,0 +1,111 @@
+# filter-other
+
+- `filter.filterGallery` — Applies a stack of up to 32 gallery filters in order (the gallery dialog's effect list); choose it when one filter is not enough and a combo look is wanted, e.g. cutout + glowingEdges poster style.
+- `filter.adaptiveWideAngle` — Straightens fisheye/ultra-wide perspective by drawing constraint lines onto a projection model — choose when a fisheye or full-spherical panorama needs straight verticals/horizontals, not a manual warp.
+- `filter.convertForSmartFilters` — Wraps the selected layer(s) into a smart object so later filter.* commands land as re-editable smart filters instead of baking pixels; choose whenever an effect may need re-tuning or a filter mask.
+- `filter.distort.displace` — Shifts pixels by a displacement map (horizontal + vertical) for organic warping, refraction looks and painterly 'not too-perfect' drift; choose when a texture-driven irregular warp is wanted instead of a fixed geometric one.
+- `filter.gallery.accentedEdges` — Brightens or darkens the image's edges for a rough-sketch look — choose when you want edges to pop (high edgeBrightness) or sink into shadow (low) without touching flat areas.
+- `filter.gallery.coloredPencil` — Renders the layer as cross-hatched colored-pencil strokes over a paper tint - choose for a hand-drawn sketch or storyboard pass over photos and flat art.
+- `filter.gallery.craquelure` — Cracks the image with a shaded network of Voronoi-cell cracks like aged varnish; choose for old-master paintings, antique ceramics or decay.
+- `filter.noise.addNoise` — Sprinkles random pixel noise (film grain, starfields, static) - choose when you need organic texture or to break smooth gradient banding.
+- `filter.stylize.diffuse` — Shuffles each pixel with a random +-1 px neighbour - choose for frosted-glass breakup, grain roughening, or painterly dispersion on flat digital surfaces.
+- `filter.cameraRaw` — Full ACR-style raw development (WB/exposure/tone/curves/HSL/color grading/sharpen/noise/grain/vignette) as one filter — choose for photographic grade + atmosphere in a single call instead of stacking adjustments.
+- `filter.distort.pinch` — Radially squeezes or bulges pixels toward/away from the selection-or-canvas centre for vortex-free puckering of focal elements; choose for pulling a centre inward (pinch) or puffing it outward (negative, balloon).
+- `filter.gallery.angledStrokes` — Repaints the image as diagonal strokes — light areas one way, dark areas the other — for an expressive slashed-canvas look; choose for dynamic painterly energy or a fan-brush feel.
+- `filter.gallery.cutout` — Flattens the image into a few flat poster tones with softened edges while keeping each region hue - choose for screen-print, paper-cutout or silhouette-simplification looks.
+- `filter.gallery.diffuseGlow` — Hazy bloom that diffuses bright areas toward a glow colour with grain speckle; choose for dreamy, romantic or backlit fog looks.
+- `filter.lastFilter` — Re-runs the most recent filter.* command from the session journal with its exact params, retargeted at the active layer (Cmd+Alt+F); choose to stack the same effect again or to re-apply the last filter to a different layer.
+- `filter.noise.despeckle` — One-step dust/speck softener that keeps edges - choose for quick scan cleanup when you don't want to tune anything.
+- `filter.stylize.emboss` — Turns the layer into a gray luminance relief lit from a chosen angle - choose for bas-relief, chiseled stone, engraved paper or foil-stamp effects.
+- `filter.distort.polarCoordinates` — Wraps a rectangular strip around a circle (rectangularToPolar) or unwraps a circular subject back to a strip (polarToRectangular); choose for ring panoramas, orb/tiny-planet looks, and turning circular subjects (eyes, iris, mandala) into editable flat rows.
+- `filter.gallery.basRelief` — Carves the image into a two-colour carved-stone relief lit from a chosen side — choose to turn a photo into an engraved/embossed stone carving with only your two chosen colours.
+- `filter.gallery.dryBrush` — Kuwahara-smooths, posterizes and speckles the layer like a nearly-dry brush - choose for textured painterly surfaces with most fine detail flattened.
+- `filter.gallery.glass` — Refracts the image along a procedural texture gradient (frosted, blocks, canvas, tiny lens); choose for seeing-through-glass, frosted window or lens distortion looks.
+- `filter.noise.dustAndScratches` — Threshold-gated median that erases dust specks and hairline scratches - choose for restoring old photos and dirty scans.
+- `filter.other.colorToAlpha` — Un-mixes one colour (default white) out of the layer into alpha so antialiased edges keep their shape over any new background; choose for clean knock-outs, sky removal, watermark fading and matte extraction.
+- `filter.stylize.extrude` — Cuts the bounds into square cells raised toward the viewer as shaded blocks or pyramids - choose for 3D mosaic relief, cityscape grids or isometric pixel-city looks.
+- `filter.distort.ripple` — Adds a fixed sine-wave horizontal+vertical wobble in three preset wavelengths for water surfaces, flag cloth and liquid shimmer; choose over Wave when you want one simple periodic ripple instead of multi-generator randomness.
+- `filter.gallery.chalkCharcoal` — Redraws the image as white chalk in the lights and charcoal in the darks on a mid-tone paper — choose for a drawn-on-blackboard or double-media sketch look that keeps mid-tones as paper.
+- `filter.gallery.filmGrain` — Adds luminance-peaked film grain with optional highlight bloom - choose for analog photographic unity over clean renders or flat vector art.
+- `filter.gallery.glowingEdges` — Replaces the image with a neon wireframe of its edges glowing on near-black; choose for electric outlines, contour line art or cyberpunk accents.
+- `filter.noise.median` — Replaces each pixel with its neighbourhood median - choose to kill salt-and-pepper noise or to melt detail into painterly blobs at big radii.
+- `filter.other.custom` — Applies an arbitrary 5x5 convolution kernel (sum of kernel*pixel / scale + offset) per channel - build your own sharpen, emboss, edge-detect or blur; choose when no preset filter matches the exact convolution you want.
+- `filter.stylize.findEdges` — Sobel edge magnitude drawn as dark outlines on white - choose for line-art, contour sketches, comic/cel outlines or ink-ready edge maps.
+- `filter.distort.shear` — Bends each row of pixels horizontally along a smooth curve you define with control points — a gentle S-curve lean, drape or cloth sag; choose for organic slanting that a plain transform's straight shear cannot give.
+- `filter.gallery.charcoal` — Turns the image into a charcoal drawing — grainy black strokes on your chosen paper colour — choose for moody monochrome sketch conversions that keep real edge detail.
+- `filter.gallery.fresco` — Dry-brush variant with a contrast curve and crack-darkened edges - choose for plaster-wall mural or aged-fresco looks.
+- `filter.gallery.grain` — Adds structured film/paper grain in ten grain types with contrast control; choose for analog film looks, gritty texture or stipple/dot art.
+- `filter.noise.reduceNoise` — Edge-aware denoise with separate detail and color-noise controls - choose for cleaning high-ISO photos or render/AI speckle without softening edges.
+- `filter.other.highPass` — Keeps only edge detail on a neutral 50% grey field (the inverse of a Gaussian blur); choose for frequency separation (split texture from colour on a duplicate) and surgical, halo-free sharpening.
+- `filter.stylize.oilPaint` — Smears colour along image structure with lit bristle relief - choose for painterly impasto, flowing brushwork and painted-poster stylization.
+- `filter.distort.spherize` — Maps pixels onto a sphere surface (or one axis of one) for bubble, lens-ball and planet-globe volume; choose when a subject must read as round and glossy rather than flat.
+- `filter.gallery.chrome` — Maps the image's luminance onto a sinusoidal liquid-chrome gradient — grey polished-metal bands like molten mercury; choose for metallic liquid surfaces or chrome-type fills (usually on clouds/noise, not photos).
+- `filter.gallery.mosaicTiles` — Cuts the image into jittered square tiles with bevel shading and grey grout grooves; choose for ceramic mosaic, tiled wall or tessellated looks.
+- `filter.gallery.neonGlow` — Screens a coloured glow over blurred luminance - choose for neon rim light, glowing signage or soft bloom on highlights.
+- `filter.other.hsbHsl` — Reinterprets the three colour channels between RGB and HSB or HSL order (e.g. rgb to hsb puts hue in red, saturation in green, brightness in blue); choose so channel-only tools (Curves or Levels on a channel, channel selections) then act on hue or luminance instead of R/G/B - run again with input/output swapped to decode back.
+- `filter.sharpen.sharpen` — Fixed gentle one-step focus boost - choose for a light crispness pass on already-clean artwork.
+- `filter.stylize.solarize` — Inverts only the highlights (values above mid) - choose for Sabattier-style surreal negatives, poster posters with flipped skies, or flipping a mask's bright regions.
+- `filter.distort.twirl` — Rotates pixels around the centre with strength fading to zero at the rim — a vortex or swirl that keeps borders still; choose for whirlpools, van Gogh sky spirals and swirl-cream accents.
+- `filter.gallery.conteCrayon` — Redraws darks in crayon on textured paper with your chosen relief lighting — choose for sanguine/sepia chalk drawings on canvas, burlap or brick paper.
+- `filter.gallery.oceanRipple` — Wobbles the image with a smooth value-noise displacement field; choose for water surface shimmer, underwater views or liquid wobble — not for wave geometry.
+- `filter.gallery.paintDaubs` — Smears the layer into Kuwahara paint daubs with six brush types adding rough or sparkle noise - choose for impressionist painted surfaces.
+- `filter.other.maximum` — Expands light regions and erodes dark ones (white-side dilate); choose to thicken white strokes and halos, grow light mattes, or bleed highlights outward.
+- `filter.sharpen.sharpenEdges` — One-step sharpening gated to strong edges only - choose to crispen line work and contours on noisy or grainy sources.
+- `filter.stylize.tiles` — Cuts the bounds into a grid of square tiles, each randomly shifted - choose for broken-tile mosaics, glitch collage displacement or cracked-plate effects.
+- `filter.distort.wave` — Superimposes up to 64 randomly seeded sine/triangle/square wave generators in both axes for irregular, multi-frequency water, drape and glitch surfaces; choose over Ripple when uniform periodicity reads fake.
+- `filter.gallery.crosshatch` — Overlays two crossing diagonal line-burred stroke systems like pen hatching — choose for engraved, woodcut or pen-and-ink shading built from crossing stroke directions.
+- `filter.gallery.paletteKnife` — Flattens the layer into broad knife-stroke tones with optional softening - choose for bold impasto simplification of busy scenes.
+- `filter.gallery.patchwork` — Pixelates the image to block centres and bevel-shades each block with random height like a quilt; choose for fabric-patch, craft or blocky handmade looks.
+- `filter.other.minimum` — Erodes light regions and expands dark ones (dark-side dilate); choose to thin light strokes, shrink white fringes, grow shadows and silhouettes, or choke mattes inward.
+- `filter.sharpen.sharpenMore` — Fixed strong one-step focus boost - choose for a heavier crispness pass when Sharpen is not enough.
+- `filter.stylize.traceContour` — Draws 1 px outlines wherever a channel crosses a brightness level - choose for topographic contour maps, iso-line graphics and etched line overlays.
+- `filter.distort.zigZag` — Radial water ripples from a centre point — concentric rings that bend a subject as if it were floating on or reflected in water; choose for drop-into-pond moments around a focal object.
+- `filter.gallery.darkStrokes` — Deepens darks with short directional strokes while lightening highlights — choose for brooding, high-drama painterly images with inky shadows and airy lights.
+- `filter.gallery.plasticWrap` — Draws specular streaks from blurred-gradient normals over a slightly darkened image - choose for wet plastic sheen, gloss or mummy-wrap highlights.
+- `filter.gallery.stainedGlass` — Cellulates the image into Voronoi glass panes with lead borders and a bright centre; choose for stained-glass windows, vitrail posters or cellular mosaics.
+- `filter.other.offset` — Slides the layer's pixels by whole pixels; with undefinedAreas wrap it tiles the image - the standard move for checking texture seams and re-aligning patterns without moving the layer itself.
+- `filter.sharpen.smartSharpen` — Edge-aware sharpening with built-in noise suppression - choose when you need strong sharpening without halos or grain amplification.
+- `filter.stylize.wind` — Trails horizontal streaks downwind from edges (or shifts row segments) - choose for gust/speed-line motion, rain lean and blast smear on ONE well-chosen axis.
+- `filter.gallery.graphicPen` — Hatches the whole image into fg-ink strokes on bg paper along one chosen direction — choose for clean single-direction ink sketching (comic-panel style) or hairline screening.
+- `filter.gallery.posterEdges` — Inks Sobel edges black and posterizes tones - choose for comic or poster linework over photos and renders.
+- `filter.gallery.texturizer` — Relief-shades the image with a procedural texture (canvas, brick, burlap, sandstone) under a chosen light; choose to add a painting surface or material ground to any artwork.
+- `filter.pixelate.colorHalftone` — Screens each colour channel into offset halftone dots at its own angle, like offset-printed comics or newsprint; choose for pop-art, risograph and vintage-print effects.
+- `filter.sharpen.unsharpMask` — The classic three-knob sharpening control - choose when you need exact control over strength, edge width and a noise gate.
+- `filter.gallery.halftonePattern` — Rebuilds the image as a two-colour halftone screen (dots, circles or lines) — choose for print/pop-art screening, newspaper texture, or a clean graphic ink-on-paper look.
+- `filter.gallery.roughPastels` — Lays chalk strokes up-right and relief-shades a paper texture weighted to highlights - choose for pastel-on-canvas or chalk-drawing looks.
+- `filter.pixelate.crystallize` — Clumps the image into solid Voronoi cells around jittered points, each filled with one sampled colour - stained-glass shards; choose for painterly abstraction or distressing a layer mask with hard-edged cells.
+- `filter.gallery.inkOutlines` — Draws ink lines along edges — dark ink below mid-grey, light ink above — like a technical pen over a print; choose for comic-style outlined illustrations that keep their colour.
+- `filter.gallery.smudgeStick` — Smears the layer diagonally, darkens shadows and lifts highlights - choose for charcoal-stick or soft smudged drawing looks.
+- `filter.pixelate.facet` — Kuwahara filter (radius 2): pulls similar neighbouring colours into flat facets while keeping edges - a quick oil-paint / posterized look with no dialog; choose for one-step painterly simplification.
+- `filter.gallery.notePaper` — Turns the image into an embossed paper-grain surface with the motif pressed into it — choose for subtle embossed-paper backgrounds, letterpress feel, or a faint sketch base under other art.
+- `filter.gallery.sponge` — Kuwahara-smooths then punches fbm blotch holes with a contrast push - choose for mottled sponge-dab texture or grungy painted walls.
+- `filter.pixelate.fragment` — Averages four copies of the image offset 4 px up/down/left/right into one ghosted frame; choose for a quick soft-focus double-exposure or jittery dream look.
+- `filter.gallery.photocopy` — Reduces the image to harsh blotchy fg-on-bg shapes like a bad photocopier — choose for gritty stencil/portrait silhouettes, zine aesthetics, or a mask-like two-tone base.
+- `filter.gallery.underpainting` — Blurs into a slightly saturated base coat and relief-shades a canvas texture - choose for primed-canvas underpainting bases before detail passes.
+- `filter.pixelate.mezzotint` — Thresholds every colour channel against a random dots/lines pattern, leaving pure saturated dots, lines or strokes - an engraved copperplate texture; choose for old-print grain, etching fills or grungy backgrounds.
+- `filter.gallery.plaster` — Moulds the image into a fg/bg plaster cast lit from a chosen side — choose for sculptural white-plaster or moulded-motif looks, or a soft embossed base layer.
+- `filter.gallery.watercolor` — Kuwahara washes with saturated colour, edge-darkened pigment pooling and mild paper grain - choose for watercolour illustration looks.
+- `filter.pixelate.mosaic` — Squares the image into flat averaged cells - the classic pixelation / 8-bit / censor look; choose for retro big-pixel art or hiding detail.
+- `filter.gallery.reticulation` — Simulates cracked reticulated film emulsion — speckled ink webs over paper — choose for decayed-film texture, organic crackle, or fine-grain mottling on darks.
+- `filter.pixelate.pointillize` — Randomly sized dots (0.45-0.8 of the cell) sampled from the image sit on a background colour like Seurat pointillism; choose for painterly dot work, stippled posters or bead/mosaic looks.
+- `filter.gallery.spatter` — Displaces pixels with noise for a splashed-water/airbrush-speck look — choose for dissolving edges into specks, paint-splatter moods, or soft organic erosion.
+- `filter.gallery.sprayedStrokes` — Spray-paints the image along one chosen direction — noise-displaced pixels then smeared along the stroke axis — choose for graffiti spray, directional motion grain, or windswept edges.
+- `filter.gallery.stamp` — Hard-thresholds the image into flat fg/bg shapes like a rubber stamp or stencil — choose for bold two-colour silhouettes, logos, or the cleanest posterized stencil of the Sketch set.
+- `filter.gallery.sumiE` — Japanese ink-wash painting: darks become soft ink strokes bleeding on paper while lights stay untouched — choose for zen, calligraphic, misty ink-painterly moods that keep some colour.
+- `filter.gallery.tornEdges` — Pushes the image into fg/bg pieces with ragged fbm-noise borders — choose for torn-paper collage, deckled print edges, or granular organic shape breakup.
+- `filter.gallery.waterPaper` — Wrinkles the image like damp fibre paper — cross-direction fibre streaks with brightness/contrast re-balance — choose for handmade-paper texture, aged documents, subtle fibre grain (keeps full colour).
+- `filter.lensCorrection` — Fixes lens distortion, chromatic fringing and vignette (or adds them artistically) with an optional generic focal-length profile — choose for optics cleanup or deliberate optical character on photographic imagery.
+- `filter.liquify` — Warps pixels with replayable brush strokes (forward warp, twirl, pucker, bloat, push, freeze) as one data command — choose for organic squashes, curls and character reshaping that transforms cannot do.
+- `filter.render.clouds` — Fills the target with soft 8-octave procedural clouds blending foreground→background colour — choose for instant sky bases, nebula haze and texture underlays; pair with a threshold/levels to shape it.
+- `filter.render.differenceClouds` — Clouds blended by absolute difference against existing pixels — choose for lightning-like marbling, patina veins and mirrored turbulence instead of a fresh cloud fill.
+- `filter.render.fibers` — Draws streaky fibers between the foreground and background colours — choose for wood grain, hair-like strands, canvas weave and brushed-metal texture bases.
+- `filter.render.flame` — Renders procedural flames along a path (or a default centre line, or one candle point) — choose for fire, candle glow and ember streams that a gradient could never fake; seeded and path-following.
+- `filter.render.lensFlare` — Renders a photographic lens flare (bright core plus ghost artifacts) at a chosen centre and lens type — choose for a believable sun/practical-light source highlight on photographic or cinematic scenes.
+- `filter.render.lightingEffects` — Relights the layer with one or more spot/point/infinite lights plus surface gloss/metallic and a texture channel acting as a height map — choose for dramatic directional lighting, torch pools and embossed relief lighting.
+- `filter.render.pictureFrame` — Draws a decorative border around the canvas — vines with flowers, ivy, snowflakes, stars, rope and 12 more styles — choose to frame posters, cards and storybook pages without hand-drawing ornament.
+- `filter.render.relight` — Re-lights the layer from one directional sun with elevation, warmth and softness — choose for a single global light re-grade (sunset warmth, moonlight chill) that responds to image luminance, cheaper and calmer than Lighting Effects.
+- `filter.render.tree` — Renders one of 34 procedural tree species (branches, twigs and leaves as seeded line primitives) — choose for instant believable foreground silhouettes, framing branches and depth cues in landscapes.
+- `filter.vanishingPoint` — Builds perspective planes (drawn quads or torn off each other's edges), then perspective-pastes an image onto a plane and clone-stamps along the perspective grid — choose for placing posters on walls, tiling floors and removing/extending objects in true perspective.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

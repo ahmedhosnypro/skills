@@ -1,0 +1,55 @@
+# ui-bridge
+
+- `control:auth` — First frame on every desktop control-protocol connection: pass the 64-hex token to unlock all other methods; choose when attaching an automation agent to a running PhotoCraft app.
+- `mcp:ui_inspect` — Reads the full UI state of the live desktop app (tool, panels, views, dialogs, windows) — call it to see what the GUI is doing before/after driving it; bridge mode only.
+- `view.colorSamplers.clear` — Removes every colour-sampler point from the active document at once; choose it to wipe your fixed-pixel readings after a grading or matching pass is done.
+- `control:engine.execute` — Programmatic dispatch of every engine or shell command — the single channel through which all artwork commands (paint, filters, gradients, layers) run; choose whenever an agent must apply an artistic operation without touching menus.
+- `control:ui.dialog.apply` — Commit a Preferences dialog's pending changes and keep it open; use when iterating preference sections over the control channel before a final OK.
+- `control:ui.menu.list` — Returns every menu item (id, label, path, shortcut, enabled) in Photoshop catalog order — call it first when you need the exact id of a menu command before ui.menu.invoke.
+- `mcp:ui_screenshot` — Captures the live app window as a base64 PNG for visual verification of GUI work — choose it when you must SEE the desktop app's canvas or panels; bridge mode only.
+- `view.colorSamplers.delete` — Removes one colour-sampler point by index; choose it when a single probe is no longer needed and the rest of the reading set should stay.
+- `control:engine.commands` — Full command catalog with params docs, shortcuts and enablement — the way an agent discovers exact vocabulary and param shapes before scripting artwork; choose during session setup, not mid-build.
+- `control:ui.dialog.cancel` — Close a dialog without applying it; use when aborting a command/options/color dialog so the document stays untouched.
+- `control:ui.move` — Queues an egui PointerMoved at screen coordinates — hover/point at widgets (panels, dialogs, canvas menus) rather than drive a tool stroke; choose ui.pointer instead for tool gestures.
+- `mcp:ui_pointer` — Sends down/move/up pointer events in document coordinates to the active GUI tool (paint, lasso, crop, gradient…) — choose it when the gesture itself is the artwork (strokes, selections); bridge mode only.
+- `view.colorSamplers.list` — Lists every colour-sampler point of the active document with its live RGB and CMYK reading; choose it to read the fixed probe values (or confirm none are set) before and after an adjustment.
+- `control:jobs.list` — Poll running and recently finished background jobs (filters, exports, photomerge, saves) — the companion to `engine.execute` with `wait:false`; choose to keep a long artistic pass non-blocking while tracking progress.
+- `control:ui.dialog.confirm` — Press a dialog's OK so its command commits (filter OK, shape create, rasterize-then-paint); use once the fields are set and the edit should land.
+- `control:ui.pointer` — Sends down/move/up gestures (with pen pressure and tilt) to the active tool in document pixels — the way to paint, drag selections, transform, or sample with any tool as if by hand; with a Color Picker open it samples into the picker instead.
+- `mcp:ui_menu_invoke` — Activates one of the live app's menu items by its id (e.g. ui:view.extras, filter.cameraRaw) — choose it when menu-click behaviour (dialogs, view toggles) matters, where a raw engine.execute would only compute; bridge mode only.
+- `view.colorSamplers.move` — Relocates one colour-sampler point to new document coordinates; choose it to re-target a fixed reading without losing its slot in the numbered set.
+- `control:jobs.cancel` — Cancel one job by id, or all running jobs — a clean rollback for a wrong long filter/export pass since a cancelled job leaves the document unchanged; choose when a pass starts producing the wrong artwork.
+- `control:ui.dialog.open` — Open a built-in dialog by kind — newDocument, about, layerStyle, colorPicker, command, newCropPreset/deleteCropPreset; use when driving a modal the way a user would.
+- `control:ui.resize` — Sets the app window size in points via a viewport command — prep for screenshots or multi-column panel layouts; pick when a capture or layout check needs a specific window shape.
+- `mcp:ui_set` — Sets live UI state fields — active tool, zoom/center/rotation/fit, theme, brush size, gradient blend mode, eyedropper sampling, crop overlay, shape stroke — choose it to compose the artist's view before gestures; bridge mode only.
+- `view.deleteGuide` — Removes one ruler guide from the active document by orientation and index; choose it to prune a single compositional line while keeping the rest of the layout grid.
+- `control:app.open` — Open a document or preset file under the automation read root inside the running desktop app — the only sanctioned way automation loads .pcraft/.psd artwork for in-place iteration; choose over refused ambient `file.open`.
+- `control:ui.dialog.set` — Write one field of an open dialog before confirming (Fill contents/mode/opacity, shape width/height); use to fill a modal programmatically instead of clicking widgets.
+- `control:ui.screenshot` — Screenshots the live app window (base64 inline or written to a capability path) — the visual-verification channel for every artistic change made through the bridge.
+- `view.clearGuides` — Deletes every guide in the document (canvas and artboard, both axes, plus per-guide colours) — choose it for a total reset of layout lines before re-laying-out a composition.
+- `view.lockSlices` — Locks or unlocks the document's web slices so slice edits are refused; choose it to freeze a finished export grid while you keep drawing, adjusting or moving layers on top.
+- `control:app.save` — Save the active document under the automation write root, or write back to its own file — the sanctioned checkpoint after every modify pass; choose over refused ambient `file.save`.
+- `control:ui.focus` — Raise, unminimize and focus the PhotoCraft main window; use when another app stole focus so keys or screenshots would land on the wrong window.
+- `control:ui.set` — Sets tool, panels, dock, zoom/center/rotation/fit, theme, brush picker, gradient/eyedropper/crop options in one all-or-nothing call — the way agents arrange the workspace and tool options before or between artistic steps.
+- `view.clearCanvasGuides` — Deletes only guides OUTSIDE every artboard (the canvas guides), keeping artboard-owned guides — choose it when multiple boards share a document and only the free-canvas scaffolding should go.
+- `view.moveGuide` — Moves one existing ruler guide to a new position, Photoshop-unit aware; choose it to nudge an alignment line into exact register instead of deleting and re-adding it.
+- `control:app.quit` — Close the PhotoCraft application immediately — automation teardown of a dedicated per-project instance; choose only when the artwork is saved, because the unsaved-changes guard is bypassed.
+- `control:ui.gpu.simulateLoss` — Act as if the wgpu device was lost (or errored, `error:true`) so the app falls back to the CPU compositor; use to test the fallback or force a deterministic CPU render path.
+- `control:ui.type` — Sends a text string as synthetic keyboard input — fills dialog fields and names, and edits type on canvas while the Type tool is editing; choose when a field needs real key input rather than a control call.
+- `view.clearSelectedArtboardGuides` — Deletes only the guides strictly inside the ACTIVE artboard's rectangle — choose it to re-layout one board in an artboard sheet without touching the canvas grid or sibling boards.
+- `view.newGuide` — Places one ruler guide at an exact position with optional colour; choose it to lay down horizon, margin or proportion lines (rule of thirds, golden section, safe areas) that painting and transforms can snap to.
+- `control:ui.click` — Inject a press+release at screen coordinates (with optional double-clicks) — the blunt instrument for UI surfaces without commands; prefer commands/`ui.menu.invoke` first, click only as last resort.
+- `control:ui.inspect` — Read everything on screen addressable by id — tool, panels, dialogs, windows, view, theme, status, perf, brush; use as the first read before any write and after every write to verify effects.
+- `control:ui.window.close` — Removes one extra window (from Window > New Window for Document) by id — tidy up duplicated views of the same document without touching the document itself.
+- `view.clearSlices` — Deletes every user and layer-based slice from the document (auto slices regenerate from what remains) — choose it to reset web-export region markers before slicing anew.
+- `view.newGuideLayout` — Generates a whole grid of guides — columns, rows, margins, fixed-width centred columns — in one undoable step; choose it to build page grids, panel layouts or safe-area frames far faster than placing guides one by one.
+- `control:ui.context.choose` — Activate one row of the open canvas context menu (per-tool right-click menu) by id — reaches tool-local actions like paste-into/layer ops that live only in the right-click menu; choose after opening that menu with a `ui.pointer` right-button.
+- `control:ui.key` — Synthesize one key press+release with shift/alt/command/ctrl flags; use for keyboard gestures a pointer cannot make — Enter to commit a transform, Escape to cancel, Backspace in the magnetic lasso.
+- `control:ui.window.open` — Opens a second live view of a document via the `window.newWindowForDocument` menu command — get two synchronized views for zoomed-detail vs whole-frame work; optional `document` index switches active first.
+- `view.colorSamplers.add` — Pins a numbered colour-reading point to a canvas pixel (shown in the Info panel, max 10 per document) — choose it to track fixed swatch positions while grading or painting instead of chasing the live pointer.
+- `view.newGuidesFromShape` — Drops two vertical and two horizontal edge guides plus centre lines around the active shape layer's bounding box; choose it to align the rest of a layout to key art, a logo silhouette or a vector frame.
+- `control:ui.menu.invoke` — Activate a menu command exactly like a user click — it respects modal gates and may open the command's dialog; use when you want menu-click behavior, not engine.execute's dialog-free run.
+- `mcp:control_call` — Raw escape hatch: forwards any control method (e.g. ui.menu.list, ui.dialog.*, ui.click/move/key/type, ui.resize, ui.focus, app.*, jobs.*) with raw params to the live app — use when no dedicated MCP tool wraps the method you need.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

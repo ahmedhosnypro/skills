@@ -1,0 +1,105 @@
+# system-config
+
+- `actions.assignSet` — Files an action under a named set folder (or removes it from every set with null); choose when organizing a growing Actions library.
+- `actions.record` — Starts recording engine commands into a new or existing action; choose it to capture a repeatable art recipe (sky pass, grain build) for later actions.play.
+- `image.analysis.setMeasurementScale` — Calibrates pixels to real-world units (e.g. 25 px = 1 mm) so every later measurement reads in print-scale or physical units — use before measuring a scan, macro shot or architectural plan.
+- `pattern.export` — Writes library patterns (the whole library, or a picked list) to a Photoshop .pat file — choose when archiving a texture set or moving it to another session/machine.
+- `plugin.list` — Enumerates every installed sandboxed WebAssembly filter plug-in (id, name, params schema, area) plus the last preference-folder load report; use it to discover plug-in ids and their parameter schemas before plugin.run.
+- `swatches.export` — Writes the swatch library — everything, one `group`, or named `swatches` only — to a Photoshop .aco or Adobe Swatch Exchange .ase file (or returns the bytes as base64); choose when sharing a project palette or archiving a variant palette.
+- `actions.conditional` — Photoshop's Insert Conditional as a step: test a document/layer condition, then play a `then` or `else` action; choose for orientation-, mode- or layer-aware batch branching.
+- `actions.rename` — Renames an action and rewrites every reference (nested play calls, its function key); choose it to keep a growing recipe library readable.
+- `count.remove` — Deletes one Count-tool marker by index or by clicking the nearest one — tidy tallies of repeated elements after recounting or a mis-click.
+- `edit.menus` — Hides or shows menu items and colour-tags them; use to declutter the UI or flag go-to commands by colour.
+- `edit.preferences.performance` — Returns the Performance preferences section (GPU, memory, history depth, previews) and applies edits when fed values; tune before heavy filter, retouch or compositing work on big documents
+- `edit.presets.migratePresets` — Merge another install's presets/preferences JSON file into the current library (gradient/shape/pattern groups + tool presets), appending groups by name; use when porting a curated preset library between machines or versions.
+- `image.analysis.straightenLayer` — Rotates so the previously drawn ruler line becomes level — use to fix a tilted horizon, crooked scan or skewed photo after setting the line with image.analysis.rulerTool.
+- `pattern.import` — Reads a Photoshop .pat file (path or base64 bytes) into the library, replacing same-id entries — choose when loading a downloaded or shared texture pack.
+- `plugin.reload` — Rescans a folder of .wasm plug-ins (default: the Plug-ins preference folder) and replaces the folder's registry entries; use to pick up rebuilt/updated plug-ins without restarting the app.
+- `swatches.import` — Loads a Photoshop .aco or Adobe .ase swatch file into the panel, appended alongside or replacing the whole library; choose when bringing in a brand palette or a shared variant palette.
+- `actions.delete` — Deletes one step of an action (allowed even while recording) or the whole action; choose when pruning a recipe or removing an obsolete look.
+- `actions.save` — Exports actions to a Photoshop .atn file (or returns base64 bytes); choose it to share, back up, or archive a recipe library outside PhotoCraft.
+- `count.setGroup` — Restyles one Count group — name, colour, marker and label size, visibility — or makes it the active tally; colour-code separate element censuses.
+- `edit.preferences.cursors` — Returns the Cursors section (painting/other cursor shapes, brush-preview colour); use to tailor brush feedback, then change keys via prefs.set.
+- `edit.preferences.plugIns` — Returns the Plug-ins preferences section (wasm plug-in folder, extension panels); edits install the folder WebAssembly plug-ins load from for Filter > Plug-ins
+- `edit.presets.presetManager` — List, rename, delete or reorder brush presets, custom shapes and patterns in one command; use to curate preset libraries before a painting or shape-stamping session.
+- `measurementLog.delete` — Removes selected rows (or all rows) from the session Measurement Log — use to prune stale measurement runs before exporting a clean CSV.
+- `pattern.list` — Returns every pattern with size, colour mode and where it lives (library and/or document) — choose to discover ids/names before filling, overlaying or texturing a brush.
+- `plugin.remove` — Uninstalls a plug-in from the per-process registry by id; use to clean up experiments or before installing an updated module.
+- `swatches.list` — Reads the whole swatch library as JSON — groups with per-swatch name, colour model/values, hex and kind, plus a total count; choose to audit a palette or find a colour before painting.
+- `actions.dialog` — Marks steps whose dialog the Actions panel shows during playback (seeded with recorded params, resumes on OK); choose to make semi-automated finishing interactive.
+- `actions.stop` — Ends an actions.record session and commits the captured replayable steps; choose it to seal a recipe after the last edit.
+- `edit.assignProfile` — Re-tags the document's ICC profile WITHOUT changing pixel values — label an untagged or mislabelled image with zero colour shift.
+- `edit.preferences.enhancedControls` — Returns the Enhanced Controls section (trackpad pinch zoom/rotate, scrubby sliders, touch gestures); use to shape navigation feel.
+- `edit.preferences.rawDefaults` — Returns the Camera Raw Defaults section — the develop settings raw photos open with; set the house look before batch raw conversions
+- `edit.profileInfo` — Inspect an ICC colour profile — a built-in id, the document's, or an .icc/.icm file — returning description, colour space, class, LUT presence and supported rendering intents; use before converting or proofing colours.
+- `measurementLog.export` — Writes the Measurement Log (or chosen rows) out as CSV with Photoshop's column headers — use to hand measurement data to a spreadsheet or an audit pipeline.
+- `pattern.presets.apply` — Creates a non-destructive Pattern Fill layer above the active layer from a pattern preset — choose for re-scalable tiled backdrops you can retarget later.
+- `plugin.run` — Applies an installed sandboxed .wasm filter plug-in to the active pixel layer, a targeted mask/alpha channel, or — on a smart object — records it as a live smart filter that re-runs on every re-render; use for custom/third-party effects the built-in Filter menu lacks.
+- `swatches.move` — Moves a swatch to another group (default: within its own group) and/or to a new position, so panel order matches the painting workflow; choose to order a palette from sky tones down to foreground accents.
+- `actions.get` — Returns one action's full recipe — steps, disabled/dialog flags, set — in the exact shape batch and droplets accept; choose when inspecting or exporting a look.
+- `actions.toggle` — Switches action steps on/off for playback (the panel check marks); choose it to A/B a recipe variant or skip steps that do not fit the current document.
+- `edit.colorSettings` — Session-wide colour management: working spaces, open/paste conversion policies, rendering intent, text-blend gamma and monitor profile — set once, no document needed.
+- `edit.preferences.export` — Returns the Export section (Quick Export format/location, JPEG/WebP quality, metadata, sRGB conversion); set these before any Quick Export run.
+- `edit.preferences.scratchDisks` — Returns the Scratch Disks section — the drives tiles spill to once the memory budget is reached; capacity planning for very large documents
+- `edit.toolbar` — Hide, reorder or reset toolbar tools (names as in ui.set {tool}); use to pin exactly the tools an art-direction workflow needs and keep them in a stable order.
+- `measurementLog.list` — Reads every recorded Measurement Log row with its columns — use to inspect measurement results or to fetch row ids before delete/export.
+- `pattern.presets.edit` — One command for texture-library housekeeping: rename/delete/move patterns plus newGroup/renameGroup/deleteGroup folders — choose to organize the Patterns panel.
+- `prefs.get` — Reads any preference by dotted camelCase path (or the whole tree including colorSettings); use to check a live setting before changing workflow behaviour or to mirror app configuration in an agent's state.
+- `swatches.newGroup` — Creates a swatch group, optionally lifting named swatches out of their groups into it; choose to organise a palette into motif families (sky, water, snow, accents).
+- `actions.insert` — Inserts a step — Photoshop's Insert Stop… with id actions.stopMessage, or any command as Insert Menu Item… — at a position in an action; choose when hand-building or patching a recipe.
+- `count.add` — Drops a numbered count marker at x/y; choose it to tally repeated subjects (stars, birds, windows) or pin planned element placements on the canvas.
+- `edit.convertToProfile` — Transcodes every pixel into another colour space (e.g. working RGB → coated CMYK for print, → sRGB for web) with rendering intent and BPC.
+- `edit.preferences.fileHandling` — Returns the File Handling section (previews, autosave/recovery, TIFF/PSD prompts, SVG depth cap, recent files); tune before long art sessions.
+- `edit.preferences.tools` — Returns the Tools section — canvas behaviour, pen-tablet pressure and the pressure curve; the place to shape how the brush actually responds to a stylus
+- `image.analysis.countTool` — Read the document's count groups and marker points (edit them with the count.* commands); use to inventory repeated motifs — stars, windows, birds — as colour-coded markers.
+- `notes.add` — Pins a Photoshop-style annotation note (author, text, colour) at a canvas position — use to attach art-direction feedback or revision requests to a spot in the artwork.
+- `pattern.presets.list` — Returns the Patterns panel as folders of patterns plus the current selection — choose to browse the curated grouping and see what the panel considers selected.
+- `prefs.reset` — Resets one preference key, one section (e.g. "performance"), or everything including colorSettings to factory defaults; use to recover from bad configuration or to start a session clean.
+- `swatches.rename` — Renames one swatch, keeping names unique across the library; choose to give palette colours meaningful names ("Aurora Green", "Rim Light") that scripts and keyword search can find.
+- `actions.list` — Census of the Actions panel — every action with its step count and set, plus the name being recorded; choose when discovering what looks exist before playing or loading.
+- `count.clear` — Removes count markers from one group or all of them; choose it to reset a tally while keeping the group's name and colour.
+- `edit.defineBrushPreset` — Turns the current pixel selection into a named brush tip — capture a torn edge, leaf silhouette or grunge patch as a reusable stamping brush.
+- `edit.preferences.general` — Returns the General section (Cmd+K): default interpolation, place/smart-object behaviour, scroll zoom, home screen; set before compositing work.
+- `edit.preferences.transparencyAndGamut` — Returns the Transparency & Gamut section — the checkerboard behind transparent pixels and the gamut-warning colour; set the backdrop a composition is judged against
+- `image.analysis.info` — Read-only one-call report of the document's measurement state: measurement scale (with factor), ruler line + readout, count groups, note count and Measurement Log rows; check it before planning scaled or measured work.
+- `notes.delete` — Removes one note by index, or every note at once with all:true — use to clear resolved feedback markers from the canvas.
+- `pattern.presets.new` — Defines the selection (or canvas) as a new pattern preset and files it into a folder — choose when capturing a texture straight from your artwork into the library.
+- `prefs.set` — Sets one preference (`path`+`value`) or a validated all-or-nothing batch (`values: {path: value,…}`); use to steer the workspace for the job at hand — units, history depth, effect-cache budget, theme, guides, tool options.
+- `swatches.renameGroup` — Renames a swatch group, keeping group names unique; choose to keep palette families clearly labelled after an import or reorganisation.
+- `actions.load` — Imports a Photoshop .atn actions set into the panel (from a path or base64 bytes); choose when installing shared signature looks or porting Photoshop workflows.
+- `count.deleteGroup` — Deletes a count group together with all its markers; choose it when a subject class is finished or was mis-grouped.
+- `edit.defineCustomShape` — Saves a vector path as a named custom shape for the Custom Shape tool — stamp logos, silhouettes and decorative motifs repeatably at any scale.
+- `edit.preferences.guidesGridAndSlices` — Returns guide/grid/slice styling and spacing; set a layout grid (colour, spacing, subdivisions) before composition or alignment work.
+- `edit.preferences.type` — Returns the Type section — smart quotes, missing-glyph protection, font previews, text engine; shape how all text tools behave before setting a headline
+- `image.analysis.placeScaleMarker` — Stamp a true-to-scale bar (plus optional text label) onto the image as a new layer group in one history step; use for technical/architectural plates, scientific illustration and print presentation.
+- `notes.list` — Reads every annotation note on the document (index, author, text, colour, position, open, modified) — use to collect review feedback or to resolve note indexes before set/delete.
+- `pattern.presets.select` — Sets the Patterns-panel selection that fills and new Pattern Fill layers default to, optionally retargeting a Pattern Fill layer in the same step — choose to drive later pattern commands implicitly.
+- `swatches.add` — Saves the current foreground colour (or an explicit colour in rgb/hsb/cmyk/lab/gray) into the Swatches panel library with optional name, group, position and kind (process/global/spot); use to bank palette colours for reuse across a campaign or document.
+- `swatches.reset` — Restores PhotoCraft's built-in default swatch groups, replacing the whole library or appending to it; choose to start a fresh palette from the defaults or recover them after experiments.
+- `actions.move` — Reorders a step within its action, or the action within the list, to a final zero-based index; choose when the sequence of look steps matters.
+- `count.move` — Moves a count marker to new coordinates; choose it to nudge a pin onto the exact subject.
+- `edit.definePattern` — Captures a rectangle of the visible composite as a named library pattern — build tileable paper grain, canvas weave, brick or fabric fills.
+- `edit.preferences.historyLog` — Returns the History Log section (off by default): audit trail of every edit to document metadata and/or a text file; enable to document an art pipeline.
+- `edit.preferences.unitsAndRulers` — Returns the Units & Rulers section — the unit every size field and ruler speaks; switch to inches/mm for print artwork, pixels for screens
+- `image.analysis.recordMeasurements` — Append rows to the session-wide Measurement Log measuring the selection (summary + one row per 8-connected feature: area, perimeter, circularity, gray stats, histogram), the ruler (length, angle) or the count total; use to quantify composition features.
+- `notes.set` — Edits an existing document note (text, author, colour, position, open) by index — choose when refining review annotations left by the client or the art director.
+- `pattern.rename` — Renames a library pattern by id or name and keeps document copies in sync — choose when a texture needs a meaningful, searchable name.
+- `swatches.delete` — Removes one swatch by name or by index across all groups — or several at once via a name list — from the Swatches library; use to prune a palette while it evolves.
+- `swatches.use` — Sets the foreground or background tool colour from a swatch, converting CMYK/Lab/gray swatches through colour management; choose to paint with a curated palette colour instead of guessing hex values.
+- `actions.play` — Replays a recorded action's steps on the active document, stopping at the first failure but still returning ok; choose for one-click looks and batch-style finishing.
+- `count.newGroup` — Creates a colour-coded count group and makes it active; choose it to start a new subject class, each with its own colour and tally.
+- `edit.installedProfiles` — Lists ICC profiles installed in the OS (printer and paper profiles) with their paths, so proof/convert/assign calls can reference real installed targets.
+- `edit.preferences.integrations` — Returns the Integrations section: the agent control-channel allow switch and default port; the gateway for every automation run.
+- `edit.preferences.workspace` — Returns the Workspace section — tabs, panel docking and layout memory; tame the shell so the canvas gets the room
+- `image.analysis.rulerTool` — Set or read the document's ruler line (and protractor leg) — returns X/Y/W/H/angle/L1/L2 like the options bar; use to measure true lengths and angles and to prepare Straighten.
+- `pattern.delete` — Deletes one pattern from the app-level pattern library by id or name — choose when pruning clutter so texture-fill presets stay findable; documents keep their own copy.
+- `plugin.install` — Installs a sandboxed WebAssembly filter plug-in per process from a .wasm path or base64 data — choose before plugin.run to add custom filters to the Filter › Plug-ins menu.
+- `swatches.deleteGroup` — Deletes an entire swatch group, optionally keeping its swatches by moving them into the group above (Photoshop's "Delete Group Only"); use to reorganize or empty the palette.
+- `variables.list` — Lists a document's data-driven graphics setup — variable definitions (visibility/text/pixel per layer), the data sets with their values, and the active data set; choose to inspect a template before batch-rendering variations.
+- `edit.keyboardShortcuts` — Reads, rebinds, resets and imports application keyboard shortcuts — ergonomics for humans driving the UI; rarely relevant to scripted agents.
+- `edit.preferences.interface` — Returns the Interface section (appearance/themes, canvas colour, UI scale/language, animations, notifications); set a calm, high-contrast stage for judging art.
+- `edit.presets.exportImportPresets` — Packages brush presets (with embedded bitmaps) and custom shapes into a .pcpresets JSON bundle, or merges one back in — move a personal toolkit between machines
+- `image.analysis.selectDataPoints` — Choose which columns Record Measurements writes per source (selection, ruler, count); use to slim the Measurement Log to the metrics a critique actually needs.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

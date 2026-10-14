@@ -1,0 +1,142 @@
+# layer
+
+- `layer.combineShapes.excludeOverlappingShapes` — Marks overlapping shape components as exclude (XOR): overlap areas cancel out — choose for rings, lattice/interlace marks and knockout holes in vector badges.
+- `layer.layerStyle.dropShadow` — Adds or replaces a drop shadow on the layer — choose when a subject or text needs separation from the background or a floating look.
+- `layer.addAboveToSelection` — Adds the row just above the active layer to the selection - build a multi-layer selection stack-wise without the panel; use when extending a selection upward one paint layer at a time.
+- `layer.align.topEdges` — Aligns selected layers' top content edges to a common top line — choose when stacking clouds, mountain ridges or text rows so their upper boundary reads as one edge.
+- `layer.artboard.addBeside` — Adds a board the same size as the chosen artboard, 100 px out on one side (option-click = duplicate with contents) — build device rows, size ladders and variant sheets fast.
+- `layer.combineShapes.intersectShapeAreas` — Sets shape components to intersect: only the shared area survives — choose for overlap-only motifs, lens/crop shapes, overlap glints in vector art.
+- `layer.layerStyle.innerShadow` — Adds or replaces an inner shadow inside the alpha — choose for inset/recessed surfaces, letterpress depth, crevice shading.
+- `layer.new.artboardFromGroup` — Converts a top-level layer group into an artboard whose board rect is the group's content bounds; choose when a composed motif should become its own exportable canvas.
+- `layer.addBelowToSelection` — Adds the row just below the active layer to the selection - walk a stack downward, extending the selection; use when collecting underlayers (water rows, ground bands) into one selection.
+- `layer.align.verticalCenters` — Aligns selected layers' vertical midlines onto one horizontal axis — choose when a row of motifs (moons, eyes, buoys, portrait crops) must sit at the same height regardless of differing heights.
+- `layer.artboard.set` — Moves/resizes an existing artboard and swaps its background, preset or name — re-frame a board without rebuilding it.
+- `layer.combineShapes.mergeShapeComponents` — Bakes a shape layer's path operations (subtract/intersect/exclude) into plain combined outlines — choose to finalise a boolean-composed shape so downstream ops see one clean path.
+- `layer.layerStyle.outerGlow` — Adds or replaces a glow bleeding outside the alpha — choose for neon rims, magic light, star/moon halos, backlit silhouettes.
+- `layer.new.artboardFromLayers` — Groups the selected top-level layers into a new artboard sized to their unioned bounds; choose when scattered layers form one new deliverable canvas.
+- `layer.align.bottomEdges` — Aligns selected layers' bottom content edges to one baseline — choose when seating objects on a ground plane: figures on a floor line, boats on a waterline, text on a shared baseline.
+- `layer.combineShapes.subtractFrontShape` — Sets components (or frontmost selected layers) to subtract: the front shape carves its area out of what is behind — choose for punch-outs, crescents and knockouts.
+- `layer.copyToDocument` — Copies layers into another open document - the drag between canvases agents call; use when comping artwork from one canvas into another (foreground into a background plate).
+- `layer.layerStyle.innerGlow` — Adds or replaces a glow inside the alpha edge — choose for glass/gel buttons, backlit edges, inner neon tubing.
+- `layer.new.artboard` — Creates an empty artboard group (canvas size by default, parked right of the last board) — start a multi-canvas sheet or add one more format.
+- `layer.new.layer` — Adds a blank pixel layer (default above the active layer) with name, blend mode, opacity, colour label; choose when you need a fresh paint/blur/canvas surface.
+- `layer.align.leftEdges` — Aligns selected layers' left content edges to one vertical line — choose for a flush left margin: text columns, panel edges, a row of trees starting at the same x.
+- `layer.combineShapes.unite` — Sets components (or selected shape layers) to combine/union: everything adds into one silhouette — choose to fuse primitives into a single clean shape.
+- `layer.createClippingMask` — Clips the active (or all selected except the lowest) layer to the layer below it - an adjustment, wash or texture acts only on the base layer's pixels; use to confine grading to one subject.
+- `layer.layerStyle.stroke` — Adds or replaces an outline around the alpha — choose for comic/manga inks, sticker borders, text outlines, keylines.
+- `layerComp.apply` — Restores a named comp — every layer's recorded visibility/position/appearance — for instant colour studies, crop variants or alternate looks inside one document.
+- `layer.align.rightEdges` — Aligns selected layers' right content edges to one vertical line — choose for flush-right endings: signature blocks, right-ragged type stacks, elements bleeding off the right frame edge.
+- `layer.delete` — Deletes the active layer or every selected layer - the cleanup command; use to remove scratch layers, failed passes or a rejected variant.
+- `layer.flattenImage` — Composites every layer, group and mask into one locked Background pixel layer — choose at delivery, or when a pipeline (print, lens corrections) needs a single raster.
+- `layer.layerStyle.colorOverlay` — Floods the layer alpha with one colour — choose for flat tinting, silhouette recolours, duotone steps, brand colour swaps.
+- `layer.new.group` — Adds an empty layer group above the active layer; choose when scaffolding a folder for upcoming layers (frames, artboards, paired paint+shadow strata).
+- `layerComp.delete` — Removes a layer comp — prune variant snapshots you no longer present.
+- `layer.align.horizontalCenters` — Aligns selected layers' horizontal midlines onto one vertical axis — choose when stacking a centred composition: a moon over a path, a spire over its reflection, centred title type.
+- `layer.delete.hiddenLayers` — Removes every invisible layer (whole subtrees) in one step - housekeeping before a final export or handoff; use when the stack accumulated hidden drafts.
+- `layer.groupLayers` — Wraps the selected layers (Cmd+G) into one group in place — choose to organise a scene into foreground/mid/background nests before transforming or masking as a unit.
+- `layer.layerStyle.gradientOverlay` — Bathes the layer alpha in a gradient — choose for chrome/gold type, value ladders across shapes, sky-tinted silhouettes.
+- `layer.new.groupFromLayers` — Wraps every selected layer into one new group (the group's children move as a unit); choose when existing artwork layers should be organised or transformed together.
+- `layerComp.duplicate` — Copies a comp (named "<name> copy", inserted right after it) — fork a variant to tweak without losing the original.
+- `layer.arrange.bringForward` — Moves the layer one slot up the z-order (Cmd+]) — choose for fine-grained stacking control when inserting a subject just above its backdrop, e.g. lift a glow above the ridge it lights.
+- `layer.duplicate` — Duplicates the active/selected layers in place (numbered copies), or into a brand-new document - use to work non-destructively on a variant copy, or to lift layers out as their own canvas.
+- `layer.layerStyle.patternOverlay` — Fills the layer alpha with a library pattern — choose for live texture: halftone, canvas grain, fabric, stripes.
+- `layer.linkLayers` — Links the selected layers so they move and transform together (toggles: unlinks when they already share one link group) — choose to keep paired elements, e.g. water and its reflection, in register.
+- `layer.new.frame` — Creates a frame — a group masked (clipped) to a rectangle or ellipse at a given canvas rect, optionally holding an existing pixel layer as content; choose for cropped image wells and template placeholders.
+- `layerComp.list` — Lists every comp with its apply-options and health — the discovery call before applying, cycling or exporting variants.
+- `layer.arrange.sendBackward` — Moves the layer one slot down the z-order (Cmd+[) — choose to tuck an element just behind its neighbour, e.g. drop a new cloud layer behind the mountain silhouette.
+- `layer.exportAs` — Writes the active layer alone - rendered by itself, trimmed to its pixels - to any image format; use to pull one artwork element out with transparency.
+- `layer.layerStyle.satin` — Adds a wavy inner sheen — choose for silk/satin fabric, liquid metal ripples, organic surface waves on shapes or type.
+- `layer.matting.colorDecontaminate` — Pulls fringe colours on soft-alpha edges toward nearby opaque colours (Photoshop's Select-and-Mask decontamination) — choose after subject cut-outs to kill colour spill on hair, fur and mist.
+- `layer.new.frameFromLayers` — Groups the selected layers and clips the group to a frame rect equal to their unioned bounds; choose when existing artwork should become a cropped, self-contained framed unit.
+- `layerComp.new` — Captures the current document — every layer's visibility, position and appearance — as a named comp, one undoable step.
+- `layer.arrange.bringToFront` — Moves the layer to the top of the stack (Cmd+Shift+]) — choose to make an element the last word in paint order: foreground silhouette, vignette, grain or signature overlay.
+- `layer.hideLayers` — Hides the targeted layers, or shows them again when every one is already hidden (Cmd+, toggles) - use to drop guide/underpainting layers and then bring them back.
+- `layer.layerStyle.bevelEmboss` — Adds 3D chiselling with highlight and shadow passes — choose for embossed type, carved stone, plastic/gel buttons, relief surfaces.
+- `layer.matting.defringe` — Replaces the colour of edge pixels (within `width` of transparency) with nearby interior colour, alpha untouched — choose to erase white/black matte lines on hard-edged cut-outs.
+- `layer.new.backgroundFromLayer` — Turns the selected layer into the locked, opaque Background at the bottom of the stack (transparent pixels take the background colour); choose when a comp's base needs the Background's opaque, pinned behaviour.
+- `layerComp.next` — Steps forward through the comp list (wrapping) — flip through variants in presentation order.
+- `layer.arrange.sendToBack` — Moves the layer to the bottom of the stack (Cmd+Shift+[), just above the Background if one exists — choose for true backdrops: sky gradients, paper texture, the deepest atmosphere layer.
+- `layer.layerContentOptions` — Reports which editor the active layer opens (adjustment:<kind>, fill, text, smartObject, shape) - a cheap probe; use to find out what a fill/adjustment layer contains before editing it.
+- `layer.layerStyle.replace` — Atomically replaces a layer's full effect list in one history step — choose when scripting multi-effect styles or round-tripping the Layer Style dialog.
+- `layer.matting.removeBlackMatte` — Un-premultiplies semi-transparent pixels that were composited over black, restoring their true colour — choose for glows, sparks and light streaks lifted off dark comps.
+- `layer.new.layerFromBackground` — Unlocks the Background into a normal movable layer (renamed "Layer 0", transparency/position locks off); choose when the base image must be moved, transformed, erased or accept transparency.
+- `layerComp.previous` — Steps backward through the comp list (wrapping) — walk variants back for A/B checks.
+- `layer.arrange.reverse` — Flips the selected layers' stacking order among themselves (Layer › Arrange › Reverse) — choose to invert a build sequence, e.g. turn a top-down highlight stack into a bottom-up one, or swap foreground/background sets.
+- `layer.layerStyle.blendingOptions` — Sets a layer's blend mode, opacity, fill opacity, Blend If ranges and advanced blending — choose for knockout cutouts, per-channel blends and fill-opacity-only effects.
+- `layer.lockLayers` — Sets transparency/pixels/position/artboard/all locks on the selected layers (no keys given: toggle lock-all) - use to freeze finished layers while painting elsewhere.
+- `layer.matting.removeWhiteMatte` — Un-premultiplies semi-transparent pixels that were composited over white — choose for glass, smoke, steam and flame extracted from light backdrops.
+- `layer.new.layerViaCopy` — Lifts the selection's pixels onto a new layer above (Cmd+J); with no selection duplicates the whole layer; choose when a motif needs its own layer without disturbing the source.
+- `layerComp.rename` — Renames a comp — give variants presentable names ("Dusk", "Night", "Client Pick") before export or hand-off.
+- `layer.distribute.horizontally` — Spreads 3+ selected layers left-to-right with equal horizontal gaps between neighbours, outermost layers staying put — choose for rhythm: evenly spaced trees, columns of a colonnade, repeated motifs.
+- `layer.layerStyle.globalLight` — Sets the document-wide light angle and altitude used by every effect with useGlobalLight — choose to relight all shadows and bevels at once.
+- `layer.maskAllObjects` — AI-selects the main objects on the layer (Select Subject segmentation) and masks the layer to them - use for one-step subject silhouettes (cutouts, keeping a glow off the sky).
+- `layer.mergeDown` — Bakes the active layer into the pixel layer directly below it — choose to commit one shading or texture pass onto its base without touching the rest of the stack.
+- `layer.new.layerViaCut` — Moves the selection's pixels onto a new layer above, clearing the source area (Cmd+Shift+J); choose when an element should be EXTRACTED from its layer, leaving a hole.
+- `layerComp.restoreLastDocumentState` — Puts back the pre-comp layout the engine saved when a comp was applied over edited layers — the escape hatch from comp cycling.
+- `layer.distribute.vertically` — Spreads 3+ selected layers top-to-bottom with equal vertical gaps, outer layers fixed — choose for even vertical rhythm: stacked cloud bands, text stanzas, horizon strips in a panel layout.
+- `layer.layerStyle.clear` — Removes effects — the whole style from selected layers, or one effect by index — choose to strip or prune styles.
+- `layer.mergeGroup` — Collapses a group's visible contents into one pixel layer in its place (Cmd+E on a lone group) — choose to lock a finished scene part while keeping other groups editable.
+- `layer.newLayerBasedSlice` — Creates a web slice bound to the layer's bounds (with effects) - the slice tracks the layer; use when an artwork region must be exported from a tracked element.
+- `layer.rasterize.layer` — Converts the selected non-pixel layers (shape/type/fill/smart/vector-mask) into plain pixel layers in one history step; choose before applying filters that demand pixels.
+- `layerComp.setComment` — Sets a comp's comment — annotate variants with intent ("warmer sky, softer rim") for future sessions.
+- `layer.distribute.leftEdges` — Spaces 3+ selected layers so their left edges sit at even intervals between the outermost left edges — choose to align the *starts* of elements rhythmically even when their widths differ (tree trunks, signposts).
+- `layer.layerStyle.copyLayerStyle` — Copies a layer's effects plus blend mode, fill opacity and advanced blending to the session style clipboard — choose to duplicate a look.
+- `layer.mergeLayers` — Merges the selected layers into one pixel layer (Cmd+E; one layer selected = Merge Down or Merge Group) — choose to consolidate an arbitrary pick of layers in one step.
+- `layer.pickAt` — Returns (and by default selects) the topmost visible, unlocked layer with pixels at a canvas point - click-through-by-pixel selection; use to grab exactly what the cursor sees.
+- `layer.rasterize.allLayers` — Rasterizes every layer in the document (walked top to bottom, inside groups) in one history step; choose to fully flatten editability into pixels before export or archival.
+- `layerComp.setOptions` — Chooses which recorded properties a comp restores (visibility / position / appearance) and can rename or re-comment it — scope a comp to just eye-states or just the grade.
+- `layer.distribute.rightEdges` — Spaces 3+ selected layers so their right edges sit at even intervals — choose when endings matter: right-aligned signage, staggered birds with even trailing edges, arrows pointing to a rhythm.
+- `layer.layerStyle.pasteLayerStyle` — Pastes the copied style (effects + blending options) onto selected layers — choose for batch look application.
+- `layer.mergeVisible` — Composites every visible layer into the lowest visible layer, hidden layers stay put — choose to bake the current look while stashing alternates hidden underneath.
+- `layer.quickExportAsPng` — Writes the active layer alone, trimmed to its pixels, as a PNG - the fast one-layer drop; use for previews, element checks, or handing a single element to another tool.
+- `layer.rasterize.type` — Converts a live text layer into pixels (fonts no longer needed, text no longer editable); choose before pixel filters on lettering or when the exact render must be frozen.
+- `layerComp.update` — Re-records the document into a comp (or every comp with "*") — refresh a variant after edits instead of recreating it.
+- `layer.distribute.topEdges` — Spaces 3+ selected layers so their top edges sit at even vertical intervals — choose for even *starts* down the canvas: skyline layers receding, staggered headers, banner rows.
+- `layer.layerStyle.transferEffects` — Moves or copies one or all effects from one layer to another — choose to hand a shadow or glow to a different subject.
+- `layer.rasterize.shape` — Converts a vector shape layer (path + fill/stroke) into a pixel layer; choose before filtering a shape — the workhorse step for softening crisp vector silhouettes with blur.
+- `layer.releaseClippingMask` — Un-clips the active layer (or every selected layer) from the layer below - use to let an adjustment or wash spread over the whole canvas again.
+- `layer.removeBackground` — Select Subject plus light edge refinement, delivered as a layer mask in one history step — choose as the one-shot subject cut-out before defringe/decontaminate cleanup.
+- `layerComp.updateWarnings` — Reports comps that reference deleted layers (Photoshop's warning triangle) and can drop those stale states — comp hygiene before export.
+- `layer.distribute.bottomEdges` — Spaces 3+ selected layers so their bottom edges sit at even vertical intervals — choose when things sit on invisible shelves: boats at even waterlines, figures on staggered steps.
+- `layer.layerStyle.createLayer` — Renders each enabled effect onto its own pixel layer named like '<layer>'s Drop Shadow' — choose to hand-edit shadows/glows as pixels.
+- `layer.rasterize.fillContent` — Bakes a fill layer's live gradient/pattern/solid definition (and any fill cache) into plain pixels; choose when a gradient fill needs pixel filters or must stop tracking its definition.
+- `layer.renameLayer` — Renames a layer (id or name) - keep the stack self-describing so builds and audits can assert on layer trees; rename right after auto-creating fill/adjustment layers.
+- `layer.stampDown` — Merges a COPY of the active layer into the pixel layer below, originals intact (Cmd+Alt+E) — choose for non-destructive merge-down, the safe way to bake a pass into its base.
+- `layer.distribute.horizontalCenters` — Spaces 3+ selected layers so their horizontal midlines sit at even intervals — choose for even centrepiece rhythm regardless of element widths: lanterns down a street, statues along an avenue.
+- `layer.layerStyle.scaleEffects` — Scales all effect sizes and distances on the layer by a percent — choose after resizing artwork so shadows and glows keep proportion.
+- `layer.rasterize.smartObject` — Converts a smart object into its rendered pixels, dropping smart filters, warp, stack mode and source link; choose when the placeholder work is done and only pixels matter.
+- `layer.select` — Sets the layer selection with Photoshop's click semantics (replace/add/toggle/range/remove) - the routing step before almost every layer edit; select by id or by name (topmost match).
+- `layer.stampVisible` — Composites every visible layer into one NEW layer above the active one, originals stay (Cmd+Alt+Shift+E) — choose to freeze the current look for a global filter pass while keeping the build editable.
+- `layer.distribute.verticalCenters` — Spaces 3+ selected layers so their vertical midlines sit at even intervals — choose for even heights of mixed-size elements: moons of different phases, birds of different spans, stacked vignettes.
+- `layer.layerStyle.hideAllEffects` — Hides every layer's effects document-wide in one history step — choose to compare the artwork with and without styles.
+- `layer.rasterize.vectorMask` — Multiplies the layer's vector mask into its pixel layer mask and removes the vector mask; choose to freeze a crisp/soft vector clip as editable mask pixels.
+- `layer.selectAbove` — Selects the row above the active layer in the Layers panel order (Alt+]) - step through a stack top-down; use to walk layers one by one without ids.
+- `layer.ungroupLayers` — Dissolves a group, splicing its children back in order at the group's position (Cmd+Shift+G) — choose to flatten organisation without touching layer content or stacking.
+- `layer.layerStyle.showAllEffects` — Reveals every layer's hidden effects document-wide — the counterpart of hideAllEffects.
+- `layer.moveTo` — Moves one layer or a batch of layers to an exact slot beside or inside another layer in one undoable step — choose when a single slot jump (arrange) is not enough: cross-group moves, drag-style re-parenting, ⌥-drag duplicates.
+- `layer.rasterize.video` — Converts a video layer to a pixel layer at the current frame (alias of layer.videoLayers.rasterize); choose to freeze footage into paintable pixels.
+- `layer.selectBelow` — Selects the row below the active layer in the Layers panel order (Alt+[) - step downward through the stack; use to walk toward the background one layer at a time.
+- `layer.layerStyle.makeDefault` — Stores a param set as the user default for one effect kind — choose to pin a house recipe (your stroke or shadow numbers) as the dialog's starting point.
+- `layer.selectBottom` — Selects the lowest row of the Layers panel (Alt+,) - jump to the bottom of the stack; use to reach the Background or deepest plate instantly.
+- `layer.translate` — Shifts a layer (or every selected layer, plus linked layers) by whole pixels dx/dy — choose for exact placement: nudge a sun to its measured x, slide a reflection to mirror its source, reposition a motif after an alignment pass.
+- `layer.layerStyle.defaultFor` — Returns the saved user default for an effect kind, else its factory defaults — read the starting params before authoring effects.
+- `layer.selectTop` — Selects the topmost row of the Layers panel (Alt+.) - jump to the top of the stack; use to reach the newest paint layer or the top group instantly.
+- `layer.rasterize.layerStyle` — Bakes a layer's effects, fill opacity and masks into its pixels — choose to freeze styles before filters, painting or delivery.
+- `layer.selectInRect` — Selects every layer whose content touches a canvas rect, topmost first - the Move tool's marquee auto-select; use to grab all floating elements inside an area.
+- `layer.selectLinkedLayers` — Expands the selection to every layer in the selected layers' link groups - use to move or transform a linked set as one crew.
+- `layer.setEffectsVisible` — Toggles a layer's whole effect list or one effect by index — choose to A/B a single effect cheaply.
+- `layer.setEffectsExpanded` — Shows or hides a layer's effects list under its Layers-panel row — view state only, no history step.
+- `layer.setExpanded` — Opens or closes layer groups (one, or all groups at once) - a view change saved with the document, not an undo step; use to tidy the panel or expose nested layers for navigation.
+- `layer.setLabelColor` — Colour-tags layers (none|red|orange|yellow|green|seafoam|blue|indigo|magenta|fuchsia|violet|gray); a group colours its descendants - use to code stack phases (approved vs draft plates).
+- `style.presets.list` — Returns all style groups and presets with effect labels — discover built-in looks (neon, chrome, gold, glass) before applying.
+- `layer.setProps` — Sets any layer property in one undo step - name, visibility, opacity, fill, blend mode, clipping, locks, channel exclusions - the workhorse for tuning how a layer reads in the composite.
+- `style.presets.apply` — Applies a named style preset to selected layers, replacing their effects (add appends) — choose for one-click looks on type or shapes.
+- `layer.showLayers` — Makes the targeted layers visible (always shows; hideLayers is the toggler) - use to bring back underpainting or reference layers after a hide pass.
+- `style.presets.new` — Saves a style preset from a layer's current effects (or an explicit effect list) — choose to bank a custom look you tuned by hand.
+- `layer.showOnly` — Alt-click solo: shows just the target layer (and its enclosing groups), hides the rest; call again on the solo layer to restore everyone's visibility - use to audit one layer's true pixels.
+- `style.presets.edit` — Renames, deletes and moves presets; creates, renames and deletes groups — housekeeping for the Styles panel.
+- `layer.toggleLockTransparency` — Toggles the transparency lock (/) so painting only lands where pixels exist - recolour existing shapes, mist or silhouettes without spilling onto transparency.
+- `style.presets.reset` — Restores the built-in style groups (Basics / Text Effects / Buttons), replacing or appending — recover factory styles after edits.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

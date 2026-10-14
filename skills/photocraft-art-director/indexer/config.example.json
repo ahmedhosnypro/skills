@@ -1,0 +1,8 @@
+{
+  "base_url": "http://<embed-host>:<port>/v1",
+  "model": "<embedding-model-id>",
+  "api_key": "<api-key>",
+  "timeout_s": 60,
+  "batch_size": 100,
+  "batch_chars": 50000
+}

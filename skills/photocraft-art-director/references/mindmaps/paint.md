@@ -1,0 +1,64 @@
+# paint
+
+- `paint.blur` — Softens pixels under a brush stroke; choose to melt edges, soften skin/backgrounds, or fake depth of field locally.
+- `brush.defineFromSelection` — Turns the selected pixels of the active layer into a new sampled-tip brush preset and makes it the current brush — choose when artwork should paint with its own marks: stamps, splatters, texture, lettering.
+- `brush.presets.save` — Saves the current brush (optionally merged with a patch) as a named preset - choose when a tuned brush must be reused across artwork.
+- `magicEraser` — One-click erase of contiguous similar-coloured pixels - choose it to clear flat backgrounds or washes to transparency without selecting first.
+- `paint.bucket` — Flood-fills a tolerance-matched region with the foreground colour or a pattern; choose for flat colour areas, cel-shading bases, or tiling texture patches.
+- `paint.sponge` — Brushes saturation up or down along a stroke — choose it to mute backgrounds or excite a focal colour while tones stay put.
+- `tools.decreaseBrushHardness` — Steps the session brush hardness down one quarter (0, 0.25, 0.5, 0.75, 1) — choose when softening an edge toward a feathered airbrush, mist or glow.
+- `brush.get` — Returns the session brush's full settings as camelCase JSON — choose when you must read the live brush (size, hardness, tip, dynamics) before patching it with `tools.setBrush`.
+- `brush.presets.setCurrent` — Marks a named preset as the one the current brush was picked from - choose when tracking preset identity so later updates overwrite the right preset.
+- `mixerBrush` — Push and blend existing pixels like wet paint (Wet/Load/Mix/Flow) - choose it to smear colour transitions, soften edges, or paint with colour picked up from the canvas.
+- `paint.burn` — Darkens pixels under a brush stroke; choose to paint shadows, deepen creases, or shade volumes by hand.
+- `paint.spotHealing` — Paints over a blemish and heals it from the surrounding pixels with no source pick — choose it to erase dust, scratches and small artefacts in one dab.
+- `tools.decreaseBrushSize` — Steps the session brush 25% smaller (min 1 px) — choose when thinning a stroke: fine linework, grain specks, pixel-art dots.
+- `brush.presets.delete` — Removes one brush preset by name from the library — choose when curating the Brushes panel down to the brushes an art direction actually uses.
+- `brush.presets.update` — Overwrites an existing preset in place with the current brush (plus optional patch) - choose when the tuned brush should replace its saved origin, keeping position, name and group.
+- `paint.cloneStamp` — Paints with pixels copied from a source point or offset; choose to duplicate texture, patch damaged areas, or remove objects by covering them with nearby content.
+- `paint.stroke` — The core painting command — lays a brush stroke along points with full brush dynamics — choose it for any hand-painted mark, from soft nebula glows to single-pixel star dabs.
+- `patch` — Replace the selected area with content sampled from where the selection was dragged - choose it to repair blemishes or transplant texture over damaged spots.
+- `tools.defaultColors` — Resets the colour pair to Photoshop's default (D): black foreground / white background — or white / black when a layer mask is targeted — choose before mask reveal-painting or after colour experiments.
+- `brush.presets.deleteGroup` — Deletes a whole brush group — or a nested folder and everything below it — choose for bulk library cleanup such as dropping an imported set you no longer want.
+- `brush.texturePattern` — Sets the session brush's Texture to a library pattern (converted to a grey luminance tile) - choose when a stroke must carry canvas grain, paper tooth or stipple.
+- `paint.colorReplacement` — Recolours pixels under the brush with the foreground while keeping texture and luminosity; choose for selective recolouring like changing an object's hue or hand-tinting.
+- `paint.symmetryDisable` — Turns the active painting mirror off so later strokes paint one-sided — call it as soon as mirrored detail work is done.
+- `patternStamp` — Paint with a document pattern by hand - choose it to lay repeating texture, wallpaper or canvas/paper grain only where the brush passes.
+- `tools.increaseBrushHardness` — Steps the session brush hardness up one quarter (0, 0.25, 0.5, 0.75, 1) — choose when an edge must read crisp: ink lines, hard shadows, cut-out shapes.
+- `brush.presets.importAbr` — Adds every brush of a Photoshop .abr file (v1/v2/v6+) as one group with the file's own folders nested inside — choose when a direction calls for real brush packs: splatter, grunge, foliage, hair, texture stamps.
+- `cloneSource.list` — Reads the five clone-source slots (sample point, anchor/offset, scale, rotation, flips) plus overlay options - choose to inspect what paint.cloneStamp/paint.healingBrush will sample before a retouch pass.
+- `paint.contentAwareMove` — Drags a selection's content to a new place and heals the hole (move) or grows the subject (extend); choose to reposition or elongate objects without manual cloning.
+- `paint.symmetryFromPath` — Mirrors Brush, Pencil and Eraser strokes across an arbitrary saved path — choose it for off-centre or curved mirror axes (façade reflections, skewed composition balance).
+- `pencil` — Hard aliased pixel brush with an optional 16-px block mode - choose it for crisp pixel art, hard-edged linework, or bitmap-style dabs with no anti-aliasing.
+- `tools.increaseBrushSize` — Steps the session brush 25% larger (at least +1 px) — choose when blocking in broad fields: skies, washes, soft shadow masses.
+- `brush.presets.list` — Enumerates the brush library (name, builtin, size, hardness, tip kind) — choose to discover preset names a stroke can pick with `paint.stroke {preset}` or `tools.setBrush {preset}`.
+- `cloneSource.overlay` — Configures the ghost preview of what the clone stamp will stamp (visibility, opacity, clipping, blend) - choose when aligning a clone source precisely before stroking.
+- `paint.dodge` — Lightens pixels under a brush stroke; choose to paint light into shadows, brighten eyes, or lift glow accents by hand.
+- `redEye` — Click a pupil to neutralise the flash red reflection - choose it to fix portrait eyes in one click, with up to 64 clicks per call.
+- `tool.presets.edit` — Renames or deletes saved tool presets — housekeeping so a curated preset kit stays findable.
+- `tools.rotateBrush` — Turns the brush tip by `degrees` (positive anticlockwise, wrapped to -180..180) — choose when an angled tip must follow a stroke's direction: chisel calligraphy, slanted texture stamps.
+- `brush.presets.move` — Repositions one preset within its group, into another group, or into/out of a nested folder — choose when arranging the Brushes panel into a deliberate kit order.
+- `cloneSource.resetTransform` — Resets the active (or named) clone slot's scale, rotation and flips to identity - choose when earlier mirrored/rotated sampling would contaminate a clean retouch pass.
+- `paint.gradient` — Drags a gradient between two points in five shapes with any stops; choose for skies, backdrops, light falloff, and vignettes.
+- `remove` — Brush over objects to fill them away content-aware - choose it to delete wires, dust, text or whole objects; the strokes become one background job and one undo step.
+- `tool.presets.list` — Lists saved tool presets (name + tool) — the discovery step before tool.presets.select.
+- `tools.setBrush` — The single accepted brush change: deep-merges a camelCase BrushSettings patch (or a named preset) onto the session brush — choose for any scripted brush setup, then paint with paint.stroke.
+- `brush.presets.moveGroup` — Moves a whole group — or a nested folder, content and order intact — among siblings, into another group's folder, or out to the top level as its own group: Photoshop's drag-a-folder-onto-a-folder.
+- `cloneSource.select` — Makes one of the five clone-source slots active - choose to keep several independent sample setups (sky patch, water ripple, skin) and switch between them per stroke.
+- `paint.healingBrush` — Blends cloned texture from a source point into the stroke area with Poisson seamless cloning; choose to remove blemishes, wrinkles and scars while keeping the surrounding light.
+- `setSymmetry` — Set a mirror axis (vertical/horizontal/dual/diagonal) so Brush, Pencil and Eraser strokes paint mirrored copies - choose it for mandalas, Rorschach ink or perfectly balanced motifs.
+- `tool.presets.new` — Saves the current tool plus its options under a name — snapshot a calibrated brush (size/hardness/flow) so a look stays reproducible across a build.
+- `tools.setColors` — Sets the foreground and/or background swatches (hex or RGBA) — choose to load the exact colour a brush stroke, fill or gradient will use.
+- `brush.presets.rename` — Gives one preset a new name — choose to replace auto-generated names ('Hard Round 2', imported file stems) with meaningful kit labels.
+- `cloneSource.set` — Configures a clone slot: sample point, offset, width/height scale, rotation, flips, layer - choose to sample mirrored, scaled or turned regions for symmetry and texture repair.
+- `paint.historyBrush` — Paints an earlier history state back onto the layer; choose to selectively restore detail — un-blur eyes, re-sharpen texture, revert a retouch in places.
+- `sharpen` — Brush local sharpening with detail protection - choose it to pull micro-contrast on eyes, edges or textures without sharpening the whole frame.
+- `tool.presets.reset` — Replaces the whole tool-preset list with the five builtins — a clean-slate switch, destructive to saved custom presets.
+- `tools.swapColors` — Swaps the foreground/background pair (shortcut X) — choose to flip between painting and erasing-to-background, or white/black mask painting without re-setting hex values.
+- `brush.presets.renameGroup` — Renames a whole group or a nested folder — every preset below follows — choose when an imported group should carry the project's own vocabulary instead of the source file's name.
+- `paint.backgroundEraser` — Brush stroke that erases pixels similar to the colour under its hotspot to transparency - choose when cutting a subject off a flat or graded backdrop (sky pull, hair against sky).
+- `smudge` — Drag pixels like wet finger-paint - choose it to streak colour, feather hard edges, or blend neighbouring tones by hand.
+- `tool.presets.select` — Applies a saved tool preset by name — restore a calibrated brush and ink colour in one call between painting passes.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`

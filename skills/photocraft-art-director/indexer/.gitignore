@@ -1,0 +1,5 @@
+config.json
+index.sqlite
+index.sqlite-wal
+index.sqlite-shm
+__pycache__/

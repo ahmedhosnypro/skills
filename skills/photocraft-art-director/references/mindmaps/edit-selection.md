@@ -1,0 +1,88 @@
+# edit-selection
+
+- `edit.transform` — Scale, rotate, skew, flip or displace the active layer (or a lone mask/alpha channel/Quick Mask) via quad, matrix or relative params — the general placement tool for composing any element into the frame.
+- `select.all` — Selects the whole canvas; choose when an edit, fill or filter must hit everything before you narrow or invert.
+- `select.allLayers` — Selects every layer except the Background - use before a multi-layer group, align, move or style change.
+- `edit.cut` — Copy the selection to the clipboard and clear it to transparency (background colour on the Background layer) — choose when an element must move, not duplicate.
+- `edit.transform.again` — Replays the last Free Transform on the active layer (Cmd+Shift+T) — repeat a placement on layer after layer without retyping params.
+- `edit.undo` — Steps the active document back one history entry — the safety net after any destructive edit; run it once per history step whenever an experiment should not be kept.
+- `select.colorRange` — Selects pixels by colour or tone — eyedropper samples, hex colour, hue family, highlights/midtones/shadows, skin tones, out-of-gamut — with fuzziness; choose for toning or masking by hue instead of outline.
+- `select.deselectLayers` — Clears the Layers-panel selection (no active layer) - the layer twin of Cmd+D; use when a stray layer target would catch the next edit.
+- `edit.copy` — Copy the active layer's pixels inside the selection to the session clipboard — the staging step for every duplicate, transplant and Paste Into composition.
+- `edit.redo` — Re-applies the most recently undone step — pairs with edit.undo to step forward again after rolling back; use to flip an undo without redoing the work.
+- `edit.transform.againCopy` — Duplicates the active layer and repeats the last Free Transform on the copy (Cmd+Alt+Shift+T) — the step-and-repeat engine for marching rows, grids and echo patterns.
+- `select.convertToShape` — Traces the selection outline into a live vector shape layer; choose when a painted or magic-wand selection must become editable, scalable geometry.
+- `select.findLayers` — Selects every layer whose name contains the text (case-insensitive) - the way to grab 'sky*' or 'shadow*' layers across a deep group tree.
+- `edit.copyMerged` — Copy a flattened snapshot of every VISIBLE layer inside the selection — grab what the artwork looks like, not one layer's contribution.
+- `edit.toggleLastState` — Flips between the current state and the last undone one (redo if a redo exists, else undo) — the before/after A-B switch for judging whether an edit improved the art.
+- `edit.transform.rotate90Cw` — Turns the layer's content (or a targeted mask/channel) a quarter turn clockwise about its content frame, as an exact pixel permutation — square up a landscape element or a canvas-scanned sketch.
+- `select.deselect` — Clears the selection; choose to release scoping so edits hit the whole layer again, or before starting a fresh marquee.
+- `select.isolateLayers` — Toggles the Layers panel to list only the currently selected layers - declutter the view while polishing one element.
+- `edit.fade` — Blends the last filter, adjustment or paint step back toward its previous state at reduced opacity in a chosen blend mode — soften an over-strong effect without re-running it.
+- `edit.paste` — Drop the clipboard in as a new layer above the active layer, centred on the view (or at its original spot when it already overlaps the canvas) — the universal transplant step.
+- `edit.transform.rotate90Ccw` — Turns the layer's content (or a targeted mask/channel) a quarter turn counter-clockwise — the counter-clockwise sibling of Rotate 90° Clockwise, undoing it exactly.
+- `select.drop` — Commits the floating pixel piece into its layer and moves the selection outline with it as one history step; choose to finish a Move-tool drag.
+- `select.lasso` — Selects an irregular freehand polygon between >=3 points - trace a silhouette or organic outline by hand before masking or retouching it.
+- `edit.contentAwareFill` — Removes the selected pixels and synthesizes them from surrounding texture — the object-removal and area-reshaping workhorse for cleaning distractions out of a scene.
+- `edit.pasteSpecial.pasteInPlace` — Paste at the exact coordinates the pixels were copied from — alignment-safe duplication across documents or layer stacks.
+- `edit.transform.rotate180` — Flips the layer's content (or a targeted mask/channel) both axes at once about its content frame — a lossless half turn for upside-down scans or inverted motifs.
+- `select.editInQuickMaskMode` — Toggles the selection into a paintable Quick Mask overlay (Q); choose to sculpt a mask with brushes, gradients and filters, then exit back into a soft-edged selection.
+- `select.loadSelection` — Turns a saved alpha channel, a colour channel's luminosity, layer transparency or a mask into the active selection - reuse any mask you have already made.
+- `edit.contentAwareScale` — Resizes a region by seam carving that squeezes or stretches low-energy areas first, protecting subjects — reframe to a new aspect ratio without squashing the focal subject.
+- `edit.pasteSpecial.pasteInto` — Paste as a new layer with a layer mask limiting it to the current selection — clip a photo inside a shape, vignette or window in one step.
+- `edit.transform.flipHorizontal` — Mirrors the layer's content (or a targeted mask/channel) left-right within its content frame, losslessly — the mirror for reflections, symmetry studies and facing-direction changes.
+- `select.float` — Cuts the selected pixels of the active layer into a floating piece and moves it without changing the document yet; choose for interactive nudges and repositions — commit with select.drop.
+- `select.magicWand` — Click-selects all similar-coloured pixels around a point - flat skies, paper backgrounds and uniform colour fields in one click.
+- `edit.findAndReplaceText` — Searches and replaces text across the document's type layers — batch-fix a repeated word, name or caption without opening each text layer.
+- `edit.pasteSpecial.pasteOutside` — Paste as a new layer masked to show only OUTSIDE the current selection — the inverse of Paste Into, for surroundings, halos and beyond-the-hole content.
+- `edit.transform.flipVertical` — Mirrors the layer's content (or a targeted mask/channel) top-bottom within its content frame, losslessly — the base step for lake/water reflections before distortion.
+- `select.focusArea` — Selects the in-focus region by analysing local sharpness; choose to blur backgrounds or isolate the sharp subject of a photograph.
+- `select.magneticLasso` — Traces a selection border that snaps to image edges between your fastening points - ride a mountain ridge or silhouette contour with few clicks.
+- `edit.checkSpelling` — Lists misspellings on type layers against a bundled English dictionary with suggestions, and changes words or learns new ones — clean up lettering before export.
+- `edit.deleteAndFillSelection` — One-click content-aware removal: delete the selection and inpaint it from the surrounding window, no dialog — Photoshop's Delete-key cleanup for decluttering a plate.
+- `edit.transform.warp` — Bends a layer through a preset warp style (arc, flag, wave, fisheye, …) or a custom Bezier mesh over its frame — organic bends for cloth, flags, paper, faces and flowing motifs.
+- `select.grow` — Expands the selection to touching pixels whose colour lies within the selected range widened by tolerance; choose to extend a colour region edge-by-edge without jumping gaps.
+- `select.object` — One-click selects the whole object inside a drag rect or under a point - grab the subject of a scene without tracing it.
+- `edit.stroke` — Paint a hard band of colour along the selection edge (or the layer's opaque edge) — instant ink outlines, logo frames, comic panel borders.
+- `edit.transform.warpGrid` — Refits a warp's mesh to an even n×n patch grid (1–64) without moving the surface — add resolution before hand-tuning a warp's control points.
+- `select.inverse` — Flips the selection to everything not selected; choose for 'edit all but this' passes — background tone-downs, vignettes, halo clean-up around a cut subject.
+- `select.quick` — Paints a selection like a brush: points you touch grow a colour-aware region - the fast way to mask an organic subject with a few strokes.
+- `ui:edit.freeTransform` — Opens the interactive Free Transform box over the active layer, its selected pixels or a mask/channel — drag handles to scale, rotate, skew or distort with live preview, Enter to commit, Esc to cancel.
+- `edit.purge.undo` — Discard the active document's last undo state to free its memory — the escape hatch after a huge filter or paint step doubled RAM.
+- `edit.transform.splitWarpCrosswise` — Adds both a horizontal and a vertical split line to a warp mesh at a point — subdivide the warp grid crosswise for tighter local control.
+- `select.modify.border` — Replaces the selection with a band of the given width straddling its outline; choose for edge glows, outlined strokes and rim-light passes.
+- `select.rect` — Draws a crisp rectangle, ellipse or single row/column selection - the base tool for scoping fills, gradients, filters and crops to a region.
+- `ui:edit.freeTransformCopy` — Duplicates the active layer (with a selection, just its selected pixels as a Layer via Copy) and opens Free Transform on the copy — the repeat-transform stamp for echoes and shadows.
+- `edit.purge.clipboard` — Empty the session clipboard (copied pixels + layer style) to free its memory — e.g. after copying a 24 MP region.
+- `edit.transform.splitWarpHorizontally` — Adds a horizontal split line (dividing mesh rows) to a warp mesh at a point — slice a warp into horizontal bands for per-band bending.
+- `select.modify.contract` — Shrinks the selection inward by a radius; choose to pull a mask off hard edges before filling, or to slim a traced outline.
+- `select.saveSelection` — Stores the active selection as a named alpha channel (this or another same-size document) - keep sky/subject masks reusable across edits and sessions.
+- `ui:edit.search` — Toggles the Cmd+F command palette — fuzzy search over every menu command and tool; the fastest way for an agent or user to find a command whose id they do not remember.
+- `edit.purge.histories` — Drop undo AND redo history of every open document — the full memory reset for long multi-document sessions.
+- `edit.transform.splitWarpVertically` — Adds a vertical split line (dividing mesh columns) to a warp mesh at a point — slice a warp into vertical strips for per-strip bending.
+- `select.modify.expand` — Grows the selection outward by a radius; choose to include a halo or fringe around a subject before feathering, filling or blurring.
+- `ui:edit.transform.scale` — Switches an open transform box (or opens one) to Scale mode — handles scale, dragging outside the box rotates — the everyday resize mode for composition fitting.
+- `ui:select.selectAndMask` — Opens the Select-and-Mask workspace dialog bound to the engine's select.refineEdge - the hair-and-fur edge-refinement pass after any rough selection.
+- `edit.purge.videoCache` — Photoshop's Video Cache purge, present for menu parity but a NO-OP today: always enabled, reports "nothing to purge (no video layers)".
+- `edit.transform.removeWarpSplit` — Removes the split line nearest a point from a warp mesh — prune warp-grid subdivisions you no longer need without disturbing the bend.
+- `select.modify.feather` — Blurs the selection edge into a soft grayscale falloff (σ = radius, reaches ~3×radius); choose for soft composites, glows, vignettes and airbrushed blends.
+- `ui:edit.transform.rotate` — Switches an open transform box (or opens one) to Rotate mode — every handle drag rotates about the reference point — for tilting elements into place.
+- `edit.perspectiveWarp` — Maps quad planes of the layer to new quad positions — re-photograph an object's perspective: square up a building, turn a wall, or lay a plane down, with linked shared edges.
+- `edit.purge.all` — One call that frees everything purgeable: last undo, clipboards, all histories, plus effect/mask/smart-filter/shape-stroke caches — the end-of-session memory scrub.
+- `select.modify.smooth` — Rounds jagged selection corners and removes stray pixels within a radius while staying binary; choose to calm noisy wand/lasso outlines before compositing.
+- `ui:edit.transform.skew` — Switches an open transform box (or opens one) to Skew mode — edge and corner handles each shear along one axis — for slanted perspectives that stay parallel-sided.
+- `edit.puppetWarp` — Places pins on the layer and drags them; an as-rigid-as-possible mesh over the opaque region bends the content naturally — pose a figure, curl a limb, or bend any object at joints.
+- `select.refineEdge` — Recomputes the selection edge for hair, fur and soft boundaries — radius/smart radius, smooth, feather, contrast, shift-edge, Refine-Edge-Brush strokes and colour decontamination; output to selection, layer mask, new layer or new document.
+- `ui:edit.transform.distort` — Switches an open transform box (or opens one) to Distort mode — each corner moves freely and independently — for free quad mapping onto irregular surfaces.
+- `edit.autoAlignLayers` — Registers two or more selected pixel layers to each other (features or intensity) with a chosen projection — pre-step for panoramas, focus/exposure stacking and composites from handheld shots.
+- `select.reselect` — Restores the most recently deselected selection from history; choose to recover a lost outline without redoing the marquee.
+- `ui:edit.transform.perspective` — Switches an open transform box (or opens one) to Perspective mode — corner handles move in mirrored pairs, one-point perspective — for converging lines like roads, walls and receding planes.
+- `edit.autoBlendLayers` — Masks the selected pixel layers so the composite shows, per pixel, the sharpest layer (stack) or seamless seams (panorama) — focus stacking, exposure fusion and invisible collages in one step.
+- `select.similar` — Adds every pixel on the canvas whose colour lies in the selected range widened by tolerance, connected or not; choose to sweep one colour everywhere (all sky patches, all highlight specks).
+- `select.sky` — Detects and selects the sky region of a landscape; choose to tone, replace or grade skies without hand-drawing the horizon.
+- `select.subject` — One-click selection of the salient subject (superpixels + saliency + GrabCut); choose as the fastest start for cutting out a person or object.
+- `select.toWorkPath` — Converts the selection outline into the document's editable work path; choose to get a strokable/fillable vector outline from any selection.
+- `select.transformSelection` — Reshapes only the selection outline/mask — scale, rotate, skew, move, quad perspective, affine matrix or warp — without touching pixels; choose to reposition or re-perspective a marquee precisely.
+
+Full params, traps, and evidence for each command live in the search index:
+`python3 indexer/mind_index.py search "<command>"`
