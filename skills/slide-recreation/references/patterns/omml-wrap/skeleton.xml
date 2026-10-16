@@ -1,0 +1,53 @@
+<!-- Pattern: omml-wrap — PowerPoint-native equation markup skeleton (wrapper v2).
+The mc:Choice must carry the PowerPoint-AUTHORED pattern. The LibreOffice-writer
+pattern (a:p > a14:m > BARE m:oMath, theme-font runs, no m:ctrlPr, fresh shape id)
+renders NOTHING in PowerPoint — PowerPoint honors the Choice and drops content it
+cannot place. Author PowerPoint-only markup from a REAL PowerPoint-authored file,
+never from LO's writer or synthesized answers.
+
+Laws:
+ - Choice shape id == the Fallback p:pic's id (never a fresh id).
+ - a14:m > m:oMathPara > m:oMathParaPr(m:jc=centerGroup) > m:oMath (display form)
+   + a:endParaRPr; a:pPr(algn=ctr, buNone); a:lstStyle; bodyPr zero-inset
+   anchor=ctr + noAutofit (pins the frame to the pic's).
+ - Every text run: m:rPr(m:sty) where needed + a:rPr(lang, i, smtClean="0",
+   sz=pt*100, solidFill) + a:latin typeface="Cambria Math"
+   panose="02040503050406030204" pitchFamily="18" charset="0".
+ - m:ctrlPr (carrying the same a:rPr) inside EVERY construct property element
+   (m:fPr, m:radPr, m:naryPr, m:sSubPr, m:sSupPr, m:sSubSupPr, m:dPr, m:barPr,
+   m:accPr).
+ - mc:Fallback = the original p:pic VERBATIM (the certified PNG).
+ - Validation chain per wrap: LO render 0-pixel-diff vs the pre-wrap deck
+   (LO uses the Fallback); only the slide XML differs in the zip; idempotent
+   re-run byte-identical; NEVER LO-resave a wrapped deck (LO's writer drops the
+   OMML it never understood). -->
+<mc:AlternateContent>
+  <mc:Choice xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" Requires="a14">
+    <p:sp>
+      <p:nvSpPr>
+        <p:cNvPr id="{SAME id as the Fallback p:pic}" name="Equation OMML" descr="{mathtext}"/>
+        <p:cNvSpPr txBox="1"/><p:nvPr/>
+      </p:nvSpPr>
+      <p:spPr>
+        <a:xfrm><a:off x=".." y=".."/><a:ext cx=".." cy=".."/></a:xfrm>  <!-- == the pic frame -->
+        <a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/>
+      </p:spPr>
+      <p:txBody>
+        <a:bodyPr lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr"><a:noAutofit/></a:bodyPr>
+        <a:lstStyle/>
+        <a:p>
+          <a:pPr algn="ctr"><a:buNone/></a:pPr>
+          <a14:m>
+            <m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+                         xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+              <m:oMathParaPr><m:jc m:val="centerGroup"/></m:oMathParaPr>
+              <m:oMath><!-- runs and constructs --></m:oMath>
+            </m:oMathPara>
+          </a14:m>
+          <a:endParaRPr lang="en-US" dirty="0"/>
+        </a:p>
+      </p:txBody>
+    </p:sp>
+  </mc:Choice>
+  <mc:Fallback><!-- original p:pic VERBATIM (the certified PNG) --></mc:Fallback>
+</mc:AlternateContent>

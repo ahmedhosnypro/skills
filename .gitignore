@@ -1,5 +1,1 @@
-.DS_Store
-*.swp
-node_modules/
-skills/photocraft-automation/assets/*-append-only-history.md
-skills/photocraft-automation/assets/*proposals*.md
+__pycache__/

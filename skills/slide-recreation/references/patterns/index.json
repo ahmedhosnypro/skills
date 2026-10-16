@@ -1,0 +1,101 @@
+{
+  "description": "Reusable example-script library for slide recreation. Each pattern is a subdirectory with a runnable, self-contained example script; the laws are in the script comments. Every recreation must read this index, use the applicable patterns, and run their companion checkers. Add a pattern only after it is vision-certified working: new subdir + runnable example + index entry.",
+  "patterns": [
+    {
+      "name": "house-chrome",
+      "file": "house-chrome/example.js",
+      "language": "javascript",
+      "description": "The shared outer template: red frame (0.15in inset), yellow numeral badge, centered title box \u2014 exact values, overrides spec and judge."
+    },
+    {
+      "name": "inner-frame-budget",
+      "file": "inner-frame-budget/example.js",
+      "language": "javascript",
+      "description": "Content must sit fully inside its inner frame with clearance in every renderer; measure first, enlarge the frame when content needs room; gap-band checks catch z-order masking. Companion: check_containment.py (PIL closed-loop)."
+    },
+    {
+      "name": "explicit-line-spacing",
+      "file": "explicit-line-spacing/example.js",
+      "language": "javascript",
+      "description": "Pin explicit lineSpacing on every multi-line text box \u2014 PowerPoint and LibreOffice pick different auto pitches and the LO check under-predicts PowerPoint. Compliance pin vs defect-fix pin; empty-run pitfall."
+    },
+    {
+      "name": "delimiters-spanning-arc",
+      "file": "delimiters-spanning-arc/example.js",
+      "language": "javascript",
+      "description": "Tall near-straight parens as ONE half-turn ARC shape per side, sized to the enclosed block \u2014 never per-line glyphs, never partial-sweep arcs."
+    },
+    {
+      "name": "delimiters-bezier-png",
+      "file": "delimiters-bezier-png/gen_delimiter.py",
+      "language": "python+javascript",
+      "description": "Smooth curved delimiters as single quadratic-B\u00e9zier strokes rendered to 600dpi transparent PNGs, embedded at exact size. Ink-strength hierarchy and faint-paint laws. Companion: example.js (embed side)."
+    },
+    {
+      "name": "delimiters-stretched-glyph",
+      "file": "delimiters-stretched-glyph/gen_delimiter.py",
+      "language": "python+javascript",
+      "description": "Near-straight delimiters from a huge text glyph, tight-cropped, anisotropically resized to a hairline, recolored \u2014 embedded at exact px/600 size. Companion: example.js."
+    },
+    {
+      "name": "equations-mathtext-png",
+      "file": "equations-mathtext-png/example.sh",
+      "language": "bash+python",
+      "description": "Professional 2D equations: matplotlib mathtext to 600dpi transparent PNG, sidecar JSON, addImage at exact size, baseline-law alignment. Companion: align_check.py (closed-loop)."
+    },
+    {
+      "name": "highlight-box",
+      "file": "highlight-box/example.js",
+      "language": "javascript",
+      "description": "Highlight boxes sized to the measured text advance with >= 4.5pt right clearance; widen right-only; wrap-budget boxes ~20% beyond the longest line."
+    },
+    {
+      "name": "graph-panel-generated",
+      "file": "graph-panel-generated/example.py",
+      "language": "python",
+      "description": "Advanced graphs embedded from a properly generated image: topic-correct library, same algorithm on real data, measured colors. Marker-edge inflation, glossy-ball, dash-spec/lw laws."
+    },
+    {
+      "name": "table-from-dataset",
+      "file": "table-from-dataset/example.js",
+      "language": "javascript+python",
+      "description": "Tables of known datasets read the ONE canonical CSV live; derive ambiguous row sets from forensics. Companion: assert_cells.py (every cell == CSV, from the pptx XML)."
+    },
+    {
+      "name": "judge-invocation",
+      "file": "judge-invocation/example.sh",
+      "language": "bash",
+      "description": "The blocking visual judge: wall budgets (1700/1650/600), degenerate-garbage retry law, measured-facts-in-context rescue technique; verdicts only from real winner bodies."
+    },
+    {
+      "name": "dense-region-crop-compare",
+      "file": "dense-region-crop-compare/example.sh",
+      "language": "bash+python",
+      "description": "Dense regions (equations, delimiters, table cells) need cropped-pair vision comparisons at full params; measure both crops first and rebut fabricated bodies with numbers."
+    },
+    {
+      "name": "omml-wrap",
+      "file": "omml-wrap/example.sh",
+      "language": "bash+xml",
+      "description": "PowerPoint-editable equations via mc:AlternateContent with the PowerPoint-authored Choice pattern (skeleton.xml) and the certified PNG as Fallback; rel-id freshness; 0-pixel-diff validation. Companion: skeleton.xml."
+    },
+    {
+      "name": "final-deck-merge",
+      "file": "final-deck-merge/example.sh",
+      "language": "bash",
+      "description": "All-in-one deck as a byte-verbatim OPC merge (rels are per-slide; media renamed per slide) gated by a 0/N pixel-diff of merged pages vs per-slide renders."
+    },
+    {
+      "name": "curved-arrows-custgeom",
+      "file": "curved-arrows-custgeom/example.js",
+      "language": "javascript",
+      "description": "Native curved connector arrows: custGeom cubic-bezier stroke (no fill option -> <a:noFill/>; full-slide bbox, absolute inch points) + explicit flipV triangle head at measured bbox; fit the bezier by orthogonal-distance LSQ and verify with point-to-ink distance, never per-row x-comparison."
+    },
+    {
+      "name": "cursor-inpaint-restore",
+      "file": "cursor-inpaint-restore/example.py",
+      "language": "python",
+      "description": "Remove a screen-recording cursor baked into a frame-cropped photo: PIL-measured tight erase window, iterative non-red/non-dark median fill, 7x7 smooth, then restore any damaged content glyph by alpha-blending a clean twin from the same image; numeric integrity checks + zoomed crop comparison. Companion of the baked-crop photo law."
+    }
+  ]
+}
