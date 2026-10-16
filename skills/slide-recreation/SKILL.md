@@ -49,7 +49,7 @@ total, never a full read of everything):
 | Phase | Read |
 |---|---|
 | Extract / curate / analyze | `references/pipeline.md` + `references/operations.md` |
-| Build (any slide) | `references/building.md` + `references/patterns/index.json` (+ `references/equations.md` / `references/graphs.md` / `references/dependencies.md` when the slide has math / graphs / a dependency parent) |
+| Build (any slide) | `references/building.md` + `references/patterns/index.json` (+ `references/equations.md` / `references/graphs.md` / `references/dependencies.md` / `references/pptx-engine.md` when the slide has math / graphs / a dependency parent / native bullets, charts, shadows, merged table cells, or speaker notes) |
 | Judge / certify | `references/judging.md` (+ `references/equations.md` alignment law for math slides) |
 | Coordinate workers / resume a fleet | `references/fleet.md` + `references/operations.md` |
 
@@ -64,6 +64,7 @@ total, never a full read of everything):
 | `references/equations.md` | Any slide containing math — 2D format rule + alignment law + OMML |
 | `references/graphs.md` | Slides with advanced charts/plots — generated-graph images, single-version rule |
 | `references/dependencies.md` | Decks whose slides build on each other (owner-supplied dependency graph): build gating on parent certification, shared component imports, DB `depends_on` tracking |
+| `references/pptx-engine.md` | Slides with real bullet lists, native charts, shadows, merged table cells, or speaker notes — pptxgenjs engine law beyond the pitfall list (bullet glyphs/indents, rich-text pPr trap, option-object mutation, dLblPos repair bomb) |
 | `references/fleet.md` | Multi-worker coordination: liveness contract, provider storms, collisions, handoffs, provenance |
 | `references/operations.md` | Model endpoint quirks, retries, workspace environment (video ids, TMPDIR, web research) |
 

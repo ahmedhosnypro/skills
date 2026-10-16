@@ -21,9 +21,16 @@
   deviations in the build header.
 - Set `fontFace` explicitly on every text element (Arial unless the spec says
   otherwise); `margin: 0` on text boxes that must align with shapes.
-- Bullets are manual: prefix `"• "` yourself; pptxgenjs has no auto-bullet here.
+- Bullets: pptxgenjs HAS native bullets (per-paragraph `bullet` option +
+  `indent`) — glyph codes, indent law, and factory law in
+  `references/pptx-engine.md`. Manual `"• "` prefixes remain the fallback
+  for pinned-pitch geometry (they keep line pitch pixel-stable).
 
 ## pptxgenjs pitfalls (each caused a real bug)
+
+Two more silent-corruption classes — rich-text `<a:pPr>` duplication from
+unterminated runs, and option-object mutation by pptxgenjs internals — live in
+`references/pptx-engine.md`.
 
 - **Hex colors never carry `#` in pptxgenjs** — `#C00000` corrupts the pptx XML
   (LibreOffice can't open it). No 8-char hex either; use the `transparency`
