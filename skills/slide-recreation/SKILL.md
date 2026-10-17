@@ -1,29 +1,22 @@
 ---
 name: slide-recreation
 description: >
-  Recreate slides as high-fidelity PowerPoint (PPTX) files from existing slide
-  images, screenshots, or lecture-video frames — the full rebuild pipeline:
-  frame extraction, perceptual-hash dedup, a mandatory human review gate,
-  vision-model analysis, text-model validation, pptxgenjs build, LibreOffice
-  headless render, closed-loop pixel checks, visual-judge certification against
-  the original, 2D professional math equations (matplotlib mathtext to PNG with
-  an editable-OMML upgrade), algorithm-generated graph images (the real
-  algorithm on real data), dependent-slide component inheritance, multi-worker
-  fleet coordination, and a byte-verbatim final-deck merge gated at zero
-  mismatched pixels. Use whenever the user asks to recreate, rebuild, or
-  batch-produce slides or PPTX decks from source slide images or video — "turn
-  this lecture video into a PPTX deck", "recreate these slides", "make slides
-  from this video", "rebuild this slide so it matches the original", "fix the
-  equations or charts on this slide", pixel-perfect or faithful slide
-  reproduction — or to merge certified per-slide decks into one gated final
-  deck. Do NOT use for: judging, scoring, or auditing images when no slide
-  rebuild is involved (visual-judge owns verdict doctrine); authoring brand-new
-  slides with no source image to reproduce (that is presentation authoring, not
-  recreation); obtaining source videos or installing system tooling
-  (user-mediated steps); driving an image editor (photocraft-automation);
-  distilling a skill's improvements from work logs (skill-self-improve); or
-  authoring and validating Mermaid diagrams (mermaid-diagrams).
-version: 1.0.0
+  Recreate slides as high-fidelity PowerPoint (PPTX) from slide images,
+  screenshots, or lecture-video frames: a human review gate, vision
+  analysis, pptxgenjs build, closed-loop pixel checks, visual-judge
+  certification, 2D equations, generated graphs, multi-worker fleets, and
+  a gated final-deck merge. Use whenever the user asks to recreate,
+  rebuild, or batch-produce slides or PPTX decks from images or video —
+  "turn this lecture video into a PPTX deck", "recreate these slides",
+  "fix the equations or charts on this slide", pixel-perfect or faithful
+  slide reproduction — or to merge certified per-slide decks into one
+  final deck. Do NOT use for judging or auditing images with no slide
+  rebuild (visual-judge owns verdicts); authoring brand-new slides with
+  no source image; obtaining source videos or installing tooling
+  (user-mediated); driving an image editor (photocraft-automation);
+  distilling skill improvements from work logs (skill-self-improve); or
+  authoring Mermaid diagrams (mermaid-diagrams).
+version: 1.0.1
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX

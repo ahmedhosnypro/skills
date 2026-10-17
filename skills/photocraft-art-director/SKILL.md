@@ -2,24 +2,21 @@
 name: photocraft-art-director
 description: >-
   Creative-director brain for PhotoCraft artwork. Drafts the direction
-  charter for a piece (subject-fitted composition grammar, frozen medium
-  declaration, derived palette and light invariants, pixel-verifiable
-  acceptance budgets), resolves any artistic intent to the exact
-  PhotoCraft command via the skill's own search index, and drives the
-  audit -> pixel-probe -> adjudicate -> surgical-fix loop to
+  charter (composition grammar, frozen medium, palette and light
+  invariants, pixel-verifiable acceptance budgets), resolves artistic
+  intent to the exact PhotoCraft command via its search index, and
+  drives the audit -> pixel-probe -> adjudicate -> surgical-fix loop to
   certification. MUST fire before starting, planning, or revising any
-  artwork built with PhotoCraft: kickoff or brief drafting, requests
-  to create, redraw, restyle, or art-direct a scene or poster, "make a
-  scene that reads as X", palette / light / composition / medium
-  decisions, "which tool realizes effect Y", and every iteration after
-  a critique or audit finding. Do NOT use for session/ops mechanics
-  (ports, tokens, config dirs, lanes, call logging, document traps, or
-  raw command-syntax and parameter reference -- photocraft-automation
-  owns those) or for vision-model audit dispatch, model routing, and
-  scoring (image-analysis owns that). This skill decides what the art
-  should be, proves it against pixels, and names the commands; it does
-  not drive the app or judge renders with models.
-version: 1.1.0
+  artwork built with PhotoCraft: kickoff or brief drafting, create,
+  redraw, restyle, or art-direct a scene or poster, "make a scene that
+  reads as X", palette / light / composition / medium decisions, "which
+  tool realizes effect Y", and every iteration after a critique or
+  audit finding. Do NOT use for session/ops mechanics (ports, tokens,
+  config, command syntax -- photocraft-automation owns those) or
+  vision-model audit dispatch, model routing, and scoring (image-analysis
+  owns that). Decides what the art should be, proves it against pixels,
+  names the commands; does not drive the app or judge renders.
+version: 1.1.1
 ---
 
 # photocraft-art-director
