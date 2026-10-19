@@ -79,7 +79,12 @@ certification against the original; plus 2D professional math equations
 (mathtext to PNG with an editable-OMML upgrade), algorithm-generated graph
 images (the real algorithm on real data), dependent-slide component
 inheritance, multi-worker fleet coordination, and a byte-verbatim final-deck
-merge gated at zero mismatched pixels. Bundles certified equation renderers
+merge gated at zero mismatched pixels. When a deck's instructions mandate it,
+an optional web-verified source-research layer runs alongside analysis:
+web-search the primary source behind every slide, confirm content against the
+fetched source, bank the source's own figures under sources/slide_NNN_source/
+with a SOURCES.md provenance record per slide plus a fleet-level source map.
+Bundles certified equation renderers
 (`scripts/render_eq*.py`) and a 16-entry runnable pattern library; ships its
 own authoring gate (`assets/verify_skill.sh`).
 

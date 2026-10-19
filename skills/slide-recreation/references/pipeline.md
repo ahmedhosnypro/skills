@@ -71,21 +71,19 @@ Human curations are NOT just deletions. Expect and record (never second-guess):
   artifacts or "restore" anything; the owner's files are the set. Record it,
   build a minimal slides_index.json, register.
 
-## Per-video research directive (when the project demands verified sources)
+## Source research (when the project demands verified sources)
 
 A video namespace may carry its own instructions file requiring web-verified
-analysis: search the primary source, fetch it, download the site's own figures.
-Pattern: per-slide `slide_NNN_source/` dir (originals as downloaded, never
-renamed/deleted) + `SOURCES.md` provenance record — **no SOURCES.md = the
-research step did not happen**. Nuance that generalizes: course slides REDRAW
-paper figures in their own style — the paper confirms topology/labels/data; the
-FRAME stays ground truth for pixels/layout. A source/slide discrepancy is
-recorded in SOURCES.md (slide wins for recreation, source wins for
-understanding). Trap: downloaded filenames may contain literal newlines — quote
-or copy-rename for shell work, never touch the original. A closed model-provider
-window must not block the non-vision deliverable: bank the attempt logs as a debt
-record, mark the certification level honestly, re-run the vision leg when the
-window reopens.
+analysis. The full protocol lives in **`references/source-research.md`**: the
+per-slide loop (search the primary source → fetch and confirm → save the
+source's own figure files), all research under one `sources/` subdirectory
+(`sources/slide_NNN_source/` + `SOURCES.md` — **no SOURCES.md = the research
+step did not happen**), the fleet-level `SOURCES_MAP.md`, trust discipline
+(nothing recorded from an unfetched snippet), the spec-correction protocol
+(model annotations only, never frame text), and the discrepancy law (the
+frame wins for recreation, the source wins for understanding). It activates
+only after the human review gate, interleaves with analysis/validation, and
+is never dependency-gated.
 
 ## Vision analysis (per unique slide)
 

@@ -47,7 +47,10 @@
 - **Web research is best-effort, never a hard dependency**: if the search tool
   401s even after a token refresh during a work window, proceed on the
   already-ratified plan — never block a validated plan on research tooling
-  (judges + PIL confirmations catch a wrong choice).
+  (judges + PIL confirmations catch a wrong choice). On an auth failure:
+  refresh the token/session once, retry, then proceed. The full mandated-research
+  protocol (sources/ layout, SOURCES.md, trust + economy laws) lives in
+  `references/source-research.md`.
 - API key file at the project root (mode 600); env override supported; never
   commit or log it.
 - `frames/` is gitignored and huge — never re-extract or re-download.

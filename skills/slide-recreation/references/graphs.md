@@ -22,7 +22,8 @@ image**:
     degrees on the measured training points.
 - Library/function/algorithm/data are chosen **per slide**; web research is a
   best-effort aid, never a hard dependency: when the research tool is down and
-  the plan is already ratified, proceed and let judges + PIL confirm.
+  the plan is already ratified, proceed and let judges + PIL confirm. When the
+  deck mandates web-verified analysis, the protocol is `references/source-research.md`.
 - Tooling: a dedicated venv subproject for generation (pinned requirements) so
   the scientific stack stays reproducible.
 

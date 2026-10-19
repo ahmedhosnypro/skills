@@ -85,7 +85,9 @@ operations.md); verify every write with a SELECT.
   per-unit files finishes one unit COMPLETELY (the unit's provenance file
   written atomically: temp name → move) before starting the next; on provider
   errors sleep 120s and retry up to 3×, then mark `[?]` and move on — never
-  abort the run; keep vision probes to 1/unit. Resume briefings are written
+  abort the run; keep vision probes to 1/unit. The research product itself
+  (sources/ layout, SOURCES.md sections, the fleet map) is specified in
+  `references/source-research.md`. Resume briefings are written
   from a DISK SWEEP, not from the dead agent's report. Parallel fleet size vs
   an actively-storming provider: stagger rather than fan all-at-once — a
   drowned fleet banks nothing.

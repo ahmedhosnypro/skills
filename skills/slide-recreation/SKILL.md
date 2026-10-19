@@ -16,7 +16,7 @@ description: >
   (user-mediated); driving an image editor (photocraft-automation);
   distilling skill improvements from work logs (skill-self-improve); or
   authoring Mermaid diagrams (mermaid-diagrams).
-version: 1.0.1
+version: 1.1.0
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX
@@ -41,7 +41,7 @@ total, never a full read of everything):
 
 | Phase | Read |
 |---|---|
-| Extract / curate / analyze | `references/pipeline.md` + `references/operations.md` |
+| Extract / curate / analyze | `references/pipeline.md` + `references/operations.md` (+ `references/source-research.md` when the deck's instructions mandate web-verified analysis) |
 | Build (any slide) | `references/building.md` + `references/patterns/index.json` (+ `references/equations.md` / `references/graphs.md` / `references/dependencies.md` / `references/pptx-engine.md` when the slide has math / graphs / a dependency parent / native bullets, charts, shadows, merged table cells, or speaker notes) |
 | Judge / certify | `references/judging.md` (+ `references/equations.md` alignment law for math slides) |
 | Coordinate workers / resume a fleet | `references/fleet.md` + `references/operations.md` |
@@ -52,6 +52,7 @@ total, never a full read of everything):
 |---|---|
 | `references/patterns/index.json` + `references/patterns.md` | **FIRST, before every build** — the reusable example-script library (`references/patterns/`, one runnable script per pattern; the laws are in the comments). Read the index, use the applicable patterns, run their companion checkers |
 | `references/pipeline.md` | Extracting frames, deduping slides, curation reconciliation, analyzing + validating specs, content gate |
+| `references/source-research.md` | Web-verified source research when the deck's instructions mandate it: the `sources/` layout, SOURCES.md pattern, trust + economy laws, spec-correction protocol |
 | `references/building.md` | Writing the pptxgenjs build, rendering, house chrome (per deck family), closed-loop PIL checks |
 | `references/judging.md` | The visual judge — verdict law, walls, ground rules, adjudication of findings |
 | `references/equations.md` | Any slide containing math — 2D format rule + alignment law + OMML |
@@ -65,7 +66,7 @@ total, never a full read of everything):
 
 ```
 video ──fps 1──▶ frames ──phash dedup──▶ unique_slides ──HARD STOP: human review──▶
-      ──vision analysis──▶ raw specs ──text validation──▶ final specs
+      ──source research (if mandated)──▶ vision analysis ──▶ raw specs ──text validation──▶ final specs
       ──content gate (score>=8)──▶ build (pptxgenjs, dependency-gated)
       ──render (LO headless→pdftoppm 150dpi)──▶ closed-loop PIL checks
       ──visual judge (render vs original)──▶ PASS = done | FAIL = adjudicate+fix loop
@@ -99,6 +100,8 @@ Non-negotiable laws (each is expanded in its reference file):
   wrap. Superseded builds live only in QA evidence dirs.
 - **Never invent content.** Spec text is verbatim; uncertain content keeps its
   `[?]` marker. Fidelity of content and visualization is the whole point.
+  Web-verified sources confirm or correct DATA (never frame text) and never
+  license inventing content the slide doesn't show (`references/source-research.md`).
 - **Match the original's measured geometry, not your intuition.** At the
   standard 960×540 frame size, 1px = 1pt in the build. PIL-measure ink edges in
   the original and closed-loop-verify your render against them (~4px tolerance
