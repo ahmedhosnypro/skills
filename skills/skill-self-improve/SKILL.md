@@ -1,28 +1,31 @@
 ---
 name: skill-self-improve
 description: >
-  Distill a skill's accumulated self-improvement logs — amendment blocks,
-  process notes, evolution logs, memory dirs, judge templates, worklogs,
-  DEFECTS/RESUME scratch output — back into the skill itself, running the
-  collect → analyze → fold-back improvement loop. Use when the user asks to
-  "improve this skill", "harvest its lessons", "fold the logs back into the
-  skill", "distill what the agents learned", "close out the wave and evolve
-  the skill", "promote recurring lessons", or "audit a skill's evolution".
-  Do NOT use for the initial authoring of a new skill from scratch (that is
-  the skill-creator discipline's territory) — though this skill's amend-law
-  step hands off to it. Do NOT use to edit helper scripts directly (owner-
-  applied only); do NOT use as a substitute for running the skill's own
-  verification gate before declaring work done.
-version: 1.0.0
+  Distill a skill's accumulated self-improvement logs — process notes,
+  evolution logs, memory dirs, judge templates, worklogs, DEFECTS/RESUME
+  scratch output, and any legacy amendment blocks still awaiting harvest —
+  back into the skill itself, running the collect → analyze → fold-back
+  improvement loop. Fold-back edits SKILL.md in place as current-state
+  law under this repo's AGENTS.md authoring rules — never by appending
+  amendment blocks. Use when the user asks to "improve this skill",
+  "harvest its lessons", "fold the logs back into the skill", "distill
+  what the agents learned", "close out the wave and evolve the skill",
+  "promote recurring lessons", or "audit a skill's evolution". Do NOT use
+  for the initial authoring of a new skill from scratch (this repo's
+  AGENTS.md owns authoring rules); do NOT use to edit helper scripts
+  directly (owner-applied only); do NOT use as a substitute for running the
+  skill's own verification gate before declaring work done.
+version: 1.0.1
 ---
 
 # skill-self-improve
 
 Close the loop between what agents *did* with a skill and what the skill
-*says*. Every run of a skill leaves lessons in its wake — amendment blocks,
-memory entries, scratch logs, judge templates, defect tables. Those logs are
-raw ore; left unharvested the skill stops improving. This skill defines the
-one loop that harvests them and the law that keeps the harvest from rotting
+*says*. Every run of a skill leaves lessons in its wake — memory
+entries, scratch logs, judge templates, defect tables, log tails from
+skills still carrying legacy amendment blocks. Those logs are raw ore;
+left unharvested the skill stops improving. This skill defines the one
+loop that harvests them and the law that keeps the harvest from rotting
 the skill into bloat.
 
 ## The loop
@@ -45,7 +48,8 @@ Gather every artifact the skill and its host lanes produced, copying
   templates/ — for a skill with clone families, every clone (the diffs
   ARE the evolution log).
 - Memory dirs and append-only files: memory entries, process notes,
-  issue vocabularies, evolution logs, incident/amendment blocks.
+  issue vocabularies, evolution logs, incident logs, and any legacy
+  amendment blocks awaiting harvest.
 - Scratch output from lanes that used the skill: worklogs, outcome files,
   defect tables, resume checkpoints, judge/verdict records, audits.
 - Any gate or validator script the skill grew, plus its latest run logs.
@@ -64,8 +68,8 @@ document (in the scratch run dir, not the repo) that answers:
   the head, which diverged, which is frozen for distribution. Version
   lines and section deltas tell this mechanically.
 - **What mechanics does the improvement machine use?** (See the taxonomy
-  in `references/improvement-mechanics.md` — amendment blocks, memory
-  protocol, write fence, judge law, scratch conventions.)
+  in `references/improvement-mechanics.md` — edit law, memory protocol,
+  write fence, judge law, scratch conventions.)
 - **What did the logs reveal about practice?** Where agents fought the
   skill, improvised around it, or failed silently.
 - **A distilled feature list**: must-have (recurring, load-bearing) vs
@@ -86,8 +90,11 @@ Four roles, never blurred. A lane holds exactly one role at a time:
 - **promote** (dedicated maintenance pass, not mid-task): move a lesson
   from the memory layer into the stable core once it qualifies under the
   promotion rule.
-- **amend-law** (only under the repo's skill-authoring discipline, e.g.
-  skill-creator): change SKILL.md itself, as a formal amendment block.
+- **amend-law** (dedicated maintenance pass under this repo's AGENTS.md
+  authoring rules): change the skill's own law files IN PLACE — SKILL.md
+  and committed reference/notes files always read as current-state law.
+  Never append amendment blocks, never leave supersession pointers;
+  git history is the record.
 - **owner-only**: everything under `scripts/` and owner-applied assets.
   Agents never edit these. A defect found in a helper script mid-task is
   RECORDED in the proposals bank — evidence, problem, proposed change,
@@ -96,14 +103,14 @@ Four roles, never blurred. A lane holds exactly one role at a time:
 ### Two-tier storage
 
 - **Stable core** (SKILL.md, protocol/reference files): current-state
-  law, small, edited only via amendments. Keep it lean — if a skill's
-  body grows past its size cap, the fix is promotion discipline, not
-  trimming.
+  law, small, edited only in place per the edit law below. Keep it lean —
+  if a skill's body grows past its size cap, the fix is promotion
+  discipline, not trimming.
 - **Append-only memory layer** (memory dir, process notes, issue
-  vocabularies, evolution log): dated entries with a fixed format,
-  superseded entries get pointers, nothing is silently rewritten or
-  deleted. Deduplicate near-duplicates as "confirms <earlier tag>"
-  notes instead of new entries.
+  vocabularies, evolution log): machine-local, never committed; dated
+  entries with a fixed format, superseded entries get pointers, nothing
+  is silently rewritten or deleted. Deduplicate near-duplicates as
+  "confirms <earlier tag>" notes instead of new entries.
 
 ### Read-before / append-after duty
 
@@ -122,13 +129,22 @@ named home; an entry without a home is a to-do. The promotion pass
 records where each entry landed (a "landed:" pointer) so the ledger and
 the skill never disagree.
 
-### Amendment law
+### Edit law (stable core)
 
-Changes to the stable core are append-only amendment blocks: title with
-topic, motivating evidence, what supersedes what, version bump, and a
-supersession pointer left on the old text. Never silently rewrite a rule
-— the pointer trail is how a reader reconstructs why the skill is shaped
-as it is. "Restating an existing rule louder" is not an amendment.
+Changes to the stable core are edits in place, motivated by evidence from
+the harvest:
+
+- The edited file must read as the single current truth after the edit —
+  superseded sentences are rewritten into their final form, never kept
+  with a correction pointer, never shadowed by a dated block.
+- Bump the frontmatter `version` for every law change; a pure typo fix
+  that changes no enforcement is a patch bump.
+- Keep the `description` fold accurate in the same breath — stale trigger
+  words are a defect.
+- "Restating an existing rule louder" is not a harvest finding — it is
+  bloat.
+- No calendar dates, no change history, no "previously we…" narrative in
+  committed files; git holds all of that.
 
 ### Judge / verdict law
 
@@ -146,7 +162,8 @@ When the skill's loop involves judging work (review, scoring, verdicts):
   measurement outranks judge opinion** — a judge's PASS never overrides
   measured geometry, numbers, or file contents.
 - Judge templates and rubrics are first-class versioned artifacts in the
-  skill's assets, grown by the same append-only rules.
+  skill's assets, grown by the same promotion rules (memory-layer git
+  history is growth; the skill's committed files stay current-state).
 
 ### Evidence-first scratch conventions
 
@@ -170,15 +187,15 @@ the next harvest reads:
 - Parse the frontmatter YAML and re-run discovery — a YAML break
   silently removes a skill from discovery; a parse check is mandatory
   before "done".
-- Grep for surviving prose that contradicts the new amendment
-  (superseded rules tend to linger).
-- Keep a diff bank of the fold-back edits for the audit trail.
+- Grep for surviving prose that contradicts the updated law (stale
+  rules tend to linger).
+- Keep the fold-back edits in git as the audit trail.
 - Run the skill's own verify gate with the exit code captured explicitly
   (`<gate> > log 2>&1; echo EXIT=$?`).
 
 ## Transplant / port doctrine
 
-Installing (or cloning) a skill into a new project is its own amendment
+Installing (or cloning) a skill into a new project is its own port
 class — the corpus's most common transplant failures:
 
 - **Path rules**: a skill lives at the harness's actual loader path.
@@ -197,15 +214,17 @@ class — the corpus's most common transplant failures:
 
 - The stable core stays under its size cap; when it swells, promote
   less, not more — the memory layer is where volume belongs.
-- Append-only does not mean accumulate: dedupe, supersede with pointers,
-  freeze per-round templates and bump between rounds.
+- Append-only (the memory layer) does not mean accumulate: dedupe,
+  supersede with pointers inside the memory layer, freeze per-round
+  templates and bump between rounds.
 - An oversize skill that repeats itself is the anti-example; if you find
   one, the harvest's first finding is usually "condense the canon."
 
 ## Fallbacks
 
-- No repo skill-authoring discipline available to hand off to: apply the
-  amendment law directly but mark the block as needing an owner review.
+- No repo skill-authoring rules available to read: apply the edit law
+  directly and report the change for owner review at the next
+  maintenance pass.
 - No host subagent/task mechanism: run the loop inline, one scope at a
   time, keeping the same collect/analyze/fold-back/verify order.
 - No YAML parser available: at minimum do a delimiter and key check of

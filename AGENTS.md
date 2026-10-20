@@ -12,9 +12,9 @@ skill keeps its own version line; the repo history is the shared record.
   applied helpers and gates), `scripts/` (executable helpers), `utils/`
   or `references/` (on-demand documentation), `templates/` for config
   schemas.
-- Current skills: `photocraft-automation`, `photocraft-art-director`,
-  `mermaid-diagrams`, `pooled-missions`, `skill-self-improve`,
-  `slide-recreation`, `visual-judge`.
+- Current skills: `decompiled-to-rust`, `photocraft-automation`,
+  `photocraft-art-director`, `mermaid-diagrams`, `pooled-missions`,
+  `skill-self-improve`, `slide-recreation`, `visual-judge`.
 
 ## Skill authoring rules
 
@@ -26,7 +26,8 @@ skill keeps its own version line; the repo history is the shared record.
   session or project names, or machine-specific installed state.
   `verify_skill.sh` checks the path case mechanically; the
   session/project case is the owner's push gate.
-- SKILL.md holds current-state law only — no amendment blocks, no
+- SKILL.md and committed reference/notes files hold current-state
+  law only — no amendment blocks, no
   correction pointers, no change-history narrative; git history is the
   record. The owner edits it directly with a frontmatter `version`
   bump; agents report doctrine candidates in-session. No calendar

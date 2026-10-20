@@ -16,7 +16,7 @@ description: >
   request to draw or check a diagram. Do NOT use for rendering-only
   requests with no diagram authoring, validation, or documentation
   involved.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Mermaid Diagrams
@@ -27,7 +27,10 @@ in GitHub, GitLab, VS Code, Notion, Obsidian, and Confluence.
 
 This skill bundles an offline structural validator
 (`scripts/validate-mermaid.ts`, runs under [Bun](https://bun.sh)) plus
-per-type syntax references.
+per-type syntax references. A second, render-level gate is the native
+Rust renderer [mmdr](https://github.com/1jehuang/mermaid-rs-renderer) —
+a render check that proves a diagram actually draws — see
+[render validation](references/render-validation.md).
 
 ## Process
 
@@ -38,8 +41,12 @@ per-type syntax references.
        represents — invented names make documentation drift.
 - [ ] 4. Validate with the bundled offline validator (below) or a
        fallback if Bun is unavailable; fix everything it reports.
-- [ ] 5. Export or embed: fenced ```mermaid blocks in Markdown render
-       natively; use `mmdc` for standalone PNG/SVG.
+- [ ] 5. Render-check the diagram: pass it through a renderer and
+       confirm it draws. `mmdr` is the preferred renderer — a native
+       Rust binary with no browser — see
+       [render validation](references/render-validation.md).
+- [ ] 6. Export or embed: fenced ```mermaid blocks in Markdown render
+       natively; use `mmdr` (or `mmdc`) for standalone PNG/SVG.
 
 ## Diagram type selection guide
 
@@ -163,13 +170,31 @@ Checks performed:
    (`-->`, `==>`, `-.->`, `---`) and no source node is a malformed edge.
 
 The validator is deliberately conservative — passing it does not prove
-the diagram renders; it proves the structure is sound. When Bun is
-unavailable, fall back to:
+the diagram renders; it proves the structure is sound. Structure is
+only the first gate. The second is a render check: a diagram is done
+when it has passed both.
 
-- [Mermaid Live Editor](https://mermaid.live) — paste the source and check the render.
-- Mermaid CLI: `mmdc -i input.mmd -o output.png`
+- **Gate 1 (structure)** — the bundled validator, always available.
+- **Gate 2 (render)** — [mmdr](references/render-validation.md), a native
+  Rust renderer with no browser, is the preferred renderer for this gate.
+  It parses and lays the diagram out for real, so it catches what gate 1
+  cannot: unknown parameters, bad directives, and syntax the strict parser
+  rejects. One command checks a whole document.
+
+When `mmdr` is unavailable, fall back to any renderer that actually
+draws, in this order:
+
+- Mermaid CLI: `mmdc -i input.mmd -o output.svg` — the TS/Node renderer.
+  It requires headless Chromium via Puppeteer, so the machine must have
+  the browser; the usual failure is "Could not find Chromium".
   (`npm install -g @mermaid-js/mermaid-cli`, or
-  `docker run --rm -v "$(pwd)":/data minlag/mermaid-cli -i /data/input.mmd -o /data/output.png`).
+  `docker run --rm -v "$(pwd)":/data minlag/mermaid-cli -i /data/input.mmd -o /data/output.svg`).
+- [Mermaid Live Editor](https://mermaid.live) — paste the source and check the render.
+
+Always state which renderer validated the diagram, and say so plainly
+when the render gate was skipped. Full usage, supported types, and the
+renderer's behavioral differences live in
+[render validation](references/render-validation.md).
 
 ## Key rules
 
@@ -213,11 +238,15 @@ unavailable, fall back to:
 - [State and behavior diagrams](references/state-and-behavior-diagrams.md) — state machines, git graphs, journeys, timelines, gantt, pie, quadrant, requirement, kanban
 - [Architecture and beta diagrams](references/architecture-and-beta-diagrams.md) — architecture-beta topology, icons, block/sankey/xychart/radar
 - [Theming and export](references/theming-and-export.md) — config frontmatter, themes, ELK layout, classDef, mmdc export, accessibility
+- [Render validation](references/render-validation.md) — the mmdr render gate: install, render-check, batch rendering, caveats, fallbacks
 
 ## Ground rules
 
 - ALWAYS validate a diagram with the offline validator (or a fallback)
   before calling the task done.
+- ALWAYS render-check a diagram before calling the task done; when the
+  renderer is unavailable, name the renderer you used or say the gate
+  was skipped.
 - ALWAYS start the first significant line with a known diagram keyword.
 - ALWAYS name nodes after the real entities they represent.
 - NEVER exceed ~20 elements in one diagram; split the view instead.

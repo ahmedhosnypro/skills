@@ -5,22 +5,25 @@ checklist when analyzing a corpus (Step 2): for each mechanic, decide
 whether the target skill already has it, has a degraded version, or lacks
 it — then feed the gaps into the fold-back plan.
 
-## 1. Amendment discipline
+## 1. Edit discipline (current-state law)
 
-Append-only, dated, evidence-motivated amendment blocks in the stable
-core: title, motivating evidence, what supersedes what, version bump, a
-supersession pointer left on the superseded text. The universal change
-unit for skills that improve themselves. Degenerate forms to watch for:
-silent rewrites (history lost), loud restatements (bloat, no new
-information), amendment blocks without evidence (opinion, not harvest).
+The stable core (SKILL.md and committed reference/notes files) is edited
+IN PLACE so it always reads as the single current truth: superseded
+sentences are rewritten into their final form, the frontmatter `version`
+bumps with every law change, and git history is the record — no appended
+amendment blocks, no correction pointers, no change-history narrative.
+Degenerate forms to watch for: evidence-free rewrites (history lost),
+loud restatements (bloat, no new information), edits without evidence
+(opinion, not harvest).
 
 ## 2. Write fence / role separation
 
-Core files are law, amended only under the authoring discipline; agents
-may append to the memory layer; scripts are owner-only. The structural
-fix for mid-lane script patching is the fence plus a proposals bank
-(banked proposal format: Evidence / Problem / Proposed change / Risk),
-with applied changes recorded for an audit trail — not exhortation.
+Core files are law, edited in place only under the repo's authoring
+rules (AGENTS.md); agents may append to the memory layer; scripts are
+owner-only. The structural fix for mid-lane script patching is the fence
+plus a proposals bank (banked proposal format: Evidence / Problem /
+Proposed change / Risk), with applied changes recorded for an audit
+trail — not exhortation.
 
 ## 3. Two-tier storage
 
@@ -39,6 +42,8 @@ where in any skill.
   round and bumped between rounds, near-duplicates recorded as
   "confirms <tag>" notes.
 - Process notes: dated sections; superseded rules become pointers.
+  These layers are machine-local, never committed — the committed skill
+  files stay current-state.
 - Evolution log: one dated row per lesson, each with a "landed:" pointer
   to where the lesson ended up in the skill.
 
@@ -56,7 +61,7 @@ Objective pre-check gate before judging; content-anchored prompts;
 explicit PASS semantics and retry budgets with park-and-report; measured
 instrument readings outrank judge opinion; judges never re-litigate what
 the pre-check measures. Judge templates and rubrics are versioned assets
-grown under the same append-only rules.
+grown under the same promotion rules.
 
 ## 7. Evidence-first scratch conventions
 
@@ -70,7 +75,7 @@ redesign, durable trackers that survive context compaction.
 
 Frontmatter YAML parse + discovery check after every edit (a parse
 failure silently removes a skill from discovery), grep for surviving
-contradicted prose, diff banks of the edits, and the skill's own verify
+contradicted prose, git as the diff bank, and the skill's own verify
 gate run with the exit code captured explicitly.
 
 ## 9. Transplant / port doctrine
@@ -84,15 +89,16 @@ suffixes for clone families.
 
 Index file plus numbered topical shards mapped to scenarios; failure-fix
 walkthrough cases; guides (anti-patterns, FAQ, validation checklist);
-templates. Accretes by ADDING shards rather than amending one body — the
+templates. Accretes by ADDING shards rather than growing one body — the
 pattern for skills whose subject matter grows without bound.
 
 ## 11. Anti-bloat checks
 
 Line-count pressure is visible long before a cap is hit: repeated
-sections, restated rules, vocabulary duplicates, amendment tails longer
-than the body. Dedup, supersede, freeze templates per round, and
-condense the canon as a first-class maintenance action.
+sections, restated rules, vocabulary duplicates, stale supersession
+tails longer than the body. Dedup, condense the canon as a first-class
+maintenance action, freeze templates per round, and promote less when
+the core swells.
 
 ## 12. Self-grading
 

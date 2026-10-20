@@ -88,7 +88,9 @@ Unknown variable names fail silently — no error, no effect.
 - `layout: dagre` — the default; classic balanced layout.
 - `layout: elk` — advanced automatic layout for complex diagrams; prefer it
   when dagre produces crossed lines. Some renderers require a separate ELK
-  integration package. Configure under an `elk` key:
+  integration package; [mmdr](render-validation.md) does not support ELK, so
+  an ELK diagram must be published with a renderer that does. Configure under
+  an `elk` key:
 
 ```text
 config:
@@ -112,6 +114,7 @@ collapse parallel edges and reduce visual clutter.
 
 - `look: classic` — traditional Mermaid rendering.
 - `look: handDrawn` — sketch-like, informal strokes.
+  [mmdr](render-validation.md) renders the classic look only.
 
 Test both: some diagrams read better with the classic look. When embedding,
 set the look through `mermaid.initialize({ look: 'handDrawn' })`.
@@ -187,10 +190,18 @@ Mermaid fences render natively in:
 - Notion, Obsidian, Confluence — built-in support.
 
 The [Mermaid Live Editor](https://mermaid.live) renders pasted source and
-exports PNG/SVG; use it to check syntax and as the fallback validator when
-Bun is unavailable.
+exports PNG/SVG; use it to check syntax and as the fallback render check
+when neither `mmdr` nor a renderer below is available.
 
 ## Export with mermaid-cli
+
+[native Rust renderer](https://github.com/1jehuang/mermaid-rs-renderer)
+(`mmdr`) — no browser, no Node.js — is the preferred export and render
+check: `mmdr -i diagram.mmd -o output.svg -e svg`, `-e png` for PNG, and
+one pass per Markdown file with `-o <dir>`. Its own `-c config.json`
+carries `themeVariables` and layout spacing. See
+[render validation](references/render-validation.md) for install,
+flags, and where its output diverges (no ELK, no handDrawn look).
 
 Install the CLI, then convert `.mmd` sources:
 
