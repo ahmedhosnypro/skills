@@ -1,0 +1,9 @@
+%% sankey-beta has no `title` statement. mermaid.js rejects the whole
+%% diagram: "Parse error on line 2: Expecting 'COMMA', got 'NEWLINE'".
+%% Title a sankey through frontmatter config instead.
+sankey-beta
+    title Order channel volume
+    Storefront,Checkout,4200
+    Mobile app,Checkout,2600
+    Checkout,Payments,5100
+    Checkout,Fulfilment,1700

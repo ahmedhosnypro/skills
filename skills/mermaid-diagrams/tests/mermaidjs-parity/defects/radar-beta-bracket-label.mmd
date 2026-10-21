@@ -1,0 +1,12 @@
+%% CONTROL — this file is LEGAL, not a defect. mermaid.js parses
+%% `curve id[Display label] {…}` and renders "Orders service" in the
+%% legend, so no renderer may reject this diagram.
+%%
+%% Included so this suite cannot pass by rejecting everything. Note that
+%% `mmdr` renders the legend with the raw `orders[Orders service]` token
+%% instead of the label — a visual defect, not a parse defect.
+radar-beta
+    title Service readiness
+    axis Observability, Reliability, Performance, Security, Docs
+    curve orders[Orders service] {4, 3, 5, 2, 4}
+    curve gateway[API gateway] {5, 4, 3, 4, 5}

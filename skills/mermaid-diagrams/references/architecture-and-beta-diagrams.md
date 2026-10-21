@@ -165,9 +165,11 @@ Home heating,Waste heat,100
   (e.g. `Home heating (TWh)`). Quote any field containing commas:
   `"Bio-conversion, primary",Liquid,0.597`.
 - Node names match exactly (case included); `Heat` and `heat` are two nodes.
-- Cycles are permitted. Tune alignment and value labels through config
-  frontmatter — `sankey.nodeAlignment` (`justify`, `left`, `right`, `center`),
-  `sankey.showValues`, `sankey.linkColor`, `sankey.nodeColor` — never inline.
+- Cycles are permitted. This diagram has no `title` statement — mermaid.js
+  does not parse one, so title it through frontmatter. Tune alignment and
+  value labels through config frontmatter — `sankey.nodeAlignment`
+  (`justify`, `left`, `right`, `center`), `sankey.showValues`,
+  `sankey.linkColor`, `sankey.nodeColor` — never inline.
 
 ## xychart-beta
 
@@ -197,18 +199,11 @@ xychart-beta
 
 - Quote category labels containing commas: `x-axis ["Coastal, north", "Inland"]`.
 - Omit the `y-axis` range to auto-scale; keep `min --> max` for fixed-scale
-  comparisons.
+  comparisons. The separator is the literal `-->`; a worded form (`0 to 500`)
+  is a parse error in mermaid.js.
 - Colors come from the `xyChart` config key (`xyChart.plotColorPalette`),
   set via frontmatter or `init` directive — never inline attributes:
-
-```text
----
-config:
-  xyChart:
-    plotColorPalette: "#C3CB6D, #6DECB1"
-    showTitle: true
----
-```
+  `config: {xyChart: {plotColorPalette: "#C3CB6D", showTitle: true}}`.
 
 ## radar-beta
 
@@ -237,6 +232,8 @@ radar-beta
 ### Gotchas
 
 - Each curve needs exactly one value per axis, in axis declaration order.
+- Curve labels take either form: `curve dev["Devs"]: …` or `curve "Devs" …` —
+  prefer the quoted form, which every renderer accepts.
 - Set `max` explicitly when comparing charts; without it the scale derives
   from the plotted values.
 - Tune label crowding with `config: {"radar": {"axisScaleFactor": 0.5}}` —

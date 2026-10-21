@@ -1,0 +1,8 @@
+%% A y-axis needs a label, a range, or both. A bare `y-axis` is a parse
+%% error in mermaid.js; here it parses as a no-op and drops the axis.
+%% Correct form: y-axis "Orders"  (label only)
+xychart-beta
+    title Orders per day
+    x-axis [Mon, Tue, Wed, Thu, Fri]
+    y-axis
+    bar [312, 280, 402, 377, 445]

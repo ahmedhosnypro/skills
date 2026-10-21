@@ -16,7 +16,7 @@ description: >
   request to draw or check a diagram. Do NOT use for rendering-only
   requests with no diagram authoring, validation, or documentation
   involved.
-version: 1.1.0
+version: 1.0.3
 ---
 
 # Mermaid Diagrams
@@ -42,10 +42,15 @@ a render check that proves a diagram actually draws — see
 - [ ] 4. Validate with the bundled offline validator (below) or a
        fallback if Bun is unavailable; fix everything it reports.
 - [ ] 5. Render-check the diagram: pass it through a renderer and
-       confirm it draws. `mmdr` is the preferred renderer — a native
-       Rust binary with no browser — see
+       confirm it draws. `scripts/mmdr.sh` is the default — a launcher for
+       the native Rust renderer, no browser, self-fetching — see
        [render validation](references/render-validation.md).
-- [ ] 6. Export or embed: fenced ```mermaid blocks in Markdown render
+- [ ] 6. If the diagram will render on a GitHub-family surface (issue,
+       PR, README, wiki, GitLab), render-check it with the reference
+       renderer too — `mmdc` or the Mermaid Live Editor. `mmdr` accepts
+       and draws constructs mermaid.js rejects, so only the reference
+       renderer proves portability.
+- [ ] 7. Export or embed: fenced ```mermaid blocks in Markdown render
        natively; use `mmdr` (or `mmdc`) for standalone PNG/SVG.
 
 ## Diagram type selection guide
@@ -153,6 +158,14 @@ bun <skill-dir>/scripts/validate-mermaid.ts <file.md|.mmd>...
   mermaid-fenced markdown under the invoking project's `docs/` tree.
 - Exit codes: `0` green (or nothing discovered), `1` invalid input,
   `2` usage error.
+- Regression tests for renderer-verified defects live in
+  `scripts/validate-mermaid.defects.test.ts` — run them with
+  `bun test scripts/` after any validator change.
+- Parity fixtures for defects the validator cannot see — diagrams that
+  mermaid.js rejects outright while the structural checks pass — live in
+  `tests/mermaidjs-parity/defects/*.mmd`, gated by
+  `tests/mermaidjs-parity/parity.test.ts`. See
+  [render validation](references/render-validation.md) for gate 3.
 
 Checks performed:
 
@@ -166,8 +179,16 @@ Checks performed:
    `C4Dynamic`, `C4Deployment`, `requirementDiagram`, `sankey-beta`, `xychart-beta`,
    `architecture-beta`, `block-beta`, `kanban`, `radar`,
    `radar-beta` (case-insensitive).
-4. For flowchart/graph only: a line starting with an arrow operator
-   (`-->`, `==>`, `-.->`, `---`) and no source node is a malformed edge.
+4. For flowchart/graph only: two defect classes — a line starting with
+   an arrow operator (`-->`, `==>`, `-.->`, `---`) and no source node
+   is a malformed edge, and the state-diagram-only terminal `[*]` used
+   as a node/edge token (label text inside quotes or pipe labels is
+   ignored).
+5. For timeline only: the period position of a `period : event`
+   statement must stay colon-free — a colon before the spaced ` : `
+   separator, or attached to the first token with no separator, breaks
+   the renderer's lexer (event text may carry colons; `title` /
+   `section` lines are exempt).
 
 The validator is deliberately conservative — passing it does not prove
 the diagram renders; it proves the structure is sound. Structure is
@@ -175,11 +196,16 @@ only the first gate. The second is a render check: a diagram is done
 when it has passed both.
 
 - **Gate 1 (structure)** — the bundled validator, always available.
-- **Gate 2 (render)** — [mmdr](references/render-validation.md), a native
-  Rust renderer with no browser, is the preferred renderer for this gate.
-  It parses and lays the diagram out for real, so it catches what gate 1
-  cannot: unknown parameters, bad directives, and syntax the strict parser
-  rejects. One command checks a whole document.
+- **Gate 2 (render)** — `scripts/mmdr.sh`, a launcher for the native Rust renderer
+  [mmdr](https://github.com/1jehuang/mermaid-rs-renderer). No browser. The launcher uses a
+  `mmdr` already on `PATH`, or fetches the matching release asset into a per-user cache on
+  first use — so gate 2 works out of the box. It parses and lays the diagram out for real,
+  catching what gate 1 cannot: unknown parameters, bad directives, and syntax the strict
+  parser rejects. One command checks a whole document.
+- **Gate 3 (portability, GitHub-family surfaces)** — the reference renderer:
+  `mmdc` (mermaid.js, what GitHub runs) or the Mermaid Live Editor. `mmdr` is lenient in
+  specific grammars — it draws diagrams mermaid.js rejects — so gate 3 is what proves a
+  diagram publishes. Run it before publishing to an issue, PR, README, wiki or GitLab.
 
 When `mmdr` is unavailable, fall back to any renderer that actually
 draws, in this order:
@@ -238,17 +264,23 @@ renderer's behavioral differences live in
 - [State and behavior diagrams](references/state-and-behavior-diagrams.md) — state machines, git graphs, journeys, timelines, gantt, pie, quadrant, requirement, kanban
 - [Architecture and beta diagrams](references/architecture-and-beta-diagrams.md) — architecture-beta topology, icons, block/sankey/xychart/radar
 - [Theming and export](references/theming-and-export.md) — config frontmatter, themes, ELK layout, classDef, mmdc export, accessibility
-- [Render validation](references/render-validation.md) — the mmdr render gate: install, render-check, batch rendering, caveats, fallbacks
+- [Render validation](references/render-validation.md) — the mmdr render gate: launcher, install, render-check, batch rendering, caveats, fallbacks
 
 ## Ground rules
 
 - ALWAYS validate a diagram with the offline validator (or a fallback)
   before calling the task done.
 - ALWAYS render-check a diagram before calling the task done; when the
-  renderer is unavailable, name the renderer you used or say the gate
-  was skipped.
+  renderer cannot be produced, name the fallback you used or say the
+  gate was skipped.
+- ALWAYS render-check with the reference renderer (`mmdc` or the Mermaid
+  Live Editor) before publishing to a GitHub-family surface. `mmdr`
+  draws diagrams mermaid.js rejects, so it alone cannot gate portability.
 - ALWAYS start the first significant line with a known diagram keyword.
 - ALWAYS name nodes after the real entities they represent.
+- NEVER trust a renderer's exit code alone: check the output is
+  non-empty, and never reuse one output path across runs — `mmdc` exits
+  0 on parse failure and leaves the previous file in place.
 - NEVER exceed ~20 elements in one diagram; split the view instead.
 - NEVER mix C4-native and flowchart-styled C4 in the same file.
 - NEVER trust silent success — unknown Mermaid parameters are ignored,

@@ -1,0 +1,15 @@
+%% Attribute values are identifier tokens, so a hyphen splits the value.
+%% mermaid.js: "Parse error on line 3: Expecting 'NEWLINE', got 'LINE'".
+%% Correct forms: id: RQ_1  or  id: "RQ-1"  (quoted values are their own token)
+requirementDiagram
+    requirement checkout_req {
+        id: RQ-1
+        text: A customer can submit an order
+        risk: medium
+        verifymethod: test
+    }
+    element checkout_api {
+        type: microservice
+        docref: docs/checkout.md
+    }
+    checkout_api - satisfies -> checkout_req

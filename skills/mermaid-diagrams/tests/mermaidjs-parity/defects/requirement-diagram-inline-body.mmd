@@ -1,0 +1,12 @@
+%% Attributes must each sit on their own line. A same-line body such as
+%% `element e { type: "s" }` is a parse error in mermaid.js:
+%% "Parse error on line 2".
+requirementDiagram
+    element checkout_api { type: microservice }
+    requirement checkout_req {
+        id: 1
+        text: A customer can submit an order
+        risk: medium
+        verifymethod: test
+    }
+    checkout_api - satisfies -> checkout_req

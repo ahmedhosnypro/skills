@@ -191,7 +191,7 @@ requirementDiagram
 ```
 
 - Requirement kinds: `requirement`, `functionalRequirement`, `performanceRequirement`, `interfaceRequirement`, `physicalRequirement`, `designConstraint`.
-- Requirement fields: `id`, `text`, `risk` (`Low`/`Medium`/`High`), `verifymethod` (`Analysis`/`Inspection`/`Test`/`Demonstration`). `element` blocks take `type`, `docref`, and free-text body lines.
+- Requirement fields: `id`, `text`, `risk` (`Low`/`Medium`/`High`), `verifymethod` (`Analysis`/`Inspection`/`Test`/`Demonstration`). `element` blocks take `type`, `docref`, and free-text body lines. Attribute values are identifier tokens, so an id like `RQ-1` breaks the mermaid.js lexer — use `RQ_1` or quote the value.
 - Relationships (always outside the blocks): `- contains ->`, `- copies ->`, `- derives ->`, `- refines ->`, `- satisfies ->`, `- traces ->`, `- verifies ->`.
 - Field names and enum values are case-sensitive in some renderers; `verifyMethod` with a capital M parses as unknown and the field drops.
 - `text` values may span lines only while indented deeper than `text:` — a flush-left line closes the block.

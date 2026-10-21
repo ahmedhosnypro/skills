@@ -11,14 +11,14 @@
  *     simply starts with a colon — pinned as ACCEPTED to prevent an
  *     over-eager future rule from false-flagging it)
  *
- * Run: bun test scripts/tests/validate-mermaid.defects.test.ts
+ * Run: bun test scripts/validate-mermaid.defects.test.ts
  */
 
 import { afterAll, describe, expect, test } from "bun:test";
 import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { validateDiagramSource } from "../validate-mermaid";
+import { validateDiagramSource } from "./validate-mermaid";
 
 const FENCE = "```mermaid";
 const CLOSE = "```";
@@ -48,8 +48,8 @@ afterAll(async () => {
 
 /** Spawn helper targeting the real validator script (array argv only). */
 function runValidator(args: readonly string[], cwd?: string): Promise<{ code: number; out: string; err: string }> {
-  const proc = Bun.spawn([process.execPath, join(import.meta.dir, "..", "validate-mermaid.ts"), ...args], {
-    cwd: cwd ?? join(import.meta.dir, "..", ".."),
+  const proc = Bun.spawn([process.execPath, join(import.meta.dir, "validate-mermaid.ts"), ...args], {
+    cwd: cwd ?? join(import.meta.dir, ".."),
     stdout: "pipe",
     stderr: "pipe",
   });

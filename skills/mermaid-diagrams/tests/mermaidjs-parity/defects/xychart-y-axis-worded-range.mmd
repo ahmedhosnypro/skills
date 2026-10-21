@@ -1,0 +1,8 @@
+%% y-axis bounds require the literal `-->` separator. mermaid.js:
+%% "Parse error on line 4: Expecting 'ARROW_DELIMITER', got 'ALPHA'".
+%% Correct form: y-axis "Orders" 0 --> 500
+xychart-beta
+    title Orders per day
+    x-axis [Mon, Tue, Wed, Thu, Fri]
+    y-axis "Orders" 0 to 500
+    bar [312, 280, 402, 377, 445]
