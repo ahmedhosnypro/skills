@@ -187,9 +187,11 @@ Child builds MUST import the parent's certified composition as a shared module
 1. The owner curates the frame set (HARD STOP gate) and supplies the edge list
    (in-deck edges, cross-deck qualified edges, pattern groups, special
    notes).
-2. Machine writes `slide_dependencies.json`, reconciles index/mapping
-   (`new2old_mapping.json`, rewritten `slides_index.json`, old index + DB
-   preserved as evidence), and the DB seeds rows WITH edges and groups.
+2. Machine writes `slide_dependencies.json`, builds `slides_index.json` ONCE
+   from the approved set (never before approval), and — only when a legacy
+   namespace carries pre-approval artifacts — writes `new2old_mapping.json`
+   (old index + DB preserved as evidence). The DB seeds rows WITH edges and
+   groups.
    Placeholder covers (missing frames) get a placeholder analysis status and
    skip analysis/validation entirely; they certify by owner sign-off + chrome
    check (a judge comparison is impossible without a ground-truth frame).

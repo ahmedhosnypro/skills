@@ -69,8 +69,10 @@
   - A prior worker's build may be from the OLD deck entirely. Resume rule:
     verify the build matches your ground truth, not just the file name.
   - Never delete old-numbered artifacts — archive them (old analysis dirs,
-    `*.db.bak`, old builds, old QA dirs) and keep a new2old mapping JSON
-    (recovery law: pipeline.md).
+    `*.db.bak`, old builds, old QA dirs). The normal flow writes no
+    `new2old_mapping.json`: slide JSON maps wait for human approval and the
+    approved set is the baseline. Only a legacy namespace with pre-approval
+    artifacts gets one, built after approval (recovery law: pipeline.md).
 - Evidence strays (a ground-truth frame banked under another slide's QA dir)
   are BANKED and listed in the close-out report, never silently "cleaned".
 - A `SOURCES.md.tmp` with fully-banked references may be promoted to

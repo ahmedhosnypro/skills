@@ -16,7 +16,7 @@ description: >
   (user-mediated); driving an image editor (photocraft-automation);
   distilling skill improvements from work logs (skill-self-improve); or
   authoring Mermaid diagrams (mermaid-diagrams).
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX
@@ -66,6 +66,7 @@ total, never a full read of everything):
 
 ```
 video ──fps 1──▶ frames ──phash dedup──▶ unique_slides ──HARD STOP: human review──▶
+      ──approval──▶ slides_index.json (once, from the approved set) ──▶
       ──source research (if mandated)──▶ vision analysis ──▶ raw specs ──text validation──▶ final specs
       ──content gate (score>=8)──▶ build (pptxgenjs, dependency-gated)
       ──render (LO headless→pdftoppm 150dpi)──▶ closed-loop PIL checks
@@ -81,9 +82,15 @@ Non-negotiable laws (each is expanded in its reference file):
   `unique_slides/`, STOP — no analysis, no validation, no builds, no subagent
   dispatch on those frames until the human reviewer (the project owner) has
   reviewed and approved the set. This is non-negotiable: curation decisions
-  (duplicate/non-valid frames, numbering, badges) are human-owned. The machine
-  may prepare a review packet (contact sheet, index, new2old mapping draft) but
-  must never mark the set approved itself.
+  (duplicate/non-valid frames, numbering, badges) are human-owned. While
+  stopped, the machine may prepare only non-JSON review aids (a contact-sheet
+  montage + plain frame list) and pending DB rows; it must NEVER write a slide
+  JSON map file (`slides_index.json`, `new2old_mapping.json`) before approval —
+  curation renumbers the set, so a pre-approval map is stale by construction.
+  After approval, write `slides_index.json` ONCE from the confirmed files in
+  printed-badge order; the normal flow has no pre-approval numbering to
+  preserve, so it writes no `new2old_mapping.json` at all. The machine must
+  never mark the set approved itself.
 - **Dependent slides gate builds on parent certification and share components**
   (`references/dependencies.md`). When the owner-supplied dependency graph says
   slide B builds on slide A, B's BUILD is blocked until A is judge-certified

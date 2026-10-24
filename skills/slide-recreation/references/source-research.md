@@ -69,8 +69,9 @@ fetch + verification used>; frame facts from the slide's vision-analysis
 record; vision transcripts banked separately.
 
 ## Slide identity
-file + badge number + new/old numbering resolved through the curation mapping
-(a pre-curation artifact may belong to a DIFFERENT slide number).
+file + badge number per the approved `slides_index.json`; a pre-approval
+artifact cited in evidence resolves through `new2old_mapping.json` only when
+the namespace has one (it may belong to a DIFFERENT slide number).
 
 ## Primary source(s)
 each URL + what it is (paper section, tutorial, dataset card) + fetched-live
