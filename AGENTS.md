@@ -14,9 +14,10 @@ skill keeps its own version line; the repo history is the shared record.
   mermaid.js-parity defect fixtures and runner there), `utils/` or
   `references/` (on-demand documentation), `templates/` for config
   schemas.
-- Current skills: `decompiled-to-rust`, `photocraft-automation`,
-  `photocraft-art-director`, `mermaid-diagrams`, `pooled-missions`,
-  `skill-self-improve`, `slide-recreation`, `stitch`, `visual-judge`.
+- Current skills: `decompiled-to-rust`, `doc-parse`,
+  `photocraft-automation`, `photocraft-art-director`, `mermaid-diagrams`,
+  `pooled-missions`, `skill-self-improve`, `slide-recreation`, `stitch`,
+  `visual-judge`.
 
 ## Skill authoring rules
 
@@ -86,6 +87,7 @@ npx skills add . --list
 Each skill's own gate:
 
 ```sh
+bash skills/doc-parse/assets/verify_skill.sh
 bash skills/photocraft-automation/assets/verify_skill.sh
 bash skills/mermaid-diagrams/assets/verify_skill.sh
 bash skills/pooled-missions/assets/verify_skill.sh

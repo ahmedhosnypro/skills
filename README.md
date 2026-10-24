@@ -5,6 +5,20 @@ One repo, one `skills/` directory, one version line per skill.
 
 ## Skills
 
+### doc-parse
+
+Agent skill for parsing document images (slides, scans, forms, tables,
+charts, rendered pages) into structured markdown with the nemotron-parse
+model family, then auditing the parse against its source image: a frozen
+in-skill script, an owner-provisioned endpoint config the agent never
+touches, transcript-only outputs, a five-stage parse → adjudicate →
+register workflow, and a defect vocabulary for reading-order, table,
+coordinate, and hallucination findings.
+
+```sh
+npx skills add ahmedhosnypro/skills --skill doc-parse
+```
+
 ### photocraft-automation
 
 Agent skill for [PhotoCraft](https://github.com/storytold/photocraft) — drive
