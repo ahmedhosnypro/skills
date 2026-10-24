@@ -25,7 +25,7 @@
 # - Bank every generated PNG + sidecar with the build; never delete them.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
-RENDER_EQ="$HERE/../../scripts/render_eq.py"   # the skill's certified renderer
+RENDER_EQ="$HERE/../../../scripts/render_eq.py"   # the skill's certified renderer
 
 # 1. render the equation (demo values; adapt mathtext/pt/color per measurement)
 python3 "$RENDER_EQ" '\dfrac{x - \mu}{\sigma} \in \mathbb{R}^D' demo_eq.png 18 '#000000' > demo_eq.json
