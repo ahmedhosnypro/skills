@@ -35,6 +35,14 @@ skill keeps its own version line; the repo history is the shared record.
   record. The owner edits it directly with a frontmatter `version`
   bump; agents report doctrine candidates in-session. No calendar
   dates in any committed skill file.
+- Skill files teach using the skill, never the repo's authoring or
+  publishing workflow: the authoring gate (`assets/verify_skill.sh`),
+  push/publish validation (`npx skills add`, skills.sh indexing,
+  install mechanics), version-bump policy, and commit/packaging
+  hygiene live here in this file only. A SKILL.md or reference file
+  must not instruct running them; the agent-facing kernel that belongs
+  in a skill is "never edit installed skill files — report candidates
+  to the owner in-session."
 - Write for an agent in any harness holding only this skill and its own
   tools; give the fallback path wherever a step assumes a host tool.
   The mermaid-diagrams offline validator assumes Bun — on machines

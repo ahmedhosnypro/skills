@@ -155,5 +155,4 @@ complementary.
 
 This is a published, versioned skill. Agents do not edit installed skill
 files: report doctrine candidates (new laws, corrections, supersessions) to
-the owner in-session, with the measured evidence that earned them. The owner
-integrates them into the owning reference and bumps the frontmatter version.
+the owner in-session, with the measured evidence that earned them.

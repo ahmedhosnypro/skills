@@ -311,7 +311,7 @@ use bezier paths with on-canvas knots for bleed-at-corner shapes.
   promoted; this file references the store as a whole only and never
   an individual entry — entry slugs are personal runtime data and
   never appear in any committed file. Promotion: the lesson's wording
-  lands in this file as law (owner edit, version bump); the back-ref
+  lands in this file as law; the back-ref
   to the section it promoted stays in the memory entry. Read it
   before designing — it banks technique lessons (glow stacks,
   blend-mode traps, canvas safe areas, available fonts) alongside ops
@@ -338,17 +338,11 @@ use bezier paths with on-canvas knots for bleed-at-corner shapes.
   covers it) AND DURABLE (≥2 sessions, or once at real cost: lost
   document, ≥5 min lost, or wrong-result hazard); single cheap
   anomalies stay in notes. (3) Route: doctrine → report the candidate
-  wording + evidence to the user; the owner edits this SKILL.md
-  directly (version bump); script fix → report it to the user
+  wording + evidence to the user (the owner edits this SKILL.md);
+  script fix → report it to the user
   in-session; agents never edit `assets/` scripts (owner applies);
   app/MCP defect → the tracker.
-  (4) The owner applies skill edits under the house discipline, then
-  run `assets/verify_skill.sh`
-  (exit code = automated verdict), self-test on one small target.
-  (5) Close the loop in `notes.md`: incident → corpus entry → law.
-- **Validation**: `bash assets/verify_skill.sh` after every edit to
-  this skill
-  and before closing any session that touched this skill.
+  (4) Close the loop in `notes.md`: incident → corpus entry → law.
 
 ## 9. MCP surface notes (reference)
 
@@ -408,7 +402,7 @@ use bezier paths with on-canvas knots for bleed-at-corner shapes.
   transaction; Preferences-dialog Apply/OK are refused over control;
   60s server / 55s bridge timeouts are documented.
 
-## 10. Guardrails, preferences, published derivative
+## 10. Guardrails and preferences
 
 - Never panic the app on purpose; validate params before sending; treat
   any hang, panic or freeze you trigger as an upstream bug to file (the
@@ -423,35 +417,14 @@ use bezier paths with on-canvas knots for bleed-at-corner shapes.
 - Demo/sample images must be public-domain art, never personal photos.
 - No git actions from an artwork/audit session — the corpus is plain
   files. Development-mode sessions follow the repo's own gates.
-- This file states current-state law only — no amendment blocks, no
-  correction pointers, no change-history narrative; git history is the
-  record. The owner edits it directly with a frontmatter version bump.
-  Sessions never edit it; they report doctrine and script candidates
-  in-session. `assets/` scripts are owner-applied; script defects are
-  reported to the user in-session, never patched by agents and never
-  journaled in a repo file.
-- No archive or journal files ship in the skill (no
-  `assets/*-append-only-history.md`, no proposals journals); such
-  names are gitignored if they ever appear locally.
-- **Privacy**: no personal data in any committed skill file — no local
-  home paths (`/home/<user>`), tokens, private session or project
-  names, machine-specific installed state, or citations of individual
-  memory entries (committed files point at the store as a whole
-  only). Machine-specific field notes live in the runtime home, not
-  the repo; `verify_skill.sh`
-  checks the mechanical cases on every run.
+- Sessions never edit this skill: doctrine and script candidates are
+  reported in-session (the self-improvement gate routes them).
+  `assets/` scripts are owner-applied; script defects are reported to
+  the user in-session, never patched by agents and never journaled in
+  a repo file.
 - **Preferences**: `config.example.json` ships with the skill; the
   machine-local `~/.photocraft-automation/config.json` holds machine-local
   values: artwork root, token-file path, control port, default lane, audit
   strictness (see `config.example.json` for the schema). Precedence: user
   request > `config.json` > this SKILL.md. A missing file or key means
   defaults. Store locations, never secrets.
-- **Published derivative**: the sanitized public copy is live at
-  https://github.com/ahmedhosnypro/skills (skills.sh
-  path: public repo containing `skills/photocraft-automation/` with
-  the dir name equal to the frontmatter `name`, `description` ≤1024
-  chars; validate with `npx skills add . --list` and a local install
-  from a temp dir). The derivative never ships `memory/`, `issues/`,
-  `preferences.local.md`, `/home/<user>` paths, or memory-entry
-  citations; the runtime home
-  `~/.photocraft-automation/` is shared by every install.
