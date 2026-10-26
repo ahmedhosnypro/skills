@@ -1,3 +1,4 @@
 __pycache__/
 tmp
 skills/doc-parse/scripts/.doc-parse-config
+skills/doc-parse/scripts/.doc-parse-config.bak

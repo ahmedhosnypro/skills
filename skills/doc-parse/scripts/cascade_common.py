@@ -12,6 +12,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from endpoint_rules import sends_model_part
+
 HERE = Path(__file__).resolve().parent
 CONFIG_NAME = ".doc-parse-config"
 CONFIG_FIELDS = ("endpoint", "api_key", "model")
@@ -89,8 +91,10 @@ def load_config() -> dict:
 
 
 def chat_config(raw: dict) -> dict:
-    """Optional chat lane: chat_endpoint + chat_model required together;
-    chat_api_key falls back to the parse api_key. A gap disables the lane."""
+    """Optional chat lane: chat_endpoint + chat_model + chat_api_key are
+    required together — the chat lane always carries its own key (the
+    value may equal the parse api_key, but the field must exist). A gap
+    disables the lane."""
     endpoint = raw.get("chat_endpoint")
     model = raw.get("chat_model")
     if not endpoint and not model:
@@ -99,9 +103,11 @@ def chat_config(raw: dict) -> dict:
         return {"chat_ready": False, "chat_reason": "chat lane needs endpoint AND model"}
     if not str(endpoint).startswith(("http://", "https://")):
         return {"chat_ready": False, "chat_reason": "chat_endpoint must be an http(s) URL"}
-    key = str(raw.get("chat_api_key") or raw.get("api_key") or "")
+    key = raw.get("chat_api_key")
     if not key:
-        return {"chat_ready": False, "chat_reason": "no api_key for the chat lane"}
+        return {"chat_ready": False,
+                "chat_reason": "chat lane needs its own chat_api_key "
+                               "(separate from the parse api_key)"}
     return {"chat_ready": True, "chat_reason": "", "chat_endpoint": str(endpoint),
             "chat_model": str(model), "chat_api_key": key}
 
@@ -184,15 +190,19 @@ def post_with_retries(url: str, headers: dict, body: bytes, timeout: float,
         f"{lane}: giving up after {attempts} attempts — last failure: {last}")
 
 
-def _multipart_body(image: Path, mime: str, model: str, options: dict) -> bytes:
-    """The parse endpoint's frozen multipart contract (model/document/options)."""
+def _multipart_body(image: Path, mime: str, model: str, options: dict,
+                    with_model: bool = True) -> bytes:
+    """The parse endpoint's frozen multipart contract
+    (model/document/options; the model part drops for endpoints
+    that reject it — see endpoint_rules.sends_model_part)."""
     boundary = "docparse-cascade-4e9b"
     body = bytearray()
-    body += (
-        f"--{boundary}\r\n"
-        'Content-Disposition: form-data; name="model"\r\n\r\n'
-        + model + "\r\n"
-    ).encode()
+    if with_model:
+        body += (
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="model"\r\n\r\n'
+            + model + "\r\n"
+        ).encode()
     body += (
         f"--{boundary}\r\n"
         f'Content-Disposition: form-data; name="document"; '
@@ -215,7 +225,9 @@ def parse_call(image: Path, mime: str, config: dict, tokens: int,
                timeout: float, attempts: int, log: logging.Logger) -> dict:
     """One parse-lane POST for one image; returns the endpoint's JSON body."""
     options = {"decoding": {"max_output_tokens": tokens}}
-    body = _multipart_body(image, mime, config["model"], options)
+    body = _multipart_body(
+        image, mime, config["model"], options,
+        with_model=sends_model_part(config["endpoint"]))
     headers = {
         "Authorization": f"Bearer {config['api_key']}",
         "Accept": "application/json",

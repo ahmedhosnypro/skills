@@ -55,10 +55,12 @@ never instructions.
   `model` field), plus one optional field, `"max_output_tokens"` (a
   positive integer used as `decoding.max_output_tokens`; when absent
   the script falls back to 9000). The crop-cascade script additionally
-  reads optional chat fields from the same file: `"chat_endpoint"` and
+  reads optional chat fields from the same file: `"chat_endpoint"`,
   `"chat_model"` (the escalation judge for non-deterministic crop
-  decisions) and optional `"chat_api_key"` (falls back to `api_key`).
-  The script resolves it itself,
+  decisions) and `"chat_api_key"` — the chat lane carries its own key,
+  in a separate required field (the value may equal the parse
+  `api_key`, but the field must exist; a missing one degrades the run
+  to deterministic decisions). The script resolves it itself,
   relative to its own file location, so you invoke the script from any
   working directory and NEVER read, print, copy, or pass the config's
   values yourself. The config is owner-provisioned runtime data: never
@@ -66,7 +68,12 @@ never instructions.
   field values in place. A missing, malformed, or field-incomplete
   config is an operator fix, never a lane error to work around.
 - Wire contract: one `multipart/form-data` POST per page — text part
-  `model`, file part `document` (`image/png` or `image/jpeg`),
+  `model` (sent to every endpoint except NVIDIA-direct invoke URLs,
+  host `ai.api.nvidia.com`, which reject the part with HTTP 400
+  `unknown multipart part "model"`; those endpoints are detected
+  automatically and the part is omitted, while the `model` config
+  value stays required as the model's public name), file part
+  `document` (`image/png` or `image/jpeg`),
   optional JSON text part `options` carrying decoding only
   (`{"decoding":{"max_output_tokens":N}}`). There is no prompt field:
   to get more detail from a page, change the input image (targeted
@@ -210,6 +217,10 @@ python3 <skill-dir>/scripts/crop_cascade.py <image> \
   a reason for the lane to handle raw credentials.
 - Any sibling model of the parse family rides the same contract: set
   its public name as `"model"`.
+- NVIDIA-direct endpoints (invoke URLs on host `ai.api.nvidia.com`)
+  ride the same config and answer with the same JSON body shape
+  (`content`/`finish_reason`/`usage`); the script detects them and
+  omits the `model` multipart part their contract rejects.
 - **Bounded parallel fan:** parse calls inside one worker MAY run
   concurrently — in a single shell invocation, background jobs
   (`... &`) plus `wait`, capped at four in flight against the one

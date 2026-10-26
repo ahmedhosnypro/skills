@@ -10,8 +10,10 @@ copy, or pass its values yourself. The config is runtime data: never
 committed, never printed.
 
 Wire contract: one multipart/form-data POST per page — a text part
-`model`, a file part `document` (image/png | image/jpeg), an optional
-JSON text part `options` — answered by the endpoint's JSON body
+`model` (omitted automatically for endpoints that reject it, e.g.
+NVIDIA-direct invoke URLs), a file part `document`
+(image/png | image/jpeg), an optional JSON text part `options` —
+answered by the endpoint's JSON body
 ("content" plus "usage"). The surface's semantics live in the endpoint
 operator's docs.
 
@@ -28,6 +30,8 @@ import time
 import urllib.error
 import urllib.request
 from pathlib import Path
+
+from endpoint_rules import sends_model_part
 
 HERE = Path(__file__).resolve().parent
 CONFIG_NAME = ".doc-parse-config"
@@ -100,12 +104,13 @@ def parse_page(
 ) -> dict:
     boundary = "docparse-boundary-7f3a"
     body = bytearray()
-    body += (
-        f"--{boundary}\r\n"
-        'Content-Disposition: form-data; name="model"\r\n\r\n'
-        + config["model"]
-        + "\r\n"
-    ).encode()
+    if sends_model_part(config["endpoint"]):
+        body += (
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="model"\r\n\r\n'
+            + config["model"]
+            + "\r\n"
+        ).encode()
     body += (
         f"--{boundary}\r\n"
         f'Content-Disposition: form-data; name="document"; filename="{image.name}"\r\n'

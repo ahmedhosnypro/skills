@@ -162,7 +162,9 @@ def ask_chat(ctx, node, candidates, parent_text, child_text) -> tuple:
         ctx.log.warning("node %s chat call failed: %s", node["id"], exc)
         return None, f"chat call failed: {exc}"
     meta["finish"] = (raw.get("choices") or [{}])[0].get("finish_reason")
-    meta["out_tokens"] = (raw.get("usage") or {}).get("output_tokens")
+    usage = raw.get("usage") or {}
+    meta["out_tokens"] = usage.get(
+        "completion_tokens", usage.get("output_tokens"))
     cc.bank_chat(ctx.outdir, index, rendered, raw, meta)
     return cc.parse_chat_decision(content)
 
