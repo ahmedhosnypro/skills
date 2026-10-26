@@ -29,7 +29,7 @@
       "name": "delimiters-bezier-png",
       "file": "delimiters-bezier-png/gen_delimiter.py",
       "language": "python+javascript",
-      "description": "Smooth curved delimiters as single quadratic-B\u00e9zier strokes rendered to 600dpi transparent PNGs, embedded at exact size. Per-side MIRRORED tip/bulge assignment (one bow-direction template for both sides renders a mirrored pair). Ink-strength hierarchy and faint-paint laws. Companion: example.js (embed side); direction check: delimiters-direction-check/check_paren_direction.py."
+      "description": "Smooth curved delimiters as single quadratic-B\u00e9zier strokes rendered to 600dpi transparent PNGs, embedded at exact size. Per-side MIRRORED tip/bulge assignment (one bow-direction template for both sides renders a mirrored pair). Ink-strength hierarchy and faint-paint laws. SCOPE: delimiters whose ORIGINAL genuinely curves only - matrix/vector paren pairs use delimiters-straight-bars (equations.md straight-bar law). Companion: example.js (embed side); direction check: delimiters-direction-check/check_paren_direction.py."
     },
     {
       "name": "delimiters-direction-check",

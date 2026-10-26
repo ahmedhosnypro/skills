@@ -64,7 +64,9 @@ unterminated runs, and option-object mutation by pptxgenjs internals — live in
   PNG at exact size (pattern delimiters-bezier-png); bank a zoomed-crop
   certificate of the delimiter region (full-slide judges + PIL bbox cannot see
   double strokes). A large text-glyph paren is NOT an alternative (measured far
-  too fat).
+  too fat). SCOPE: curved forms are for delimiters whose ORIGINAL genuinely
+  curves — matrix/vector paren pairs are STRAIGHT BARS (equations.md
+  straight-bar law; pattern delimiters-straight-bars), never curves.
 - **`addImage` at EXACT size** (`w = px/600` in for 600-dpi assets) — rescaling
   blurs glyphs. PNG only; LO rasterizes SVG unpredictably.
 
@@ -109,7 +111,9 @@ unterminated runs, and option-object mutation by pptxgenjs internals — live in
   their own measured geometry** — never synthesize them from per-line text
   glyphs. Measure their full band in the original and draw them to span every
   enclosed row: half-turn arcs (`angleRange [90,270]/[270,450]`, tiny rx) per
-  side; smooth curved delimiters via the Bézier-PNG pattern above. Two
+  side; smooth curved delimiters via the Bézier-PNG pattern above — UNLESS the
+  pair encloses matrices/vectors/digit stacks, which are straight bars
+  (equations.md straight-bar law). Two
   full-slide judges have PASSED delimiter defects — delimiter geometry lives
   below judge resolution; verify with x3+ zoomed crop comparisons before
   judging.
