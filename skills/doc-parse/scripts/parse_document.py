@@ -3,10 +3,11 @@
 
 One lane: the endpoint, API key, and model all come from the
 `.doc-parse-config` file NEXT TO THIS SCRIPT (JSON with the fields
-"endpoint", "api_key", "model"). The script resolves the config itself,
-relative to its own file location, so you invoke it from any working
-directory and NEVER read, copy, or pass its values yourself. The config
-is runtime data: never committed, never printed.
+"endpoint", "api_key", "model", plus an optional "max_output_tokens").
+The script resolves the config itself, relative to its own file
+location, so you invoke it from any working directory and NEVER read,
+copy, or pass its values yourself. The config is runtime data: never
+committed, never printed.
 
 Wire contract: one multipart/form-data POST per page — a text part
 `model`, a file part `document` (image/png | image/jpeg), an optional
@@ -31,7 +32,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 CONFIG_NAME = ".doc-parse-config"
 CONFIG_FIELDS = ("endpoint", "api_key", "model")
-DEFAULT_MAX_OUTPUT_TOKENS = 1024
+OPTIONAL_CONFIG_FIELDS = ("max_output_tokens",)
+DEFAULT_MAX_OUTPUT_TOKENS = 9000
 DEFAULT_TIMEOUT = 150.0
 IMAGE_EXTS = {".png", ".jpg", ".jpeg"}
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
@@ -81,7 +83,12 @@ def load_config() -> dict:
     endpoint = str(config["endpoint"])
     if not endpoint.startswith(("http://", "https://")):
         die(f"{path}: 'endpoint' must be an http(s) URL")
-    return {field: str(config[field]) for field in CONFIG_FIELDS}
+    tokens = config.get("max_output_tokens", DEFAULT_MAX_OUTPUT_TOKENS)
+    if isinstance(tokens, bool) or not isinstance(tokens, int) or tokens <= 0:
+        die(f"{path}: 'max_output_tokens' must be a positive integer")
+    resolved = {field: str(config[field]) for field in CONFIG_FIELDS}
+    resolved["max_output_tokens"] = tokens
+    return resolved
 
 
 def parse_page(
@@ -136,7 +143,12 @@ def parse_one(
     args: argparse.Namespace,
 ) -> tuple[Path, dict]:
     mime = check_image(image)
-    options = {"decoding": {"max_output_tokens": args.max_output_tokens}}
+    tokens = (
+        args.max_output_tokens
+        if args.max_output_tokens is not None
+        else config["max_output_tokens"]
+    )
+    options = {"decoding": {"max_output_tokens": tokens}}
     started = time.monotonic()
     result = parse_page(image, mime, config, options, args.timeout)
     elapsed = time.monotonic() - started
@@ -164,8 +176,10 @@ def main() -> None:
     parser.add_argument("input", help="an image file or a directory of page images")
     parser.add_argument("-o", "--out", type=Path, help="output directory (default: the input's)")
     parser.add_argument(
-        "--max-output-tokens", type=int, default=DEFAULT_MAX_OUTPUT_TOKENS,
-        help=f"decoding.max_output_tokens (default: {DEFAULT_MAX_OUTPUT_TOKENS})",
+        "--max-output-tokens", type=int, default=None,
+        help="decoding.max_output_tokens override "
+             "(default: the config's max_output_tokens, else "
+             f"{DEFAULT_MAX_OUTPUT_TOKENS})",
     )
     parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT)
     args = parser.parse_args()
