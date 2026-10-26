@@ -5,19 +5,21 @@ description: >
   screenshots, or lecture-video frames: a human review gate, vision
   analysis, pptxgenjs build, closed-loop pixel checks, visual-judge
   certification, 2D equations, generated graphs, multi-worker fleets,
-  dependency pre-phase packs for blocked builds, and a continuous
-  placeholder final-deck that updates as slides certify. Use whenever the user asks to recreate,
+  dependency pre-phase packs for blocked builds, an optional doc-parse
+  extraction lane, and a continuous placeholder final-deck that updates
+  as slides certify. Use whenever the user asks to recreate,
   rebuild, or batch-produce slides or PPTX decks from images or video —
   "turn this lecture video into a PPTX deck", "recreate these slides",
-  "fix the equations or charts on this slide", pixel-perfect or faithful
-  slide reproduction — or to merge certified per-slide decks into one
-  final deck. Do NOT use for judging or auditing images with no slide
-  rebuild (visual-judge owns verdicts); authoring brand-new slides with
-  no source image; obtaining source videos or installing tooling
-  (user-mediated); driving an image editor (photocraft-automation);
-  distilling skill improvements from work logs (skill-self-improve); or
-  authoring Mermaid diagrams (mermaid-diagrams).
-version: 1.6.0
+  "fix the equations or charts on this slide", "recreate slides with
+  doc-parse", pixel-perfect or faithful slide reproduction — or to merge
+  certified per-slide decks into one final deck. Do NOT use for judging
+  or auditing images with no slide rebuild (visual-judge owns verdicts);
+  authoring brand-new slides with no source image; plain slide parsing
+  with no recreation (the doc-parse skill owns that); obtaining source
+  videos or installing tooling (user-mediated); driving an image editor
+  (photocraft-automation); distilling skill improvements from work logs
+  (skill-self-improve); or authoring Mermaid diagrams (mermaid-diagrams).
+version: 1.7.0
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX
@@ -42,7 +44,7 @@ total, never a full read of everything):
 
 | Phase | Read |
 |---|---|
-| Extract / curate / analyze | `references/pipeline.md` + `references/operations.md` (+ `references/source-research.md` when the deck's instructions mandate web-verified analysis) |
+| Extract / curate / analyze | `references/pipeline.md` + `references/operations.md` (+ `references/source-research.md` when the deck's instructions mandate web-verified analysis; + `references/doc-parse-lane.md` when the doc-parse lane is enabled) |
 | Build (any slide) | `references/building.md` + `references/patterns/index.json` (+ `references/equations.md` / `references/graphs.md` / `references/dependencies.md` / `references/pptx-engine.md` when the slide has math / graphs / a dependency parent / native bullets, charts, shadows, merged table cells, or speaker notes) |
 | Judge / certify | `references/judging.md` (+ `references/equations.md` alignment law for math slides) |
 | Coordinate workers / resume a fleet | `references/fleet.md` + `references/operations.md` |
@@ -54,6 +56,7 @@ total, never a full read of everything):
 | `references/patterns/index.json` + `references/patterns.md` | **FIRST, before every build** — the reusable example-script library (`references/patterns/`, one runnable script per pattern; the laws are in the comments). Read the index, use the applicable patterns, run their companion checkers |
 | `references/pipeline.md` | Extracting frames, deduping slides, curation reconciliation, analyzing + validating specs, content gate |
 | `references/source-research.md` | Web-verified source research when the deck's instructions mandate it: the `sources/` layout, SOURCES.md pattern, trust + economy laws, spec-correction protocol |
+| `references/doc-parse-lane.md` | Optional doc-parse lane — ONLY when the deck's instructions or the user's ask sanction it AND the doc-parse config is available (probe first): parse transcripts as analysis anchor / validation cross-check / judge aid, crop cascade for dense slides; never a dependency |
 | `references/building.md` | Writing the pptxgenjs build, rendering, house chrome (per deck family), closed-loop PIL checks |
 | `references/judging.md` | The visual judge — verdict law, walls, ground rules, adjudication of findings |
 | `references/equations.md` | Any slide containing math — 2D format rule + alignment law + delimiter laws (direction; straight bars for matrix/vector parens) + OMML |
@@ -152,6 +155,7 @@ Non-negotiable laws (each is expanded in its reference file):
 | Text validation | A separate text-only model — never use it for visual checks. Empty content responses are transient: re-run. If it burns the whole token budget reasoning (`finish_reason=length`, `content=null`): raise max-tokens, and remember some gateways cap completions below the request — dense specs near the ceiling are a re-run problem, not a budget problem |
 | API key | A key file at the project root, mode 600; env override supported; never commit or log it |
 | Web research | Any web-search tool available to the harness — best-effort aid, never a hard dependency |
+| Doc-parse lane (optional) | Activates only if the deck's instructions or the user's ask sanction it AND the doc-parse skill's config is available (probe first); otherwise skipped, recorded once — never a dependency of any milestone |
 | Source video | Supplied by the owner (obtaining it is user-mediated; e.g. platform downloads blocked from datacenter IPs need user-exported cookies) |
 
 ## Worker protocol for batch recreation

@@ -103,6 +103,18 @@ frame wins for recreation, the source wins for understanding). It activates
 only after the human review gate, interleaves with analysis/validation, and
 is never dependency-gated.
 
+## Doc-parse lane (optional)
+
+When the deck's instructions or the user's ask sanction it AND the doc-parse
+skill's config is available (probe first), the lane banks one structured parse
+transcript per approved frame under `<video>/analysis/parse/` and uses it as
+advisory context for the steps below — an analysis anchor passed to the vision
+call, a verbatim-text cross-check at validation, an adjudication aid at
+judging, and a dense-slide crop cascade that feeds a slide's re-analysis. It
+is never a dependency: a missing or failed parse never blocks analysis,
+validation, the content gate, or certification — record the lane state once
+and proceed. Full doctrine: **`references/doc-parse-lane.md`**.
+
 ## Vision analysis (per unique slide)
 
 One streaming vision call per slide into `<video>/analysis/slide_NNN_raw.json`:

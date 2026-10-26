@@ -198,3 +198,7 @@ a fix cycle; a wrong FAIL body is evidence of judge variance, not of a defect.
 - The full-slide judge CANNOT see delimiter/stroke-level defects (double-
   stroked arcs passed it twice) — dense regions get their own zoomed crop
   certificates (pattern dense-region-crop-compare).
+- When the doc-parse lane is enabled, text-content disputes get one more
+  independent read: the original frame's banked parse transcript is an
+  advisory adjudication input — never a verdict; the image stays ground
+  truth (`references/doc-parse-lane.md`).

@@ -15,6 +15,10 @@
   value: line 1 column 1" — transient; re-run the pass (it retries only
   missing outputs).
 - ~540 vision tokens/frame at 960px JPEG q4.
+- The doc-parse lane (when enabled) rides the doc-parse config's own endpoint —
+  never the project's vision gate; its bounded fan (≤4 in flight) still
+  applies, and a failed or absent parse never blocks any milestone
+  (`references/doc-parse-lane.md`).
 
 ## Retry/idempotency patterns
 
