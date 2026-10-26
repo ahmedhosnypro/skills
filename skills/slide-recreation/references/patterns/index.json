@@ -29,7 +29,13 @@
       "name": "delimiters-bezier-png",
       "file": "delimiters-bezier-png/gen_delimiter.py",
       "language": "python+javascript",
-      "description": "Smooth curved delimiters as single quadratic-B\u00e9zier strokes rendered to 600dpi transparent PNGs, embedded at exact size. Ink-strength hierarchy and faint-paint laws. Companion: example.js (embed side)."
+      "description": "Smooth curved delimiters as single quadratic-B\u00e9zier strokes rendered to 600dpi transparent PNGs, embedded at exact size. Per-side MIRRORED tip/bulge assignment (one bow-direction template for both sides renders a mirrored pair). Ink-strength hierarchy and faint-paint laws. Companion: example.js (embed side); direction check: delimiters-direction-check/check_paren_direction.py."
+    },
+    {
+      "name": "delimiters-direction-check",
+      "file": "delimiters-direction-check/check_paren_direction.py",
+      "language": "python",
+      "description": "Closed-loop delimiter direction check (middle-band extremum test): '(' belly outer-LEFT / cusps inner-right, ')' mirrored; auto-pairing or explicit --expect windows on assets, render crops, and original frames; exit 1 on any mirrored or unresolved stroke. Mandatory before judging hand-drawn delimiters; a judge PASS never waives it."
     },
     {
       "name": "delimiters-stretched-glyph",
@@ -83,7 +89,7 @@
       "name": "final-deck-merge",
       "file": "final-deck-merge/example.sh",
       "language": "bash",
-      "description": "All-in-one deck as a byte-verbatim OPC merge (rels are per-slide; media renamed per slide) gated by a 0/N pixel-diff of merged pages vs per-slide renders."
+      "description": "All-in-one deck as a byte-verbatim OPC merge (rels are per-slide; media renamed per slide) gated by a 0/N pixel-diff of merged pages vs per-slide renders. Continuous doctrine: the deck is INITIALIZED as a placeholder (one page per confirmed original frame) at approval time and each certification REPLACES its page in place (MODE=update N) \u2014 the close-time gate runs on the fully-replaced deck."
     },
     {
       "name": "curved-arrows-custgeom",

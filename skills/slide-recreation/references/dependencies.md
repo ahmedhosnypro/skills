@@ -63,7 +63,8 @@ via 29).
   NOT build (report and stop — the orchestrator re-dispatches when the parent
   lands). A builder that verifies the canonical graph before building
   (refusing on DEP_BLOCKED) is the correct behavior even when the
-  coordinator's brief said otherwise.
+  coordinator's brief said otherwise. Blocked never means idle: the orchestrator
+  dispatches a pre-phase worker immediately (next section).
 - **Siblings unblock together**: one parent's certification unblocks ALL its
   children at once (slide 6 certifying unblocks 7, 8, 9, 10 simultaneously —
   dispatch them in parallel). Cross-deck certification cascades the same way
@@ -71,6 +72,49 @@ via 29).
 - **Pattern groups gate sequentially**: member k waits for member k−1's
   certification, in the owner's listed order. Dispatchers must NOT fan a whole
   group out in parallel.
+
+## Pre-phase work while blocked (never idle)
+
+A blocked build does not idle the deck. The moment a child is known blocked,
+the orchestrator dispatches a PRE-PHASE worker for it — in parallel with the
+parent's cert lane and every other lane. The
+pre-phase pack, banked under `recreated_pptx/qa/slideNNN/prephase/`, contains:
+
+1. **Original-frame ground-truth reads** — one full-frame read plus at least
+   one zoomed-crop read per dense region of the child's ORIGINAL frame (crop
+   coordinates recorded in slide space), each a detailed structured
+   description: layout map with named regions, verbatim text, per-element hex
+   colors, measured px geometry. These use the description/analysis prompt,
+   NOT the judge template — there is no render to compare yet; they bank the
+   ground truth the later render-judge will be held against.
+2. **Delta-vs-related spec** — against the most-related certified slide (the
+   parent when an edge exists; otherwise the nearest certified family
+   member), element by element: ADD / DELETE / DIFFER per element with px
+   measurements — the exact contract of what the child's delta adds, removes,
+   and changes relative to the composition it inherits or parallels.
+3. **Build-readiness checklist** — every delta row mapped to a numbered build
+   action, flagging reusable certified components (house chrome, parent
+   per-block exports, table patterns, equation assets and `eq_*.json`
+   sidecars) so the build is a composition job, not a discovery job.
+4. For parked or re-judge-gated slides, a **re-judge readiness plan**: current
+   build state with every verified-but-uncertified fix listed, the exact
+   dispatch command with the byte-exact payload path, and the crops to re-run
+   — banked, never executed while the owner decision is pending.
+
+Isolation rules (pre-phase workers run CONCURRENTLY with the parent's lane):
+
+- READ-ONLY toward lane work products: no build edits, no writes outside
+  their own `prephase/` subdirs, no progress-DB writes, no
+  certification-judge dispatches (an original-frame read is not a judge
+  attempt and does not burn any attempt cap).
+- Vision calls obey the same gateway discipline as cert lanes: concurrency
+  check before each dispatch, one leg per call, background + wait, and YIELD
+  to cert lanes when the gateway is saturated.
+- Findings bank as task rows as they land; the pack completes with a done
+  note. When the parent certifies, the child's builder consumes the pack
+  FIRST — no re-analysis, no re-derivation — and starts from the delta
+  checklist, with the original-frame reads ready to serve as the
+  adjudication baseline for the judge loop.
 
 ## Shared component builds (the "u-components" model)
 

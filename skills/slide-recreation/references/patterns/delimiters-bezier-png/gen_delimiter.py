@@ -12,7 +12,11 @@ them as double parallel strokes with merged caps — measured).
 Usage:
   python3 gen_delimiter.py <lp|rp> <span_pt> <stroke_pt> <hex_color> <out.png>
 
-  lp / rp    which side (controls which edge the bulge lands on)
+  lp / rp    which side. Paren anatomy: '(' cusps (stroke ends) at the INNER
+             side (toward the enclosed content), belly at the OUTER left;
+             ')' mirrored. Each side gets its OWN tip/bulge assignment —
+             one bow-direction template for both sides renders a mirrored
+             pair (measured defect that ships through full-slide judges).
   span_pt    vertical ink span of the delimiter (topmost enclosed line top
              minus pad  -> bottommost line bottom plus pad, incl. descenders)
   stroke_pt  stroke width S; ink depth beyond the bulge D=2.5pt, PAD=0.5pt
@@ -33,6 +37,10 @@ LAWS carried by the sidecar/embed contract (see example.js):
  - THRESHOLD-GEOMETRY: never compare ink px-counts between a 1px=1pt JPEG and
    a 150dpi render at the same threshold (AA profiles differ by scale) — use
    luminance transects + coverage reasoning, convert with the calibrated scale.
+ - DIRECTION LAW: the pair must be two MIRRORED forms — verify every generated
+   delimiter with the companion checker patterns/delimiters-direction-check/
+   check_paren_direction.py (middle-band extremum test) on the asset AND the
+   render crop; a judge PASS never waives it.
  - Measure stroke waist in the inter-line gap band (cap-bottom+AA -> next line
    top) and spans in tip bands clear of enclosed text.
 """
@@ -56,8 +64,9 @@ def gen(side: str, span_pt: float, stroke_pt: float, hex_color: str, out: str) -
     lw = stroke_pt / 72 * DPI
 
     # quadratic Bézier: tip(top) -> bulge(mid) -> tip(bottom)
-    x_tip = pad if side == "lp" else W - pad
-    x_bulge = W - pad if side == "lp" else pad
+    # lp: cusps INNER (right), belly OUTER left -> "(" ; rp: mirrored -> ")"
+    x_tip = W - pad if side == "lp" else pad
+    x_bulge = pad if side == "lp" else W - pad
     cx = (x_tip + x_bulge) / 2
     steps = 200
     pts = []

@@ -83,6 +83,40 @@ proved nonexistent).
   any descent-formula prediction — place empirically: measure render, nudge
   box y, re-render (validated to 0.7px).
 
+## DELIMITER DIRECTION LAW (paren mirroring — overrides a judge PASS)
+
+A delimiter pair is two DISTINCT mirrored forms. Anatomy of a real glyph: "("
+has its cusps (stroke ends) at the INNER side — pointing right, toward the
+enclosed content — and its belly (extreme ink) at the OUTER left; ")" mirrors
+it (cusps inner-left, belly outer right). The openings face each other.
+
+- **FORBIDDEN — one bow-direction template reused for both sides with only an
+  x-offset.** Both sides then render the same shape (measured on certified
+  decks: a vector box whose two parens both bowed right — the left one
+  mirrored). The defect ships silently through full-slide judges at hairline
+  stroke widths; only a zoomed crop comparison or the closed-loop check
+  catches it. Hand-drawn arcs (frame-matched reconstruction) must author EACH
+  SIDE as its own template: left = endpoints at the INNER x, belly control at
+  the OUTER x; right = the mirror. Never one `verts` list for both.
+- **FORBIDDEN — "fixing" direction by vertical flip** (a paren is vertically
+  symmetric: flipping "(" vertically still yields "(") **or by horizontal flip
+  of a font glyph** (stroke weight/contrast no longer matches the mechanism's
+  other glyphs).
+- **Preferred: real glyphs from ONE mathtext expression** (`$\left(...\right)$
+  or plain `(...)` in the expression) — correct by construction. Delimiters
+  from mathtext PNGs, stretched-glyph crops of real glyphs, native OMML/font
+  glyphs, or the arc pattern's per-side `angleRange` are direction-correct by
+  construction; hand-drawn Beziers are where this defect lives.
+- **Closed-loop direction check (mandatory before judging; a judge PASS never
+  waives it)**: middle-band extremum test — in the middle third of the
+  delimiter's ink-row span (excluding horizontal-bar rows such as `=` bars),
+  "(" has its extreme ink on the LEFT of its full span, ")" on the RIGHT.
+  Run per delimiter on the generated asset, on the matching crop of the 150dpi
+  render, and on the original-frame crop (ground truth). Mirrored = defect =
+  rebuild the asset. Checker: `references/patterns/delimiters-direction-check/
+  check_paren_direction.py` (auto-pairing or explicit `--expect` windows;
+  exit 1 on any mirrored or unresolved stroke).
+
 ## OMML dual-representation (post-certification pass)
 
 Raw OMML in a PPTX does NOT render in LibreOffice headless (it shows the linear

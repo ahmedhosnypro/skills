@@ -4,8 +4,9 @@ description: >
   Recreate slides as high-fidelity PowerPoint (PPTX) from slide images,
   screenshots, or lecture-video frames: a human review gate, vision
   analysis, pptxgenjs build, closed-loop pixel checks, visual-judge
-  certification, 2D equations, generated graphs, multi-worker fleets, and
-  a gated final-deck merge. Use whenever the user asks to recreate,
+  certification, 2D equations, generated graphs, multi-worker fleets,
+  dependency pre-phase packs for blocked builds, and a continuous
+  placeholder final-deck that updates as slides certify. Use whenever the user asks to recreate,
   rebuild, or batch-produce slides or PPTX decks from images or video —
   "turn this lecture video into a PPTX deck", "recreate these slides",
   "fix the equations or charts on this slide", pixel-perfect or faithful
@@ -16,7 +17,7 @@ description: >
   (user-mediated); driving an image editor (photocraft-automation);
   distilling skill improvements from work logs (skill-self-improve); or
   authoring Mermaid diagrams (mermaid-diagrams).
-version: 1.2.0
+version: 1.5.0
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX
@@ -55,9 +56,9 @@ total, never a full read of everything):
 | `references/source-research.md` | Web-verified source research when the deck's instructions mandate it: the `sources/` layout, SOURCES.md pattern, trust + economy laws, spec-correction protocol |
 | `references/building.md` | Writing the pptxgenjs build, rendering, house chrome (per deck family), closed-loop PIL checks |
 | `references/judging.md` | The visual judge — verdict law, walls, ground rules, adjudication of findings |
-| `references/equations.md` | Any slide containing math — 2D format rule + alignment law + OMML |
+| `references/equations.md` | Any slide containing math — 2D format rule + alignment law + delimiter direction law (paren mirroring) + OMML |
 | `references/graphs.md` | Slides with advanced charts/plots — generated-graph images, single-version rule |
-| `references/dependencies.md` | Decks whose slides build on each other (owner-supplied dependency graph): build gating on parent certification, shared component imports, DB `depends_on` tracking |
+| `references/dependencies.md` | Decks whose slides build on each other (owner-supplied dependency graph): build gating on parent certification, blocked-time pre-phase packs, shared component imports, DB `depends_on` tracking |
 | `references/pptx-engine.md` | Slides with real bullet lists, native charts, shadows, merged table cells, or speaker notes — pptxgenjs engine law beyond the pitfall list (bullet glyphs/indents, rich-text pPr trap, option-object mutation, dLblPos repair bomb) |
 | `references/fleet.md` | Multi-worker coordination: liveness contract, provider storms, collisions, handoffs, provenance |
 | `references/operations.md` | Model endpoint quirks, retries, workspace environment (video ids, TMPDIR, web research) |
@@ -67,12 +68,15 @@ total, never a full read of everything):
 ```
 video ──fps 1──▶ frames ──phash dedup──▶ unique_slides ──HARD STOP: human review──▶
       ──approval──▶ slides_index.json (once, from the approved set) ──▶
+      ──continuous final deck: PLACEHOLDER INIT at approval (N pages, one per
+        confirmed frame, original image full-bleed) ──▶ page replace per
+        certification (OPC byte-verbatim) ──▶
       ──source research (if mandated)──▶ vision analysis ──▶ raw specs ──text validation──▶ final specs
       ──content gate (score>=8)──▶ build (pptxgenjs, dependency-gated)
       ──render (LO headless→pdftoppm 150dpi)──▶ closed-loop PIL checks
       ──visual judge (render vs original)──▶ PASS = done | FAIL = adjudicate+fix loop
       ──post-passes──▶ equations (2D + OMML) / graphs (generated images)
-      ──all slides PASS──▶ final-deck merge (byte-verbatim OPC) ──0/N pixel gate──▶ deck closed
+      ──all slides PASS──▶ every final-deck page replaced ──0/N pixel gate──▶ deck closed
 ```
 
 Non-negotiable laws (each is expanded in its reference file):
@@ -98,6 +102,11 @@ Non-negotiable laws (each is expanded in its reference file):
   must IMPORT A's certified composition as a shared component module and draw
   only its own delta — never copy-paste the parent. Components are certified
   single-source-of-truth: editing one re-opens its whole descendant subtree.
+  While blocked, B is never idle: a parallel PRE-PHASE worker banks the
+  original-frame ground-truth reads, the detailed delta-vs-related spec, and
+  the build-readiness checklist (mechanics in
+  `references/dependencies.md`), so the build starts the moment the parent
+  certifies.
 - **A slide is done ONLY with a real comparison-transcript PASS from the vision
   model.** Timeouts, empty streams, and programmatic checks count as FAIL. A
   "looks fine" from yourself or a peer is not a verdict.
@@ -117,13 +126,21 @@ Non-negotiable laws (each is expanded in its reference file):
   adjudicated against pixels (judging.md), never obeyed blind.
 - **Never delete banked evidence** — per-attempt builds, transcripts, renders,
   pre-fix backups, archived runs. Overwrite nothing certified; copy-then-modify.
-- **Every deck closes with a combined all-in-one deck.** When the last slide
-  certifies, merge the certified per-slide decks
-  (`references/patterns/final-deck-merge/` — byte-verbatim OPC merge, never
-  re-encode certified content), gate it at 0/N mismatched pages (merged render
-  vs every source render, one LO session), and deliver `<deck>_final.pptx` +
-  md5 + banked gate report. Per-slide certifications are NOT the end of the
-  program: a deck is closed only when the combined deck passes the merge gate.
+- **The combined all-in-one deck is a continuous artifact, born at
+  confirmation time.** The moment the owner approves the unique-frame set
+  (the HARD STOP lifts), initialize `<deck>_final.pptx` as a PLACEHOLDER
+  deck: one page per confirmed frame in printed-badge order, each page the
+  original frame image full-bleed — presentable from day one. Whenever a
+  slide certifies, replace its page with the certified per-slide deck's
+  content at the OPC package level, byte-verbatim — never re-encode, never
+  rebuild (`references/patterns/final-deck-merge/`; a state ledger records
+  each page placeholder|certified with source md5s). When the last page is
+  replaced, run the merge gate (0/N mismatched pages, merged render vs every
+  source render, one LO session) and deliver `<deck>_final.pptx` + md5 +
+  banked gate report. Per-slide certifications are NOT the end of the
+  program: a deck is closed only when the combined deck passes the merge
+  gate. The placeholder init NEVER runs on an unapproved frame set — it is
+  gated by the same HARD STOP as everything downstream.
 - **Always stream** vision-model requests; aggregating gateways commonly cut
   non-streaming responses at ~60s.
 

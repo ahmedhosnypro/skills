@@ -3,6 +3,16 @@
 # Combine the per-slide decks into one all-in-one file as a BYTE-VERBATIM OPC
 # merge — never rebuild or re-encode the certified content.
 #
+# CONTINUOUS DOCTRINE: the combined deck is a
+# continuous artifact. MODE=placeholder initializes it at APPROVAL time — N
+# pages (one per confirmed frame, printed-badge order), each page the original
+# frame image full-bleed. MODE=update <N> replaces page N with the certified
+# slide N's package content at the OPC level (same verbatim laws as the full
+# merge; media renamed per slide; rels retargeted). A state ledger
+# (final_deck_state.json) records per-page placeholder|certified + source
+# md5s. The example below is the CLOSE-TIME gate: run it once the last page is
+# replaced — page N vs source N must still be 0-mismatch.
+#
 # LAWS:
 # - Merge at the package level: copy each source slide's XML VERBATIM (slide
 #   rels are per-part, so rIds never collide across slides — only the .rels
