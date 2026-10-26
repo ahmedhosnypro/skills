@@ -106,7 +106,10 @@ def decide(ctx, node: dict, blocks: list, parent_text: str, child_text: str):
         return "no-new-information", f"chat advised STOP: {reason}", "chat", []
     if decision == "CROP":
         return None, f"chat advised CROP: {reason}", "chat", candidates
-    note = f"chat reply unparseable ({reason}) — conservative CROP fallback"
+    if reason.startswith("chat call failed"):
+        note = f"{reason} — conservative CROP fallback"
+    else:
+        note = f"chat reply unparseable ({reason}) — conservative CROP fallback"
     return None, note, "fallback", candidates
 
 

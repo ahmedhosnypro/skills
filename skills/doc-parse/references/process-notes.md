@@ -181,23 +181,6 @@ NEVER applied by an agent, lane, or session — only the human owner
 applies and records them, with a frontmatter `version` bump. The script
 is frozen for everyone; doc-wording gaps surfaced by the same evidence
 are owner edits to SKILL.md, not script changes. Each proposal stays
-open until the owner accepts or declines it.
-
-1. **Endpoint-scheme check vs docs — align the wording or tighten the
-   check.** The script validates only the URL prefix and accepts
-   `http://` and `https://` alike, while the docs describe the
-   configured endpoint as https-only. Either word the docs to match the
-   implemented check (an http(s) URL; scheme and transport security are
-   operator-config decisions) or tighten the script's validation to
-   require https. Evidence: the script source read against the doc
-   text — the implemented check is broader than the documented
-   guarantee, and the live scheme is operator config, never read by
-   lanes.
-2. **Document the default request timeout.** The script's per-request
-   timeout defaults to 150 s and the `--timeout` flag overrides it, but
-   the docs' CLI line shows the flag with no default. Document the
-   150 s default with the companion guidance that heavy lanes pass an
-   explicit larger `--timeout` — full-frame parses measured within
-   about 20 s of the default on a contended endpoint. Doc-side fix by
-   default; a script change only if the owner wants a different default
-   value.
+open until the owner accepts or declines it. The queue is currently
+clear: the endpoint-scheme wording and the default-timeout
+documentation proposals were resolved as doc-side fixes in SKILL.md.

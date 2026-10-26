@@ -25,7 +25,8 @@ from cascade_common import (
 
 MAX_PARALLEL_CAP = 8
 PROMPT_PLACEHOLDERS = (
-    "{{LEVEL}}", "{{BOX}}", "{{PARENT_EXCERPT}}", "{{CROP_EXCERPT}}",
+    "{{LEVEL}}", "{{BOX}}", "{{CANDIDATES}}", "{{PARENT_EXCERPT}}",
+    "{{CROP_EXCERPT}}",
 )
 
 

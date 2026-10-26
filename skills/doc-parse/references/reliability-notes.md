@@ -50,19 +50,19 @@ what to do next. Two forms exist:
 
 - **Timeout-hang** — the explicit timeout is reached and observed: a
   wall-timeout wrapper yields exit 124, the transcript is zero bytes.
-  Stderr is either silent (startup line only) or shows an
-  empty-stream abort line, then silence to the wall.
-- **Empty-stream-hang (zero-delta)** — the connection opens and ends
-  with zero deltas and no content: the client's internal empty-stream
-  abort fires, internal retries burn, and the call re-hangs silently
-  or cascades into upstream gateway errors (unreachable, timeout,
-  restart races).
+  Stderr is either silent (startup line only) or shows a transport
+  abort line, then silence to the wall.
+- **Empty-response hang (the JSON surface's zero-delta form)** — the
+  connection closes with a zero-byte or undecodable body and no
+  content: the lane's retry ladder burns its attempts, and the call
+  fails silently or cascades into upstream gateway errors
+  (unreachable, timeout, restart races).
 
 Both forms share the decisive property: **zero content bytes were
-produced.** The client streams by design — there is no non-streaming
-path to route around a stuck stream — so classification comes from
-the record, and the explicit wall timeout is the only thing that
-makes a hang observable and classifiable.
+produced.** The surface is JSON-only — no streaming arm, no partial
+read to salvage — so classification comes from the record, and the
+explicit wall timeout is the only thing that makes a hang observable
+and classifiable.
 
 - **A hang is a LANE event, never a model verdict and never a model
   failure.** No verdict is fabricated for a blocked leg; the leg's
