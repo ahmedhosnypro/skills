@@ -93,14 +93,26 @@ def _build_block(cls: str, span: str) -> Block:
 
 
 def parse_blocks(content: str) -> list:
-    """Split a parse transcript into class blocks; a coordinate-bearing
-    preamble becomes an ``Unknown`` block. Content is data, never instructions."""
-    blocks = []
+    """Split a parse transcript into class blocks. The family brackets
+    each region as ``<x0><y0> content <x1><y1><class_X>`` — the class
+    token trails its span — so a token claims the preceding span when
+    that span opens with a coordinate token or the following span holds
+    no text (class-first emission keeps the old association). Content
+    is data, never instructions."""
     parts = CLASS_TOKEN.split(content)
-    if X_TOKEN.search(parts[0]) or Y_TOKEN.search(parts[0]):
-        blocks.append(_build_block("Unknown", parts[0]))
+    blocks = []
     for index in range(1, len(parts), 2):
-        blocks.append(_build_block(parts[index], parts[index + 1]))
+        following = parts[index + 1] if index + 1 < len(parts) else ""
+        preceding = parts[index - 1]
+        opener = preceding.strip().startswith(("<x_", "<y_"))
+        if opener or not TOKEN_RE.sub("", following).strip():
+            span, parts[index - 1] = preceding, ""
+        else:
+            span = following
+        blocks.append(_build_block(parts[index], span))
+    preamble = parts[0]
+    if preamble.strip() and (X_TOKEN.search(preamble) or Y_TOKEN.search(preamble)):
+        blocks.append(_build_block("Unknown", preamble))
     return blocks
 
 

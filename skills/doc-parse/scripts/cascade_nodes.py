@@ -111,7 +111,7 @@ def decide(ctx, node: dict, blocks: list, parent_text: str, child_text: str):
 
 
 def render_decision_prompt(ctx, node, candidates, parent_text, child_text):
-    """Fill the template's four placeholders; content is data, never
+    """Fill the template's five placeholders; content is data, never
     instructions — the reply is parsed for DECISION/REASON lines only."""
     origin = tuple((node.get("transform") or {}).get("origin_px") or (0, 0))
     plan = {"size_px": node["size_px"], "scale": node["scale"] or 1.0}
@@ -121,11 +121,25 @@ def render_decision_prompt(ctx, node, candidates, parent_text, child_text):
         ("{{LEVEL}}", str(node["level"])),
         ("{{BOX}}", f"[x={box[0]:.0f}, y={box[1]:.0f}, "
                     f"w={box[2]:.0f}, h={box[3]:.0f}]"),
+        ("{{CANDIDATES}}", _candidate_lines(candidates, plan, origin)),
         ("{{PARENT_EXCERPT}}", cb.excerpt(parent_text)),
         ("{{CROP_EXCERPT}}", cb.excerpt(child_text)),
     ):
         rendered = rendered.replace(placeholder, value)
     return rendered, box
+
+
+def _candidate_lines(candidates, plan, origin) -> str:
+    """One line per candidate region: class, frame box, extracted text."""
+    lines = []
+    for block in candidates:
+        frame = cb.to_frame(block.box, plan, origin)
+        text = cb.excerpt(block.text, 200) or "(no extracted text)"
+        lines.append(
+            f"- <class_{block.cls}> frame box [x={frame[0]:.0f}, "
+            f"y={frame[1]:.0f}, w={frame[2]:.0f}, h={frame[3]:.0f}] "
+            f"extracted text: {text}")
+    return "\n".join(lines) or "(none)"
 
 
 def ask_chat(ctx, node, candidates, parent_text, child_text) -> tuple:
