@@ -116,6 +116,47 @@ it (cusps inner-left, belly outer right). The openings face each other.
   rebuild the asset. Checker: `references/patterns/delimiters-direction-check/
   check_paren_direction.py` (auto-pairing or explicit `--expect` windows;
   exit 1 on any mirrored or unresolved stroke).
+- For matrix/vector delimiter pairs the straight-bar law (next section)
+  replaces hand-drawn forms entirely — a bar is direction-symmetric by
+  construction.
+
+## STRAIGHT-BAR DELIMITER LAW (matrix/vector parens — overrides the glyph forms)
+
+Delimiter pairs around matrices, vectors, and digit stacks — the (..)(..)
+constructs of matrix algebra (row/column vectors, augmented blocks, inner
+products, Jacobian/derivative factors) — are drawn as STRAIGHT VERTICAL BARS:
+one 1pt-wide rectangle per delimiter, never a curve.
+
+- **Never curved, for this construct class** (owner directive, absolute): no
+  font-glyph parens with a visible bow, no Bézier PNGs, no arc shapes. At frame
+  resolution the originals' matrix parens are hairline near-straight strokes —
+  a bar IS the faithful form; the bow a 20pt+ font glyph carries is a visible
+  defect, not fidelity.
+- **Geometry from the original, per delimiter** (1px = 1pt at 960×540): x =
+  the measured bulge column (extreme-ink x of the original's paren), y/h = the
+  measured ink-row span (not the text line), fill = the original's measured
+  gray per construct (grays differ per block — measure each, never reuse one).
+- **Bars hug the digits**: enclosed digit cells are re-laid to the original's
+  measured centroids — per-cell cx on the digit line, cy at the measured
+  digit-row center (a high-digit line sits ~14px above a text-line center at
+  frame scale; measure, never inherit).
+- **Missing pairs are ADDED**: when the original parenthesizes a triplet the
+  spec or parent build leaves bare (`[1 1 1]` etc.), draw both bars at the
+  measured bulge columns — the original's construction wins over the build's
+  inheritance.
+- **Closed-loop bar check (mandatory before judging; a judge PASS never waives
+  it)**: `references/patterns/delimiters-straight-bars/check_bars.py` — per
+  measured window: straightness (per-row ink centroid within ±1px across the
+  span), hairline width, ink-row span, and dominant color, run on the asset
+  band, the 150dpi render crop (`--scale 2`), and the original-frame crop
+  (ground truth). The direction check classifies bars as STRAIGHT — the
+  mirroring defect class cannot occur here; span/color/straightness are what
+  the bar check owns.
+- **Precedence**: for THIS construct class the bar form supersedes
+  delimiters-bezier-png, delimiters-spanning-arc, delimiters-stretched-glyph,
+  and font-glyph parens. Those patterns keep delimiters whose ORIGINAL
+  genuinely curves (multi-row display spans, braces) — the original's measured
+  pixels always decide.
 
 ## OMML dual-representation (post-certification pass)
 

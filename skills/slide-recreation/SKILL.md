@@ -17,7 +17,7 @@ description: >
   (user-mediated); driving an image editor (photocraft-automation);
   distilling skill improvements from work logs (skill-self-improve); or
   authoring Mermaid diagrams (mermaid-diagrams).
-version: 1.5.0
+version: 1.6.0
 ---
 
 # Slide Recreation — slide images and video frames to judge-certified PPTX
@@ -56,7 +56,7 @@ total, never a full read of everything):
 | `references/source-research.md` | Web-verified source research when the deck's instructions mandate it: the `sources/` layout, SOURCES.md pattern, trust + economy laws, spec-correction protocol |
 | `references/building.md` | Writing the pptxgenjs build, rendering, house chrome (per deck family), closed-loop PIL checks |
 | `references/judging.md` | The visual judge — verdict law, walls, ground rules, adjudication of findings |
-| `references/equations.md` | Any slide containing math — 2D format rule + alignment law + delimiter direction law (paren mirroring) + OMML |
+| `references/equations.md` | Any slide containing math — 2D format rule + alignment law + delimiter laws (direction; straight bars for matrix/vector parens) + OMML |
 | `references/graphs.md` | Slides with advanced charts/plots — generated-graph images, single-version rule |
 | `references/dependencies.md` | Decks whose slides build on each other (owner-supplied dependency graph): build gating on parent certification, blocked-time pre-phase packs, shared component imports, DB `depends_on` tracking |
 | `references/pptx-engine.md` | Slides with real bullet lists, native charts, shadows, merged table cells, or speaker notes — pptxgenjs engine law beyond the pitfall list (bullet glyphs/indents, rich-text pPr trap, option-object mutation, dLblPos repair bomb) |

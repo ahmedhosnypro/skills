@@ -38,6 +38,12 @@
       "description": "Closed-loop delimiter direction check (middle-band extremum test): '(' belly outer-LEFT / cusps inner-right, ')' mirrored; auto-pairing or explicit --expect windows on assets, render crops, and original frames; exit 1 on any mirrored or unresolved stroke. Mandatory before judging hand-drawn delimiters; a judge PASS never waives it."
     },
     {
+      "name": "delimiters-straight-bars",
+      "file": "delimiters-straight-bars/example.js",
+      "language": "javascript+python",
+      "description": "Matrix/vector delimiter pairs (row/column vectors, augmented blocks, inner products, derivative factors) as STRAIGHT 1pt bars at measured bulge columns - never curved glyphs/B\u00e9ziers/arcs for this class; digits re-laid to measured centroids; missing pairs added. Companion: check_bars.py (straightness/span/color per measured window, asset + render + original)."
+    },
+    {
       "name": "delimiters-stretched-glyph",
       "file": "delimiters-stretched-glyph/gen_delimiter.py",
       "language": "python+javascript",

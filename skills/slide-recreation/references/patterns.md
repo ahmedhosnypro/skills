@@ -38,6 +38,8 @@ domain law lives in the other `references/*.md` files.
 | explicit-line-spacing | `patterns/explicit-line-spacing/example.js` |
 | delimiters-spanning-arc | `patterns/delimiters-spanning-arc/example.js` |
 | delimiters-bezier-png | `patterns/delimiters-bezier-png/gen_delimiter.py` (+ `example.js`) |
+| delimiters-direction-check | `patterns/delimiters-direction-check/check_paren_direction.py` |
+| delimiters-straight-bars | `patterns/delimiters-straight-bars/example.js` (+ `check_bars.py`) |
 | delimiters-stretched-glyph | `patterns/delimiters-stretched-glyph/gen_delimiter.py` (+ `example.js`) |
 | equations-mathtext-png | `patterns/equations-mathtext-png/example.sh` (+ `align_check.py`) |
 | highlight-box | `patterns/highlight-box/example.js` |
